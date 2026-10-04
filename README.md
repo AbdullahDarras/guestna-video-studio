@@ -17,7 +17,24 @@ guestna-video-assets/          ← مستودع الأصول المشترك (م�
 
 معرفة Remotion (الأفضل ممارسات الرسمية) **مضمّنة داخل المستودع** في `.claude/skills/remotion-*`، فلا حاجة لتنصيب إضافة منفصلة ولا مشاكل SSH. تحديثها: `npm run skills:remotion`.
 
-## التثبيت على جهاز جديد (حوالي 15 دقيقة)
+## التثبيت لأعضاء الفريق (بدون حساب GitHub): أمر واحد
+مدير المشروع يعطيك **كود وصول** (مفتاح قراءة فقط). افتح Terminal (ماك) والصق السطر التالي بعد استبدال `الكود` بالكود الذي استلمته:
+
+```bash
+T=الكود; curl -fsSL -H "Authorization: token $T" https://raw.githubusercontent.com/AbdullahDarras/guestna-video-studio/main/install.sh | GUESTNA_TOKEN=$T bash
+```
+**ويندوز** (PowerShell، لم يُختبر بعد):
+```powershell
+$T="الكود"; iwr -UseBasicParsing -Headers @{Authorization="token $T"} https://raw.githubusercontent.com/AbdullahDarras/guestna-video-studio/main/install.ps1 | iex
+```
+المثبّت ينزّل المشروع والأصول إلى `~/GuestNa`، وينصّب Node والحزم ومتصفح التصيير (حوالي 15 دقيقة مرة واحدة)، ثم يطبع المسار. **افتح مجلد `guestna-video-studio` في Claude Code** واطلب الفيديو. الكود يُحفظ على جهازك فقط ويُستخدم لهذين المستودعين فقط. لتحديث النظام لاحقاً أعد تشغيل نفس الأمر. إن انتهت صلاحية الكود اطلب كوداً جديداً وأعد الأمر.
+
+المطلوب أيضاً: **Claude Code (تطبيق Claude Desktop)** بحساب الفريق، وموصّل **Magnific** مربوط (يضيفه مدير الحساب).
+
+## للمدير: إنشاء كود الوصول
+GitHub، ثم Settings، ثم Developer settings، ثم Fine-grained tokens، ثم Generate new token: Repository access = Only select repositories (المستودعان `guestna-video-studio` و`guestna-video-assets`)، وPermissions = Contents: **Read-only**، والصلاحية 90 يوماً. أرسل الكود للفريق بقناة خاصة. للإلغاء احذف المفتاح من نفس الصفحة. لا تضع الكود في أي ملف داخل المستودع.
+
+## التثبيت اليدوي (لمن عنده حساب GitHub وصلاحية)
 المطلوب مسبقاً: **Git** مع تسجيل دخول لـGitHub، و**Claude Code (تطبيق Claude Desktop)** بحساب الفريق، وربط موصّل **Magnific** (يضيفه مدير الحساب مرة واحدة)، وأن يكون عندك **صلاحية** على المستودعين الخاصين `guestna-video-studio` و`guestna-video-assets`.
 
 **ماك / لينكس**
