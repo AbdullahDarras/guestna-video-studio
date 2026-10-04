@@ -2,7 +2,7 @@
 # One-command installer for teammates WITHOUT a GitHub account (macOS / Linux).
 #   T=<access-code>; curl -fsSL -H "Authorization: token $T" \
 #     https://raw.githubusercontent.com/AbdullahDarras/guestna-video-studio/main/install.sh | GUESTNA_TOKEN=$T bash
-# GUESTNA_TOKEN is a read-only GitHub token for the two private repos. It is stored only in your own git config,
+# GUESTNA_TOKEN is a read-only GitHub token for the two repos (only needed while they are private). It is stored only in your own git config,
 # scoped to github.com/AbdullahDarras/ (so it is used for these repos and nothing else).
 # Without GUESTNA_TOKEN the script relies on git credentials you already have.
 set -euo pipefail

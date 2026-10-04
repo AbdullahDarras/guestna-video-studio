@@ -35,7 +35,7 @@ else log.warn("Browser download failed. The first render will try again.");
 const assets = path.join(ROOT, "public", "media");
 if (fs.existsSync(assets)) log.ok("Assets folder linked (public/media)");
 else {
-  log.info("Getting the shared assets (private repo guestna-video-assets)...");
+  log.info("Getting the shared assets (guestna-video-assets)...");
   const r2 = spawnSync(process.execPath, [path.join(ROOT, "scripts", "link-assets.mjs")], { cwd: ROOT, stdio: "inherit" });
   if (r2.status !== 0) log.warn("Assets not linked yet. You can still render the demo. Ask for access, then run: npm run assets:link");
 }
