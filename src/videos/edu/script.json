@@ -1,0 +1,108 @@
+{
+  "_comment": "One entry per phrase, in the exact speaking order of the voice take. 'sections' are the scenes (each section is separated by a [pause] in the TTS text).",
+  "fps": 30,
+  "lead": 10,
+  "tail": 150,
+  "speed": 1.06,
+  "sectionGap": 0.3,
+  "cutAhead": 8,
+  "tts": {
+    "provider": "ElevenLabs via Magnific audio_tts",
+    "model": "eleven_v3",
+    "voiceId": 783,
+    "voiceName": "Saad Al-Qahtani (Saudi Khaleeji)",
+    "source": "catalog",
+    "stability": 0.4,
+    "text": "[energetic, warm] التعليم بالترفيه، هو المستقبل. [pause 0.4s] خارج الفصل، تبدأ المغامرة. مع Guestna، برامج مدرسية جاهزة، أو نصمّمها ونخطّطها معاك. [pause 0.5s] ومن المشاكل اللي نحلها، التخطيط وتصميم الرحلات. Guestna تسرّعها لك. [pause 0.5s] آلاف الطلاب طلعوا معنا في رحلات مدرسية. أكثر من ثلاثمية وجهة، وعشرات المدن السعودية. [pause 0.5s] رحلات نصف يوم، ويوم كامل، ومتعددة الأيام. أنشطة رياضية، وعلمية، وفنية، وترفيهية، لكل مرحلة دراسية. [pause 0.5s] وفي منصة وحدة، تدير الرحلات والأنشطة اللاصفية، وتتابع الحجوزات، وتستلم تقارير ذكية. [pause 0.5s] وتدفع إلكترونياً، بأبل باي، أو تمارا. [pause 0.5s] النقل والباصات، والمشرفين، والوجبات، من التخطيط للعودة، بنجهزها لك. [pause 0.6s] Guestna للمدارس. رحلة مدرسية، ما تتكرر.",
+    "recipe": [
+      "One single call for the whole script (never separate short clips: they drift to a non-Gulf dialect).",
+      "No accent tags and no per-item [pause] tags. Only [pause 0.4-0.6s] between sections.",
+      "Write the brand name as one Latin word: Guestna.",
+      "Keep the take as public/media/<video>/voice/take.mp3, then run: npm run voice -- --video <video>"
+    ]
+  },
+  "sections": [
+    {
+      "id": 1,
+      "units": [
+        "التعليم بالترفيه",
+        "هو المستقبل"
+      ]
+    },
+    {
+      "id": 2,
+      "units": [
+        "خارج الفصل",
+        "تبدأ المغامرة",
+        "مع Guestna",
+        "برامج مدرسية جاهزة",
+        "أو نصمّمها ونخطّطها معاك"
+      ]
+    },
+    {
+      "id": 3,
+      "units": [
+        "ومن المشاكل اللي نحلها",
+        "التخطيط",
+        "وتصميم الرحلات",
+        "Guestna تسرّعها لك"
+      ]
+    },
+    {
+      "id": 4,
+      "units": [
+        "آلاف الطلاب طلعوا معنا في رحلات مدرسية",
+        "أكثر من ثلاثمية وجهة",
+        "وعشرات المدن السعودية"
+      ]
+    },
+    {
+      "id": 5,
+      "units": [
+        "رحلات نصف يوم",
+        "ويوم كامل",
+        "ومتعددة الأيام",
+        "أنشطة رياضية",
+        "وعلمية",
+        "وفنية",
+        "وترفيهية",
+        "لكل مرحلة دراسية"
+      ]
+    },
+    {
+      "id": 6,
+      "units": [
+        "وفي منصة وحدة",
+        "تدير الرحلات والأنشطة اللاصفية",
+        "وتتابع الحجوزات",
+        "وتستلم تقارير ذكية"
+      ]
+    },
+    {
+      "id": 7,
+      "units": [
+        "وتدفع إلكترونياً",
+        "بأبل باي",
+        "أو تمارا"
+      ]
+    },
+    {
+      "id": 8,
+      "units": [
+        "النقل والباصات",
+        "والمشرفين",
+        "والوجبات",
+        "من التخطيط للعودة",
+        "بنجهزها لك"
+      ]
+    },
+    {
+      "id": 9,
+      "units": [
+        "Guestna للمدارس",
+        "رحلة مدرسية",
+        "ما تتكرر"
+      ]
+    }
+  ]
+}

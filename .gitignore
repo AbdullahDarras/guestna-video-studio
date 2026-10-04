@@ -1,0 +1,10 @@
+node_modules
+dist
+out
+.DS_Store
+.env
+*.log
+
+# External media (stock, AI generations, voice takes, music) lives in the shared assets folder
+# and is linked into public/media by `npm run assets:link`.
+public/media

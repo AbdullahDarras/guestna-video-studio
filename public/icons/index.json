@@ -1,0 +1,361 @@
+{
+ "_source": "GuestNa_Visual_Identity_Guide.pdf p.16 (Icon System), extracted as vector by scripts/extract_from_guide.py",
+ "_colours": "Nature #037474 + Desert #EE8B22, as in the guide; 'laboratory' also carries one neutral detail #BEC3C7 from the original artwork.",
+ "icons": [
+  {
+   "n": 1,
+   "name": "breakfast",
+   "ar": "فطور",
+   "file": "assets/icons/breakfast.svg"
+  },
+  {
+   "n": 2,
+   "name": "meal-service",
+   "ar": "خدمة الوجبات",
+   "file": "assets/icons/meal-service.svg"
+  },
+  {
+   "n": 3,
+   "name": "bus",
+   "ar": "حافلة",
+   "file": "assets/icons/bus.svg"
+  },
+  {
+   "n": 4,
+   "name": "meals",
+   "ar": "وجبات",
+   "file": "assets/icons/meals.svg"
+  },
+  {
+   "n": 5,
+   "name": "snacks",
+   "ar": "وجبات خفيفة",
+   "file": "assets/icons/snacks.svg"
+  },
+  {
+   "n": 6,
+   "name": "car",
+   "ar": "سيارة",
+   "file": "assets/icons/car.svg"
+  },
+  {
+   "n": 7,
+   "name": "water",
+   "ar": "مياه",
+   "file": "assets/icons/water.svg"
+  },
+  {
+   "n": 8,
+   "name": "science",
+   "ar": "علوم",
+   "file": "assets/icons/science.svg"
+  },
+  {
+   "n": 9,
+   "name": "laboratory",
+   "ar": "مختبر",
+   "file": "assets/icons/laboratory.svg"
+  },
+  {
+   "n": 10,
+   "name": "shooting",
+   "ar": "رماية",
+   "file": "assets/icons/shooting.svg"
+  },
+  {
+   "n": 11,
+   "name": "waterfall",
+   "ar": "شلال",
+   "file": "assets/icons/waterfall.svg"
+  },
+  {
+   "n": 12,
+   "name": "hot-air-balloon",
+   "ar": "منطاد",
+   "file": "assets/icons/hot-air-balloon.svg"
+  },
+  {
+   "n": 13,
+   "name": "celebration",
+   "ar": "احتفال",
+   "file": "assets/icons/celebration.svg"
+  },
+  {
+   "n": 14,
+   "name": "snorkeling",
+   "ar": "سنوركل",
+   "file": "assets/icons/snorkeling.svg"
+  },
+  {
+   "n": 15,
+   "name": "four-wheel-drive",
+   "ar": "سيارة دفع رباعي",
+   "file": "assets/icons/four-wheel-drive.svg"
+  },
+  {
+   "n": 16,
+   "name": "skating",
+   "ar": "تزلج",
+   "file": "assets/icons/skating.svg"
+  },
+  {
+   "n": 17,
+   "name": "juice",
+   "ar": "عصير",
+   "file": "assets/icons/juice.svg"
+  },
+  {
+   "n": 18,
+   "name": "healthy-food",
+   "ar": "طعام صحي",
+   "file": "assets/icons/healthy-food.svg"
+  },
+  {
+   "n": 19,
+   "name": "arabic-coffee",
+   "ar": "دلة قهوة عربية",
+   "file": "assets/icons/arabic-coffee.svg"
+  },
+  {
+   "n": 20,
+   "name": "restrooms",
+   "ar": "دورات مياه",
+   "file": "assets/icons/restrooms.svg"
+  },
+  {
+   "n": 21,
+   "name": "teamwork",
+   "ar": "عمل جماعي",
+   "file": "assets/icons/teamwork.svg"
+  },
+  {
+   "n": 22,
+   "name": "rifle-range",
+   "ar": "ميدان رماية",
+   "file": "assets/icons/rifle-range.svg"
+  },
+  {
+   "n": 23,
+   "name": "pottery",
+   "ar": "فخار",
+   "file": "assets/icons/pottery.svg"
+  },
+  {
+   "n": 24,
+   "name": "majlis-seating",
+   "ar": "جلسة",
+   "file": "assets/icons/majlis-seating.svg"
+  },
+  {
+   "n": 25,
+   "name": "stage",
+   "ar": "مسرح",
+   "file": "assets/icons/stage.svg"
+  },
+  {
+   "n": 26,
+   "name": "heritage-woman",
+   "ar": "زي تراثي نسائي",
+   "file": "assets/icons/heritage-woman.svg"
+  },
+  {
+   "n": 27,
+   "name": "walking",
+   "ar": "مشي",
+   "file": "assets/icons/walking.svg"
+  },
+  {
+   "n": 28,
+   "name": "rowing",
+   "ar": "تجديف",
+   "file": "assets/icons/rowing.svg"
+  },
+  {
+   "n": 29,
+   "name": "hot-drink",
+   "ar": "مشروب ساخن",
+   "file": "assets/icons/hot-drink.svg"
+  },
+  {
+   "n": 30,
+   "name": "shopping",
+   "ar": "تسوق",
+   "file": "assets/icons/shopping.svg"
+  },
+  {
+   "n": 31,
+   "name": "first-aid",
+   "ar": "إسعافات أولية",
+   "file": "assets/icons/first-aid.svg"
+  },
+  {
+   "n": 32,
+   "name": "archery",
+   "ar": "رماية بالقوس",
+   "file": "assets/icons/archery.svg"
+  },
+  {
+   "n": 33,
+   "name": "farm",
+   "ar": "مزرعة",
+   "file": "assets/icons/farm.svg"
+  },
+  {
+   "n": 34,
+   "name": "family-house",
+   "ar": "بيت عائلي",
+   "file": "assets/icons/family-house.svg"
+  },
+  {
+   "n": 35,
+   "name": "diving",
+   "ar": "غوص",
+   "file": "assets/icons/diving.svg"
+  },
+  {
+   "n": 36,
+   "name": "hiking",
+   "ar": "هايكنج",
+   "file": "assets/icons/hiking.svg"
+  },
+  {
+   "n": 37,
+   "name": "scuba",
+   "ar": "غوص حر",
+   "file": "assets/icons/scuba.svg"
+  },
+  {
+   "n": 38,
+   "name": "planetarium",
+   "ar": "قبة فلكية",
+   "file": "assets/icons/planetarium.svg"
+  },
+  {
+   "n": 39,
+   "name": "ticket",
+   "ar": "تذكرة",
+   "file": "assets/icons/ticket.svg"
+  },
+  {
+   "n": 40,
+   "name": "camping",
+   "ar": "تخييم",
+   "file": "assets/icons/camping.svg"
+  },
+  {
+   "n": 41,
+   "name": "translation",
+   "ar": "ترجمة ومرشد",
+   "file": "assets/icons/translation.svg"
+  },
+  {
+   "n": 42,
+   "name": "wifi",
+   "ar": "إنترنت",
+   "file": "assets/icons/wifi.svg"
+  },
+  {
+   "n": 43,
+   "name": "trekking",
+   "ar": "مسار جبلي",
+   "file": "assets/icons/trekking.svg"
+  },
+  {
+   "n": 44,
+   "name": "music",
+   "ar": "موسيقى",
+   "file": "assets/icons/music.svg"
+  },
+  {
+   "n": 45,
+   "name": "horse-riding",
+   "ar": "ركوب الخيل",
+   "file": "assets/icons/horse-riding.svg"
+  },
+  {
+   "n": 46,
+   "name": "meeting-point",
+   "ar": "نقطة تجمع",
+   "file": "assets/icons/meeting-point.svg"
+  },
+  {
+   "n": 47,
+   "name": "staff",
+   "ar": "فريق العمل",
+   "file": "assets/icons/staff.svg"
+  },
+  {
+   "n": 48,
+   "name": "dirt-bike",
+   "ar": "دراجة نارية",
+   "file": "assets/icons/dirt-bike.svg"
+  },
+  {
+   "n": 49,
+   "name": "swimming",
+   "ar": "سباحة",
+   "file": "assets/icons/swimming.svg"
+  },
+  {
+   "n": 50,
+   "name": "train",
+   "ar": "قطار",
+   "file": "assets/icons/train.svg"
+  },
+  {
+   "n": 51,
+   "name": "local-cuisine",
+   "ar": "أكلة محلية",
+   "file": "assets/icons/local-cuisine.svg"
+  },
+  {
+   "n": 52,
+   "name": "meditation",
+   "ar": "تأمل",
+   "file": "assets/icons/meditation.svg"
+  },
+  {
+   "n": 53,
+   "name": "safety",
+   "ar": "سلامة وإشراف",
+   "file": "assets/icons/safety.svg"
+  },
+  {
+   "n": 54,
+   "name": "rock-climbing",
+   "ar": "تسلق",
+   "file": "assets/icons/rock-climbing.svg"
+  },
+  {
+   "n": 55,
+   "name": "hotel",
+   "ar": "فندق",
+   "file": "assets/icons/hotel.svg"
+  },
+  {
+   "n": 56,
+   "name": "photography",
+   "ar": "تصوير",
+   "file": "assets/icons/photography.svg"
+  },
+  {
+   "n": 57,
+   "name": "zipline",
+   "ar": "زيبلاين",
+   "file": "assets/icons/zipline.svg"
+  },
+  {
+   "n": 58,
+   "name": "heritage-tent",
+   "ar": "خيمة تراثية",
+   "file": "assets/icons/heritage-tent.svg"
+  },
+  {
+   "n": 59,
+   "name": "learning",
+   "ar": "تعلم وأفكار",
+   "file": "assets/icons/learning.svg"
+  }
+ ],
+ "_framed": "Framed versions are composed at build time from _frame.svg (guide p.16 frame) + the icon; not shipped as files."
+}

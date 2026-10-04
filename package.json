@@ -1,0 +1,41 @@
+{
+  "name": "guestna-video-studio",
+  "version": "1.0.0",
+  "description": "GuestNa video production system: Remotion engine, brand kit, voice and timing pipeline",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": { "node": ">=20" },
+  "type": "module",
+  "dependencies": {
+    "@remotion/cli": "4.0.530",
+    "@remotion/fonts": "4.0.530",
+    "@remotion/media": "4.0.530",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.530"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.530",
+    "@types/node": "^22.0.0",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.39.5",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "remotion studio",
+    "lint": "eslint src && tsc",
+    "assets:link": "node scripts/link-assets.mjs",
+    "assets:check": "node scripts/check-assets.mjs",
+    "voice": "node scripts/build-voice.mjs",
+    "new:video": "node scripts/new-video.mjs",
+    "render": "remotion render",
+    "render:demo": "remotion render BrandDemo out/brand-demo.mp4 --codec=h264",
+    "render:edu": "remotion render GuestNaEdu out/guestna-edu.mp4 --codec=h264",
+    "render:app": "remotion render GuestNaApp out/guestna-app.mp4 --codec=h264",
+    "upgrade": "remotion upgrade"
+  },
+  "sideEffects": ["*.css"]
+}

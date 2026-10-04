@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "path": "edu/ai-bus.mp4",
+      "what": "Opening: Saudi schoolboys boarding a yellow school bus (9:16, 6s after trim)",
+      "source": "AI-generated: Google Veo 3.1 Fast via Magnific, 8s 9:16; trimmed from 2.0s and letterbox cropped to 1080x1920 (ffmpeg crop=720:1070:0:105,scale,crop)"
+    },
+    {
+      "path": "edu/ai/sports.jpg",
+      "what": "Tile 'رياضية': Saudi boys playing football",
+      "source": "AI-generated image (Magnific auto mode)"
+    },
+    {
+      "path": "edu/ai/science.jpg",
+      "what": "Tile 'علمية': Saudi boys at a hologram science exhibit",
+      "source": "AI-generated image (Magnific auto mode)"
+    },
+    {
+      "path": "edu/ai/art.jpg",
+      "what": "Tile 'فنية': Saudi schoolgirls painting",
+      "source": "AI-generated image (Magnific auto mode)"
+    },
+    {
+      "path": "edu/ai/fun.jpg",
+      "what": "Tile 'ترفيهية': Saudi boys playing air hockey",
+      "source": "AI-generated image (Magnific auto mode)"
+    },
+    {
+      "path": "edu/ai/riyadh.jpg",
+      "what": "Numbers scene background: Riyadh, King Fahd Road and Kingdom Centre (no people)",
+      "source": "Frame from licensed stock video (Magnific/Freepik id 9854713)"
+    },
+    {
+      "path": "edu/music.mp3",
+      "what": "Background music, instrumental (trimmed by the composition)",
+      "source": "Google Lyria 3 Pro via Magnific, 40s request"
+    },
+    {
+      "path": "edu/whoosh-soft.mp3",
+      "what": "Soft whoosh used on every scene cut",
+      "source": "Magnific SFX, then shortened and faded with ffmpeg"
+    },
+    {
+      "path": "edu/voice/take.mp3",
+      "what": "RAW single-take voiceover (input of npm run voice)",
+      "source": "ElevenLabs eleven_v3, voice 783 (see script.json > tts)"
+    },
+    {
+      "path": "edu/voice-final.mp3",
+      "what": "Final voiceover built from the take (cut at section pauses, 1.06x)",
+      "source": "Generated: npm run voice -- --video edu"
+    }
+  ]
+}

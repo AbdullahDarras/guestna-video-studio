@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "path": "app/photos/alula-elephant.jpg",
+      "what": "AlUla, Elephant Rock lounge",
+      "source": "Licensed stock (Magnific/Freepik id 433174845)"
+    },
+    {
+      "path": "app/photos/alula-tombs.jpg",
+      "what": "AlUla rock formation",
+      "source": "Licensed stock (Magnific/Freepik id 87923894)"
+    },
+    {
+      "path": "app/photos/jeddah-balad.jpg",
+      "what": "Jeddah, Al-Balad",
+      "source": "Licensed stock (Magnific/Freepik id 418072460)"
+    },
+    {
+      "path": "app/photos/taif-hada.jpg",
+      "what": "Taif, Al Hada",
+      "source": "Licensed stock (Magnific/Freepik id 416250770)"
+    },
+    {
+      "path": "app/photos/asir-rijal-almaa.jpg",
+      "what": "Asir, Rijal Almaa",
+      "source": "Supplied by the GuestNa team, upscaled 4x with Magnific Precision"
+    },
+    {
+      "path": "app/audio/voiceover.mp3",
+      "what": "Gulf voiceover (voice 783)",
+      "source": "ElevenLabs eleven_v3 via Magnific"
+    },
+    {
+      "path": "app/audio/music.mp3",
+      "what": "Background music",
+      "source": "Google Lyria 3 Pro via Magnific"
+    }
+  ]
+}
