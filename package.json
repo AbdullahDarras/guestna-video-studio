@@ -4,7 +4,9 @@
   "description": "GuestNa video production system: Remotion engine, brand kit, voice and timing pipeline",
   "private": true,
   "license": "UNLICENSED",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "dependencies": {
     "@remotion/cli": "4.0.530",
@@ -35,7 +37,11 @@
     "render:demo": "remotion render BrandDemo out/brand-demo.mp4 --codec=h264",
     "render:edu": "remotion render GuestNaEdu out/guestna-edu.mp4 --codec=h264",
     "render:app": "remotion render GuestNaApp out/guestna-app.mp4 --codec=h264",
-    "upgrade": "remotion upgrade"
+    "upgrade": "remotion upgrade",
+    "assets:update": "node scripts/link-assets.mjs --pull",
+    "skills:remotion": "node scripts/update-remotion-skills.mjs"
   },
-  "sideEffects": ["*.css"]
+  "sideEffects": [
+    "*.css"
+  ]
 }

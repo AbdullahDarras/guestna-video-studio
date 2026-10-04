@@ -7,8 +7,9 @@
 - `src/kit.tsx`: عدّة الحركة المشتركة (`MaskLine`, `usePop`, `useIn`, `Ring`, `Floaters`, `DiamondWipe`, `Burst`, `Disc`, `Pill`, `Clip`, `Pic`). أي حركة جديدة تُضاف هنا لتُعاد استخدامها.
 - `src/videos/<name>/`: كل فيديو في مجلد (مشاهد + `index.ts` + `assets.json` + اختيارياً `script.json` و`timing.ts`). كل فيديو يُسجَّل في `src/videos/registry.ts`.
 - `public/{fonts,logos,patterns,icons,pay}`: أصول الهوية (داخل Git).
-- `public/media/`: **الوسائط الخارجية (لقطات، صور، صوت، موسيقى). خارج Git**، تُربط من مجلد الأصول المشترك بـ`npm run assets:link`.
-- `scripts/`: `setup`, `link-assets`, `check-assets`, `build-voice`, `new-video` (كلها Node وتعمل على ماك وويندوز).
+- `public/media/`: **الوسائط الخارجية (لقطات، صور، صوت، موسيقى). خارج Git**. مصدرها مستودع منفصل `guestna-video-assets` (يُسحب ويُربط تلقائياً بـ`npm run setup` / `npm run assets:link`، وتحديثه `npm run assets:update`). أصل جديد: يُضاف في مستودع الأصول (commit + push) ويُعلن في `assets.json`.
+- `scripts/`: `setup`, `link-assets`, `check-assets`, `build-voice`, `new-video`, `update-remotion-skills` (كلها Node وتعمل على ماك وويندوز).
+- `.claude/skills/remotion-*`: سكلز Remotion الرسمية (MIT، مضمّنة، لا تعدّلها يدوياً؛ التحديث بـ`npm run skills:remotion`). سكل جستنا هو `guestna-video`.
 
 ## أوامر
 `npm run setup` · `npm run dev` (معاينة) · `npm run lint` · `npm run assets:check` · `npm run voice -- --video <name>` · `npm run new:video -- <name>` · `npm run render:<id>` أو `npx remotion render <CompositionId> out/x.mp4`.
