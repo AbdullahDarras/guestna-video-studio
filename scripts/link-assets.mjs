@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Gets the shared assets (private repo guestna-video-assets) and links them into public/media.
+// Gets the shared assets (repo guestna-video-assets) and links them into public/media.
 //   npm run assets:link                       clone the assets repo next to this one (first time) and link it
 //   npm run assets:update                     git pull the assets repo
 //   npm run assets:link -- --from <folder>    use any local folder instead (Drive, Canva export...)
@@ -23,7 +23,7 @@ if (!explicit) {
     const r = git(["clone", config.assetsRepo, source], ROOT);
     if (r.status !== 0) {
       log.err(
-        "Could not clone the assets repo. Ask the repo owner for access (private repo) and make sure you are logged in to GitHub, " +
+        "Could not clone the assets repo. Check your internet connection, " +
           "or use a local folder: npm run assets:link -- --from <folder>",
       );
       process.exit(1);
