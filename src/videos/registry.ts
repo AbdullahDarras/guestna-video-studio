@@ -1,5 +1,6 @@
 import type React from "react";
 // @videos-import
+import { eduTripDef } from "./edu-trip";
 import { appVideo } from "./app";
 import { demoVideo } from "./demo";
 import { eduVideo } from "./edu";
@@ -26,5 +27,6 @@ export const VIDEOS: readonly VideoDef[] = [
   demoVideo,
   eduVideo,
   appVideo,
+  eduTripDef,
   // @videos-list
 ];

@@ -42,7 +42,8 @@
     "skills:remotion": "node scripts/update-remotion-skills.mjs",
     "motion": "node scripts/motion.mjs",
     "motion:lint": "node scripts/motion.mjs lint",
-    "motion:docs": "node scripts/motion.mjs docs"
+    "motion:docs": "node scripts/motion.mjs docs",
+    "render:trip": "remotion render EduTrip out/guestna-edu-trip.mp4 --codec=h264"
   },
   "sideEffects": [
     "*.css"

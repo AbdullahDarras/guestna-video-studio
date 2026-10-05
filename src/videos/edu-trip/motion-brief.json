@@ -1,0 +1,115 @@
+{
+  "$comment": "Motion brief: 'كل شي للرحلة' (guestna-edu.com). Journey concept: a rail on the left edge tracks the trip stations while a route and bus tie the scenes together.",
+  "language": "ar",
+  "ratio": "9:16",
+  "signatureTransition": "shape-transition",
+  "scenes": [
+    {
+      "scene": 1,
+      "name": "Hook",
+      "voice": "كل شي للرحلة المدرسية، تلقاه عندنا",
+      "hero": "text-mask-reveal",
+      "support": [
+        "secondary-action"
+      ],
+      "emphasis": [
+        "light-sweep"
+      ],
+      "camera": "zoom",
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 14,
+      "notes": "عنوان بأوزان مختلفة (Black ضخم + Light + Bold)، دخول بتقريب خفيف مع ضبابية."
+    },
+    {
+      "scene": 2,
+      "name": "Programs",
+      "voice": "أنشطة داخل المدرسة، ومراكز ترفيه وتعليم، وزيارات، داخل المدينة، وخارجها",
+      "hero": "stagger",
+      "support": [
+        "ken-burns",
+        "back-out"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 13,
+      "notes": "خمس بطاقات تدخل بميلان ثلاثي الأبعاد وتتابع بحسب الصوت فوق صورة بتكبير بطيء."
+    },
+    {
+      "scene": 3,
+      "name": "Transport",
+      "voice": "نقل وترتيب كامل، للباصات، والطيران، والمشرفين، وخطط واضحة",
+      "hero": "motion-path",
+      "support": [
+        "line-draw",
+        "stagger"
+      ],
+      "emphasis": [
+        "back-out"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 13,
+      "notes": "الباص يسير على مسار متعرّج ويضيء محطاته الأربع مع كل عبارة."
+    },
+    {
+      "scene": 4,
+      "name": "Meals",
+      "voice": "ووجبات مضمونة، بخيارات غذائية متنوعة",
+      "hero": "radial-repeater",
+      "support": [
+        "pulse-rings",
+        "back-out"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 13,
+      "notes": "أيقونات الوجبات تدور حول طبق مركزي، علامة ضمان تنبض."
+    },
+    {
+      "scene": 5,
+      "name": "Bookings",
+      "voice": "وإدارة كاملة للحجوزات، والمتابعة أونلاين",
+      "hero": "stagger",
+      "support": [
+        "line-draw",
+        "pulse-rings"
+      ],
+      "emphasis": [
+        "light-sweep"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": "بطاقة لوحة حجوزات مجرّدة (بدون بيانات) تُعلَّم صفوفها بالتتابع، مؤشر أونلاين ينبض."
+    },
+    {
+      "scene": 6,
+      "name": "Outro",
+      "voice": "من التخطيط للعودة، بنجهزها لك، Guestna للمدارس",
+      "hero": "logo-reveal",
+      "support": [
+        "text-mask-reveal",
+        "seamless-loop"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": null,
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": "خلفية بيضاء، الشعار الأصلي بألوانه، رابط guestna-edu.com."
+    }
+  ]
+}

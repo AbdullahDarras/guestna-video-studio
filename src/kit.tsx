@@ -290,13 +290,14 @@ export const Pill: React.FC<{
   readonly bg?: string;
   readonly color?: string;
   readonly size?: number;
+  readonly weight?: number;
   readonly style?: React.CSSProperties;
-}> = ({ children, bg = C.white, color = C.seaDark, size = 52, style }) => (
+}> = ({ children, bg = C.white, color = C.seaDark, size = 52, weight = 800, style }) => (
   <div
     style={{
       direction: "rtl",
       fontFamily: FONT,
-      fontWeight: 800,
+      fontWeight: weight,
       fontSize: size,
       color,
       backgroundColor: bg,
@@ -309,3 +310,41 @@ export const Pill: React.FC<{
     {children}
   </div>
 );
+
+/**
+ * Cinematic push for a whole scene: it settles in from a slight zoom with a soft blur (the incoming scene under the
+ * wipe) and pushes through right before the cut (the outgoing scene). Wrap the scene content in it.
+ */
+export const Dolly: React.FC<{
+  readonly total: number;
+  readonly children: React.ReactNode;
+  readonly inFrames?: number;
+  readonly outFrames?: number;
+}> = ({ total, children, inFrames = 14, outFrames = 8 }) => {
+  const frame = useCurrentFrame();
+  const inP = interpolate(frame, [0, inFrames], [0, 1], { ...clamp, easing: EASE });
+  const outP = interpolate(frame, [total - outFrames, total], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
+  const blur = (1 - inP) * 10 + outP * 8;
+  return <AbsoluteFill style={{ scale: 1.07 - inP * 0.07 + outP * 0.06, filter: blur > 0.3 ? `blur(${blur}px)` : undefined }}>{children}</AbsoluteFill>;
+};
+
+/** A bar of light that sweeps once across its parent (the parent needs position: relative). */
+export const Sweep: React.FC<{ readonly at: number; readonly dur?: number; readonly radius?: number }> = ({ at, dur = 22, radius = 0 }) => {
+  const frame = useCurrentFrame();
+  const x = interpolate(frame, [at, at + dur], [-45, 125], { ...clamp, easing: Easing.inOut(Easing.cubic) });
+  return (
+    <div style={{ position: "absolute", inset: 0, overflow: "hidden", borderRadius: radius, pointerEvents: "none" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: -30,
+          bottom: -30,
+          width: "34%",
+          left: `${x}%`,
+          background: "linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0))",
+          transform: "skewX(-18deg)",
+        }}
+      />
+    </div>
+  );
+};

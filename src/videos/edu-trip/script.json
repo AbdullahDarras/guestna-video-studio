@@ -1,0 +1,31 @@
+{
+  "_comment": "GuestNa for Schools: section 'كل شي للرحلة' (guestna-edu.com). One entry per phrase in speaking order. Content only from the website section.",
+  "fps": 30,
+  "lead": 10,
+  "tail": 150,
+  "speed": 1.06,
+  "sectionGap": 0.3,
+  "cutAhead": 8,
+  "tts": {
+    "provider": "ElevenLabs via Magnific audio_tts",
+    "model": "eleven_v3",
+    "voiceId": 783,
+    "voiceName": "Saad Al-Qahtani (Saudi Khaleeji)",
+    "source": "catalog",
+    "stability": 0.4,
+    "text": "[energetic, warm] كل شي للرحلة المدرسية، تلقاه عندنا. [pause 0.5s] أنشطة داخل المدرسة، ومراكز ترفيه وتعليم، وزيارات، داخل المدينة، وخارجها. [pause 0.5s] نقل وترتيب كامل، للباصات، والطيران، والمشرفين، وخطط واضحة. [pause 0.5s] ووجبات مضمونة، بخيارات غذائية متنوعة. [pause 0.5s] وإدارة كاملة للحجوزات، والمتابعة أونلاين. [pause 0.6s] من التخطيط للعودة، بنجهزها لك. Guestna للمدارس.",
+    "recipe": [
+      "One single call for the whole script. No accent tags, no per-item [pause] tags, only [pause 0.4-0.6s] between sections.",
+      "Brand name as one Latin word: Guestna.",
+      "Keep the take as public/media/edu-trip/voice/take.mp3 then: npm run voice -- --video edu-trip"
+    ]
+  },
+  "sections": [
+    { "id": 1, "units": ["كل شي للرحلة المدرسية", "تلقاه عندنا"] },
+    { "id": 2, "units": ["أنشطة داخل المدرسة", "ومراكز ترفيه وتعليم", "وزيارات", "داخل المدينة", "وخارجها"] },
+    { "id": 3, "units": ["نقل وترتيب كامل", "للباصات", "والطيران", "والمشرفين", "وخطط واضحة"] },
+    { "id": 4, "units": ["ووجبات مضمونة", "بخيارات غذائية متنوعة"] },
+    { "id": 5, "units": ["وإدارة كاملة للحجوزات", "والمتابعة أونلاين"] },
+    { "id": 6, "units": ["من التخطيط للعودة", "بنجهزها لك", "Guestna", "للمدارس"] }
+  ]
+}
