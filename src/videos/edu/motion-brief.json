@@ -1,0 +1,167 @@
+{
+  "$comment": "Motion brief of the delivered edu reel (v5), written from the scenes as built. Use it as the example for new videos. Lint: npm run motion -- lint edu",
+  "language": "ar",
+  "ratio": "9:16",
+  "signatureTransition": "shape-transition",
+  "scenes": [
+    {
+      "scene": 1,
+      "name": "Hook",
+      "voice": "التعليم بالترفيه، هو المستقبل",
+      "hero": "text-mask-reveal",
+      "support": [
+        "secondary-action",
+        "seamless-loop"
+      ],
+      "emphasis": [
+        "line-draw"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 14,
+      "notes": "شعار ثم عنوان ثلاثة أسطر. الخلفية: حلقة الباترن الدوّارة وعناصر عائمة."
+    },
+    {
+      "scene": 2,
+      "name": "Bus",
+      "voice": "خارج الفصل، تبدأ المغامرة، مع Guestna، برامج مدرسية جاهزة، أو نصمّمها ونخطّطها معاك",
+      "hero": "text-mask-reveal",
+      "support": [
+        "ken-burns",
+        "staging"
+      ],
+      "emphasis": [
+        "back-out"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 14,
+      "notes": "لقطة الباص المولّدة بتكبير بطيء، النص فوقها، شارات تقفز بعد العنوان."
+    },
+    {
+      "scene": 3,
+      "name": "Problem",
+      "voice": "ومن المشاكل اللي نحلها، التخطيط، وتصميم الرحلات، Guestna تسرّعها لك",
+      "hero": "text-mask-reveal",
+      "support": [
+        "stagger",
+        "back-out"
+      ],
+      "emphasis": [
+        "staging"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": "عناصر فوضى تدخل بالتتابع ثم تترتب، والساعة تأكد السرعة."
+    },
+    {
+      "scene": 4,
+      "name": "Numbers",
+      "voice": "آلاف الطلاب طلعوا معنا في رحلات مدرسية، أكثر من ثلاثمية وجهة، وعشرات المدن السعودية",
+      "hero": "counter",
+      "support": [
+        "text-mask-reveal",
+        "ken-burns"
+      ],
+      "emphasis": [],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 14,
+      "notes": "رقم يعد من الصفر فوق صورة الرياض بتكبير بطيء."
+    },
+    {
+      "scene": 5,
+      "name": "Programs",
+      "voice": "رحلات نصف يوم، ويوم كامل، ومتعددة الأيام، أنشطة رياضية، وعلمية، وفنية، وترفيهية، لكل مرحلة دراسية",
+      "hero": "stagger",
+      "support": [
+        "line-draw",
+        "ken-burns"
+      ],
+      "emphasis": [
+        "back-out"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 13,
+      "notes": "مربعات الصور تدخل بالتتابع، وحلقة اليوم تُرسم أقواساً."
+    },
+    {
+      "scene": 6,
+      "name": "Platform",
+      "voice": "وفي منصة وحدة، تدير الرحلات والأنشطة اللاصفية، وتتابع الحجوزات، وتستلم تقارير ذكية",
+      "hero": "stagger",
+      "support": [
+        "line-draw",
+        "back-out"
+      ],
+      "emphasis": [
+        "counter"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": "مركز المنصة ثم خطوط ربط وبطاقات ومخطط ينمو."
+    },
+    {
+      "scene": 7,
+      "name": "Payment",
+      "voice": "وتدفع إلكترونياً، بأبل باي، أو تمارا",
+      "hero": "back-out",
+      "support": [
+        "text-mask-reveal"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": "بطاقتا أبل باي وتمارا تقفزان بحسب الصوت."
+    },
+    {
+      "scene": 8,
+      "name": "Logistics",
+      "voice": "النقل والباصات، والمشرفين، والوجبات، من التخطيط للعودة، بنجهزها لك",
+      "hero": "stagger",
+      "support": [
+        "motion-path",
+        "text-mask-reveal"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "shape-transition",
+      "ease": "expo-out",
+      "enterFrames": 13,
+      "notes": "ثلاثة صفوف بالتتابع، باص على مسار التخطيط للعودة، ثم شعار بنجهزها لك."
+    },
+    {
+      "scene": 9,
+      "name": "Outro",
+      "voice": "Guestna للمدارس، رحلة مدرسية، ما تتكرر",
+      "hero": "logo-reveal",
+      "support": [
+        "text-mask-reveal",
+        "seamless-loop"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": null,
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": "خلفية بيضاء، الشعار بألوانه الأصلية، رابط guestna-edu.com."
+    }
+  ]
+}

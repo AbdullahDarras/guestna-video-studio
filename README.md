@@ -56,6 +56,13 @@ powershell -ExecutionPolicy Bypass -File .\setup.ps1
 
 اختبار سريع: `npm run render:demo` يصيّر فيديواً تجريبياً من 5 ثوان بدون أي أصول خارجية.
 
+## قاموس الحركة وموجز الحركة
+`motion/lexicon.json` قاموس من 183 مصطلح حركة (منحنيات، مبادئ، نصوص، انتقالات، كاميرا، إضاءة، توليد وحل مشاكله) مبني على [قاموس التحريك](https://motioname.com). لكل مصطلح معناه، ومقابله في Remotion، وعبارة برومبت جاهزة.
+- بحث: `npm run motion -- lookup بارالاكس`
+- موجز الحركة لفيديو: `npm run motion -- brief <name>` ثم تعبئته (أو اكتب `/motion <name>` في Claude Code). يُفحص آلياً مع `npm run lint` (عدد الطبقات، التوقيت، العربية، مدة المشهد).
+- برومبت لقطة ذكاء اصطناعي: `npm run motion -- prompt --subject "..." --camera dolly --light bright-daylight --people`
+- بعد تعديل القاموس: `npm run motion:docs` لتحديث المرجع المقروء.
+
 ## الاستخدام اليومي
 افتح مجلد المستودع في Claude Code. ستجد القواعد والسكل `guestna-video` محمّلة. ثم:
 - `/new-video <اسم> <وصف>`: يبدأ فيديو جديداً (سكربت، صوت، مشاهد).

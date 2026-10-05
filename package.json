@@ -28,7 +28,7 @@
   "scripts": {
     "setup": "node scripts/setup.mjs",
     "dev": "remotion studio",
-    "lint": "eslint src && tsc",
+    "lint": "eslint src && tsc && node scripts/motion.mjs lint-all",
     "assets:link": "node scripts/link-assets.mjs",
     "assets:check": "node scripts/check-assets.mjs",
     "voice": "node scripts/build-voice.mjs",
@@ -39,7 +39,10 @@
     "render:app": "remotion render GuestNaApp out/guestna-app.mp4 --codec=h264",
     "upgrade": "remotion upgrade",
     "assets:update": "node scripts/link-assets.mjs --pull",
-    "skills:remotion": "node scripts/update-remotion-skills.mjs"
+    "skills:remotion": "node scripts/update-remotion-skills.mjs",
+    "motion": "node scripts/motion.mjs",
+    "motion:lint": "node scripts/motion.mjs lint",
+    "motion:docs": "node scripts/motion.mjs docs"
   },
   "sideEffects": [
     "*.css"

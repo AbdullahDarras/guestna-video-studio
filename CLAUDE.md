@@ -9,10 +9,11 @@
 - `public/{fonts,logos,patterns,icons,pay}`: أصول الهوية (داخل Git).
 - `public/media/`: **الوسائط الخارجية (لقطات، صور، صوت، موسيقى). خارج Git**. مصدرها مستودع عام منفصل `guestna-video-assets` (يُسحب ويُربط تلقائياً بـ`npm run setup` / `npm run assets:link`، وتحديثه `npm run assets:update`). أصل جديد: يُضاف في مستودع الأصول (commit + push) ويُعلن في `assets.json`.
 - `scripts/`: `setup`, `link-assets`, `check-assets`, `build-voice`, `new-video`, `update-remotion-skills` (كلها Node وتعمل على ماك وويندوز).
+- `motion/lexicon.json`: **قاموس الحركة** (183 مصطلحاً، مبني على motioname.com) وهو مصدر قرارات الحركة والبرومبتات. `scripts/motion.mjs` أدواته (`npm run motion -- lookup|brief|lint|prompt|docs`). كل فيديو له `motion-brief.json` يُفحص مع `npm run lint`.
 - `.claude/skills/remotion-*`: سكلز Remotion الرسمية (MIT، مضمّنة، لا تعدّلها يدوياً؛ التحديث بـ`npm run skills:remotion`). سكل جستنا هو `guestna-video`.
 
 ## أوامر
-`npm run setup` · `npm run dev` (معاينة) · `npm run lint` · `npm run assets:check` · `npm run voice -- --video <name>` · `npm run new:video -- <name>` · `npm run render:<id>` أو `npx remotion render <CompositionId> out/x.mp4`.
+`npm run motion -- lookup <كلمة>` · `npm run motion -- brief <name>` · `/motion <name>` · `npm run setup` · `npm run dev` (معاينة) · `npm run lint` · `npm run assets:check` · `npm run voice -- --video <name>` · `npm run new:video -- <name>` · `npm run render:<id>` أو `npx remotion render <CompositionId> out/x.mp4`.
 للتحقق قبل التصيير الكامل: `npx remotion still <Id> out/f.png --frame=N` وافحص الإطار بالنظر.
 
 ## قواعد الهوية والتصميم (ثابتة)
@@ -21,7 +22,7 @@
 - الأيقونات والباترن من `public/icons` و`public/patterns` فقط. لا ترسم شعاراً ولا أيقونة.
 - **بدون خلفية خلف الشعار** (استخدم ظلاً خفيفاً عند الحاجة). بدون ظلال خضراء على الصور.
 - هوامش الأمان لريلز 1080×1920: الجوانب 90px على الأقل، المحتوى المهم بين y=250 وy=1600. العناوين الطويلة تُصغَّر ولا تلمس الحواف. حدود الخط: عنوان 74px فأكثر، نص داعم 44px فأكثر.
-- الحركة: ظهور سريع (قناع/Pop)، انتقال ماسي 16 فريم، عناصر عائمة خفيفة. لا ارتداد مبالغ ولا وميض.
+- الحركة: بطل واحد لكل مشهد وكاميرا واحدة على الأكثر، لا تتابع حروف في العربية (راجع قاموس الحركة). ظهور سريع (قناع/Pop)، انتقال ماسي 16 فريم، عناصر عائمة خفيفة. لا ارتداد مبالغ ولا وميض.
 
 ## المحتوى
 - لا تخترع أرقاماً أو مزايا. كل ادعاء من موقع العميل (guestna.app أو guestna-edu.com) أو من نص أعطاه المستخدم. شروط تمارا/أبل باي لا تُذكر بدون تأكيد.

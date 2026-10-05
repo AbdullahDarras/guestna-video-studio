@@ -26,3 +26,19 @@ import { at, dur } from "./timing";      // مولّد من npm run voice
 
 ## مشهد جديد: قالب سريع
 انسخ `src/videos/demo/BrandDemo.tsx`. أضف المشهد في `index.ts` للفيديو (قائمة `scenes`) ثم في `Sequence` داخل المكوّن الرئيسي (انظر `edu/GuestNaEdu.tsx`).
+
+## من مصطلح القاموس إلى العدّة
+| مصطلح (id) | عندنا |
+|---|---|
+| `text-mask-reveal` | `MaskLine` |
+| `back-out` / `squash-stretch` خفيف | `usePop` |
+| `expo-out` | `EASE` (و`useIn`) |
+| `shape-transition` | `DiamondWipe` |
+| `particles` | `Burst` |
+| `seamless-loop` / `secondary-action` | `Ring` / `Floaters` |
+| `ken-burns` | `Pic` / `Clip` (تكبير بطيء مدمج) |
+| `stagger` / `word-stagger` | `delay = at(...) + i * 3..6` |
+| `counter` | `Math.round(interpolate(...))` (انظر NumbersScene) |
+| `motion-path` / `line-draw` | مسار الباص والأقواس (LogisticsScene وProgramsScene) |
+
+القائمة الكاملة بكل المصطلحات في `motion-vocabulary.md`.

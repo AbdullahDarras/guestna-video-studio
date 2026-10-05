@@ -44,4 +44,4 @@ reg = reg.replace("// @videos-import", `// @videos-import\nimport { ${varName} }
 fs.writeFileSync(regFile, reg);
 
 log.ok(`Created src/videos/${name} and registered it as "${pascal}".`);
-console.log(`Next: npm run dev  (open "${pascal}"), then ask Claude to build the scenes. Put its media under public/media/${name}/ and list it in src/videos/${name}/assets.json.`);
+console.log(`Next: write script.json, then npm run motion -- brief ${name} (motion brief), then build the scenes. Preview: npm run dev (open "${pascal}"). Put its media under public/media/${name}/ and list it in src/videos/${name}/assets.json.`);
