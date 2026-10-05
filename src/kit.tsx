@@ -1,5 +1,6 @@
+import { fitText } from "@remotion/layout-utils";
 import { Video } from "@remotion/media";
-import React from "react";
+import React, { useMemo } from "react";
 import {
   AbsoluteFill,
   Easing,
@@ -39,10 +40,12 @@ type MaskProps = {
   readonly weight?: number;
   readonly name?: string;
   readonly dur?: number;
+  /** Max text width in px. The font shrinks to fit, so text is never cut at the edges. Default 900 (90px margins). */
+  readonly fit?: number;
   readonly style?: React.CSSProperties;
 };
 
-/** Headline line that slides up from behind a mask. */
+/** Headline line that slides up from behind a mask. Auto-fits its width; the mask only clips vertically. */
 export const MaskLine: React.FC<MaskProps> = ({
   children,
   delay,
@@ -51,27 +54,35 @@ export const MaskLine: React.FC<MaskProps> = ({
   weight = 900,
   name,
   dur = 11,
+  fit = 900,
   style,
 }) => {
   const p = useIn(delay, dur);
+  const text = typeof children === "string" ? children : null;
+  const fontSize = useMemo(
+    () => (text ? Math.min(size, Math.floor(fitText({ text, withinWidth: fit, fontFamily: FONT, fontWeight: weight }).fontSize)) : size),
+    [text, size, fit, weight],
+  );
   return (
     <Interactive.Div
       name={name}
       style={{
-        overflow: "hidden",
-        paddingBottom: size * 0.14,
-        paddingTop: size * 0.04,
+        clipPath: "inset(0px -1200px 0px -1200px)",
+        paddingBottom: fontSize * 0.3,
+        marginBottom: -fontSize * 0.16,
+        paddingTop: fontSize * 0.12,
+        marginTop: -fontSize * 0.08,
         direction: "rtl",
         textAlign: "center",
         fontFamily: FONT,
-        fontSize: size,
+        fontSize,
         fontWeight: weight,
         lineHeight: 1.12,
         color,
         ...style,
       }}
     >
-      <div style={{ translate: `0px ${(1 - p) * 115}%`, opacity: p > 0 ? 1 : 0, whiteSpace: "nowrap" }}>{children}</div>
+      <div style={{ translate: `0px ${(1 - p) * 125}%`, opacity: p > 0 ? 1 : 0, whiteSpace: "nowrap" }}>{children}</div>
     </Interactive.Div>
   );
 };
@@ -346,5 +357,46 @@ export const Sweep: React.FC<{ readonly at: number; readonly dur?: number; reado
         }}
       />
     </div>
+  );
+};
+
+/** Hand-drawn style underline that draws itself and ends with a small brand diamond. Replaces plain rules. */
+export const Swoosh: React.FC<{
+  readonly at: number;
+  readonly width?: number;
+  readonly color?: string;
+  readonly thickness?: number;
+  readonly dur?: number;
+}> = ({ at, width = 460, color = C.desert, thickness = 12, dur = 16 }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const p = interpolate(frame, [at, at + dur], [0, 1], { ...clamp, easing: EASE });
+  const end = spring({ frame: frame - (at + dur - 2), fps, config: { damping: 9, stiffness: 240, mass: 0.5 } });
+  const h = 70;
+  return (
+    <svg width={width + 30} height={h} viewBox={`0 0 ${width + 30} ${h}`} style={{ overflow: "visible" }}>
+      <path
+        d={`M8 44 C ${width * 0.2} 10, ${width * 0.52} 66, ${width - 6} 22`}
+        fill="none"
+        stroke={color}
+        strokeWidth={thickness}
+        strokeLinecap="round"
+        pathLength={1}
+        strokeDasharray={1}
+        strokeDashoffset={1 - p}
+      />
+      <rect x={width + 4} y={10} width={thickness * 1.7} height={thickness * 1.7} rx={thickness * 0.5} fill={color} transform={`rotate(45 ${width + 4 + thickness * 0.85} ${10 + thickness * 0.85}) scale(${Math.max(0, end)})`} style={{ transformOrigin: `${width + 4 + thickness * 0.85}px ${10 + thickness * 0.85}px` }} />
+    </svg>
+  );
+};
+
+/** Soft drifting colour glows for depth behind the content. */
+export const Glow: React.FC<{ readonly warm?: number; readonly cool?: number }> = ({ warm = 0.2, cool = 0.35 }) => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <div style={{ position: "absolute", left: -260 + Math.sin(frame / 55) * 70, top: 1000 + Math.cos(frame / 70) * 60, width: 1100, height: 1100, borderRadius: 550, background: `radial-gradient(circle, rgba(238,139,34,${warm}) 0%, rgba(238,139,34,0) 62%)` }} />
+      <div style={{ position: "absolute", left: 300 + Math.cos(frame / 60) * 80, top: -250 + Math.sin(frame / 65) * 60, width: 1100, height: 1100, borderRadius: 550, background: `radial-gradient(circle, rgba(120,170,230,${cool}) 0%, rgba(120,170,230,0) 62%)` }} />
+    </AbsoluteFill>
   );
 };

@@ -27,215 +27,1705 @@
     }
   },
   "durations": [
-    { "id": "micro", "ar": "تفاعل دقيق (ضغطة، هوفر)", "ms": [100, 200] },
-    { "id": "small", "ar": "عنصر صغير (تلميح، شارة)", "ms": [150, 250] },
-    { "id": "medium", "ar": "عنصر متوسط (بطاقة، لوحة)", "ms": [250, 400] },
-    { "id": "screen", "ar": "انتقال بين مشاهد كاملة", "ms": [350, 600] }
+    {
+      "id": "micro",
+      "ar": "تفاعل دقيق (ضغطة، هوفر)",
+      "ms": [
+        100,
+        200
+      ]
+    },
+    {
+      "id": "small",
+      "ar": "عنصر صغير (تلميح، شارة)",
+      "ms": [
+        150,
+        250
+      ]
+    },
+    {
+      "id": "medium",
+      "ar": "عنصر متوسط (بطاقة، لوحة)",
+      "ms": [
+        250,
+        400
+      ]
+    },
+    {
+      "id": "screen",
+      "ar": "انتقال بين مشاهد كاملة",
+      "ms": [
+        350,
+        600
+      ]
+    }
   ],
   "rules": {
-    "enterFrames": [6, 30],
+    "enterFrames": [
+      6,
+      30
+    ],
     "exitVsEnter": 0.75,
     "maxLayersPerScene": 4,
     "minHoldFrames": 20,
     "reel": "الدخول ease-out أو expo-out، الخروج ease-in وأسرع من الدخول بنحو الربع، الحركة داخل الشاشة ease-in-out، التفاعل بالسحب spring."
   },
   "terms": [
-    { "id": "linear", "family": "ease", "en": "Linear", "ar": "خطي", "what": "سرعة ثابتة، تبدو آلية. فقط للدوران والتمرير المستمر وأشرطة التقدم.", "rm": "interpolate بدون easing. الحلقة الدوّارة Ring تستخدمه.", "pr": "constant speed" },
-    { "id": "ease-in", "family": "ease", "en": "Ease In", "ar": "تسارع", "what": "تبدأ بطيئة وتنتهي سريعة. للعناصر الخارجة من الكادر.", "rm": "Easing.in(Easing.cubic) أو bezier(.55,0,1,.45)", "pr": "ease-in, accelerating out" },
-    { "id": "ease-out", "family": "ease", "en": "Ease Out", "ar": "تباطؤ", "what": "تبدأ سريعة وتهدأ في النهاية. الأنسب للعناصر الداخلة.", "rm": "Easing.out(Easing.cubic) أو bezier(0,.55,.45,1)", "pr": "ease-out, settling softly" },
-    { "id": "ease-in-out", "family": "ease", "en": "Ease In-Out", "ar": "تسارع ثم تباطؤ", "what": "بطيئة في الطرفين سريعة في الوسط. لحركة عنصر من مكان لمكان داخل الكادر.", "rm": "Easing.inOut(Easing.cubic) أو bezier(.65,0,.35,1)", "pr": "smooth ease-in-out" },
-    { "id": "expo-out", "family": "ease", "en": "Expo Out", "ar": "تباطؤ حاد", "what": "انطلاقة سريعة جداً ثم استقرار طويل ناعم. إحساس فاخر. هذا هو EASE الافتراضي في هويتنا.", "rm": "EASE في brand.tsx = bezier(.16,1,.3,1). useIn و MaskLine يستخدمانه.", "pr": "expo-out easing, fast start, long soft settle" },
-    { "id": "back-out", "family": "ease", "en": "Back Out / Overshoot", "ar": "تجاوز ثم رجوع", "what": "يتجاوز مكانه قليلاً ثم يرجع. حيوية ومرح للأيقونات والبطاقات.", "rm": "usePop(start, damping) أو bezier(.34,1.56,.64,1)", "pr": "pop-in with slight overshoot" },
-    { "id": "back-in", "family": "ease", "en": "Anticipation Ease", "ar": "تمهيد عكسي", "what": "يرجع للخلف قليلاً قبل أن ينطلق. يجهّز العين.", "rm": "bezier(.36,0,.66,-.56)", "pr": "pull back slightly before moving" },
-    { "id": "spring", "family": "ease", "en": "Spring", "ar": "زنبرك", "what": "حركة فيزيائية بصلابة وتخميد بدل مدة. الأنسب للسحب والإيماءات والتفاعل.", "rm": "spring({ fps, frame, config: { stiffness, damping } })", "pr": "springy, physical motion" },
-    { "id": "bounce", "family": "ease", "en": "Bounce", "ar": "ارتداد", "what": "يرتطم ويرتد كالكرة. بحذر وللمرح فقط.", "rm": "Easing.bounce", "pr": "bouncing ease-out" },
-    { "id": "steps", "family": "ease", "en": "Steps", "ar": "خطوات متقطعة", "what": "قفزات ثابتة بلا نعومة: سبرايت وعدادات.", "rm": "Math.floor(frame / n) لتقطيع الزمن", "pr": "stepped, frame-by-frame" },
-
-    { "id": "squash-stretch", "family": "principle", "en": "Squash & Stretch", "ar": "ضغط وتمدد", "what": "يتمدد مع السرعة وينضغط عند الاصطدام مع ثبات الحجم. وزن ومرونة.", "rm": "scaleX/scaleY معاكسان حول 1 مع spring", "pr": "squash on impact, stretch in the air" },
-    { "id": "anticipation", "family": "principle", "en": "Anticipation", "ar": "التمهيد", "what": "حركة صغيرة معاكسة قبل الحركة الرئيسية.", "rm": "keyframe عكسي 4 إلى 6 فريم قبل الدخول", "pr": "crouch in anticipation, then leap" },
-    { "id": "staging", "family": "principle", "en": "Staging", "ar": "التقديم", "what": "توجيه العين للمهم بالضوء أو الحجم أو الحركة وتهدئة الباقي.", "rm": "خفّض opacity للخلفية وكبّر العنصر البطل", "pr": "spotlight the hero, dim the surroundings" },
-    { "id": "pose-to-pose", "family": "principle", "en": "Pose to Pose", "ar": "وضعيات مفتاحية", "what": "حدد الوضعيات الأساسية ثم املأ ما بينها.", "rm": "interpolate بين مفاتيح قليلة", "pr": "keyframe animation between key poses" },
-    { "id": "follow-through", "family": "principle", "en": "Follow Through & Overlap", "ar": "استمرار وتداخل", "what": "الأجزاء المرنة تكمل حركتها بعد توقف الجسم ولكل جزء تأخير.", "rm": "تأخير spring لكل طبقة فرعية 2 إلى 4 فريم", "pr": "follow-through and overlapping action" },
-    { "id": "slow-in-out", "family": "principle", "en": "Slow In & Slow Out", "ar": "تباطؤ الطرفين", "what": "الحركة تبطؤ عند البداية والنهاية مثل الواقع. في After Effects اسمها Easy Ease.", "rm": "أي easing غير linear", "pr": "smooth slow-in and slow-out" },
-    { "id": "arcs", "family": "principle", "en": "Arcs", "ar": "الأقواس", "what": "الحركة الطبيعية تسير في أقواس لا خطوط مستقيمة.", "rm": "اجمع x وy بمنحنيين مختلفين التوقيت", "pr": "moves along a smooth arc path" },
-    { "id": "secondary-action", "family": "principle", "en": "Secondary Action", "ar": "حركة ثانوية", "what": "حركة صغيرة تدعم الأساسية دون أن تسرق الانتباه.", "rm": "Floaters أو نبضة خفيفة خلف العنصر", "pr": "small supporting secondary motion" },
-    { "id": "timing-weight", "family": "principle", "en": "Timing", "ar": "التوقيت", "what": "عدد الكادرات يحدد الوزن: الثقيل بطيء، الخفيف سريع.", "rm": "غيّر frames في useIn أو damping في usePop", "pr": "heavy and slow vs light and fast" },
-    { "id": "exaggeration", "family": "principle", "en": "Exaggeration", "ar": "مبالغة", "what": "تضخيم الحركة عن الواقع لتصبح أوضح.", "rm": "زد scale الدخول أو overshoot قليلاً", "pr": "exaggerated, expressive motion" },
-    { "id": "solid-drawing", "family": "principle", "en": "Solid Drawing", "ar": "رسم مجسّم", "what": "التعامل مع الأشكال ككتل لها حجم حتى في الرسم المسطح.", "rm": "rotateX/rotateY مع perspective", "pr": "consistent volume and perspective" },
-    { "id": "appeal", "family": "principle", "en": "Appeal", "ar": "جاذبية", "what": "شكل بسيط وتعبير واضح وسهل القراءة.", "rm": "أشكال الهوية فقط، بلا تفاصيل زائدة", "pr": "charming, clear, readable design" },
-
-    { "id": "kinetic-type", "family": "text", "en": "Kinetic Typography", "ar": "تايبوجرافي حركي", "what": "كلمات تظهر وتتحرك على إيقاع الكلام. أساس إعلانات الريلز.", "rm": "عنصر لكل عبارة بـ at(scene, phrase)", "pr": "bold words pop in sync with the beat" },
-    { "id": "text-mask-reveal", "family": "text", "en": "Text Mask Reveal", "ar": "كشف النص بالقناع", "what": "النص يصعد من خلف خط مخفي. أنيق ونظيف.", "rm": "MaskLine (delay, size, color)", "pr": "each line slides up from behind an invisible mask" },
-    { "id": "typewriter", "family": "text", "en": "Typewriter", "ar": "آلة كاتبة", "what": "حروف تظهر واحداً بعد الآخر مع مؤشر يومض. مناسب للانجليزي التقني فقط.", "rm": "slice على النص حسب الفريم. لا تستخدمه للعربي (يكسر الاتصال).", "pr": "typewriter text with blinking cursor" },
-    { "id": "letter-stagger", "family": "text", "en": "Letter Stagger", "ar": "تتابع الحروف", "what": "كل حرف يدخل بتأخير. ممنوع في العربية لأنه يقطع اتصال الحروف.", "rm": "للانجليزي فقط", "pr": "letter-by-letter stagger" },
-    { "id": "word-stagger", "family": "text", "en": "Word Stagger", "ar": "تتابع الكلمات", "what": "كل كلمة تدخل بتأخير بسيط. هذا بديلنا للعربية.", "rm": "ملفوف في كلمات، delay = i * 3 فريم. مع MaskLine لكل سطر.", "pr": "word-by-word stagger" },
-    { "id": "text-scramble", "family": "text", "en": "Text Scramble", "ar": "فك التشفير", "what": "حروف عشوائية تستقر على الكلمة. طابع تقني.", "rm": "للانجليزي والأرقام فقط", "pr": "random characters resolve into the title" },
-    { "id": "lower-third", "family": "text", "en": "Lower Third", "ar": "الشريط السفلي", "what": "شريط باسم وصفة المتحدث أسفل الشاشة.", "rm": "Pill + MaskLine داخل هوامش الأمان", "pr": "clean lower third, accent bar then name reveal" },
-
-    { "id": "line-draw", "family": "shape", "en": "Trim Paths / Line Draw", "ar": "رسم الخط", "what": "خط يُرسم من بدايته لنهايته.", "rm": "strokeDasharray و strokeDashoffset مع interpolate", "pr": "single stroke draws itself on" },
-    { "id": "shape-morph", "family": "shape", "en": "Shape Morph", "ar": "تحوّل الشكل", "what": "شكل يتحول لشكل آخر بسلاسة.", "rm": "interpolatePath من @remotion/paths أو تبديل opacity بين شكلين", "pr": "smooth shape morphing" },
-    { "id": "motion-path", "family": "shape", "en": "Motion Path", "ar": "مسار الحركة", "what": "عنصر يتبع مساراً منحنياً ويدور مع اتجاهه.", "rm": "getPointAtLength من @remotion/paths (مثال: الباص في LogisticsScene)", "pr": "follows a curved motion path" },
-    { "id": "map-route", "family": "shape", "en": "Map Route", "ar": "مسار على الخريطة", "what": "خط يُرسم بين نقطتين مع علامة تتحرك عليه. للسفر والرحلات.", "rm": "line-draw + motion-path. مناسب جداً لرحلات جستنا", "pr": "route line draws from pin A to pin B with a moving marker" },
-    { "id": "radial-repeater", "family": "shape", "en": "Repeater / Radial", "ar": "تكرار دائري", "what": "نسخ من شكل موزعة حول مركز.", "rm": "map على مصفوفة مع rotate = i * 360 / n (باترن الهوية)", "pr": "radial repeater pulsing in sequence" },
-    { "id": "stagger", "family": "shape", "en": "Stagger / Offset", "ar": "تتابع زمني", "what": "مجموعة عناصر بالحركة نفسها وتأخير متدرج، فتتكون موجة.", "rm": "delay = at(...) + i * 3 إلى 6 فريم", "pr": "staggered offsets creating a wave" },
-    { "id": "seamless-loop", "family": "shape", "en": "Seamless Loop", "ar": "حلقة متصلة", "what": "حركة تنتهي حيث بدأت.", "rm": "دوال دورية: Math.sin(frame / period)", "pr": "perfect seamless loop" },
-    { "id": "wiggle", "family": "shape", "en": "Wiggle", "ar": "اهتزاز عشوائي", "what": "اهتزاز مستمر في الموضع أو الدوران.", "rm": "noise من @remotion/noise", "pr": "random jittery wiggle" },
-    { "id": "echo-trails", "family": "shape", "en": "Echo / Trails", "ar": "أثر", "what": "نسخ باهتة تتبع العنصر وتوضح مساره وسرعته.", "rm": "ارسم نسخاً بتأخير frame - k وopacity متناقص", "pr": "fading echo trails" },
-    { "id": "isometric", "family": "shape", "en": "Isometric", "ar": "أيزومتريك", "what": "رسم ثلاثي الأبعاد بزوايا ثابتة بلا منظور. شرح المنتجات.", "rm": "transform: rotateX(60deg) rotateZ(45deg)", "pr": "isometric 3D blocks dropping into place" },
-    { "id": "flip-3d", "family": "shape", "en": "3D Flip", "ar": "قلب ثلاثي", "what": "بطاقة تنقلب لتكشف وجهها الآخر.", "rm": "rotateY مع backfaceVisibility hidden", "pr": "card flips 180 degrees in 3D" },
-    { "id": "walk-cycle", "family": "shape", "en": "Walk Cycle", "ar": "دورة مشي", "what": "مشي يتكرر في مكانه والخلفية تتحرك.", "rm": "Lottie أو سبرايت", "pr": "looping walk cycle in profile" },
-    { "id": "counter", "family": "shape", "en": "Count-up / Data Animation", "ar": "عدّاد وإنفوجرافيك", "what": "رقم يعد من الصفر وأعمدة تنمو بالتتابع. لا نضع أرقاماً من خارج موقع العميل.", "rm": "Math.round(interpolate(frame, [a,b],[0,N])) في NumbersScene", "pr": "bar chart grows with staggered timing while a counter counts up" },
-
-    { "id": "particles", "family": "fx", "en": "Particles / Burst", "ar": "جسيمات وانفجار", "what": "نقاط تنفجر من مركز وتتلاشى. للتأكيد والاحتفال.", "rm": "Burst (at, x, y, colors)", "pr": "particle burst exploding outward" },
-    { "id": "glitch", "family": "fx", "en": "Glitch", "ar": "جليتش", "what": "تشويش رقمي. طابع تقني لا يناسب هوية جستنا الدافئة، تجنّبه.", "rm": "غير مستخدم", "pr": "RGB channel split glitch" },
-    { "id": "logo-reveal", "family": "fx", "en": "Logo Reveal", "ar": "كشف الشعار", "what": "الشعار يظهر بحركة مميزة. الأخير في الفيديو بخلفية بيضاء وألوانه الأصلية.", "rm": "usePop على الشعار + Ring خلفه (EduOutroScene)", "pr": "minimal logo reveal, mark draws on then wordmark slides out" },
-    { "id": "pulse-rings", "family": "fx", "en": "Pulse Rings", "ar": "موجات نبض", "what": "حلقات تتسع وتتلاشى. موقع أو بث أو إشارة.", "rm": "حلقات scale من 0.4 إلى 1.6 مع opacity ينقص", "pr": "radar pulse rings expanding" },
-    { "id": "light-sweep", "family": "fx", "en": "Shine / Light Sweep", "ar": "لمعة ضوء", "what": "شريط ضوء يعبر العنصر. فخامة أو لفت نظر لزر.", "rm": "تدرج linear-gradient يتحرك بـ translateX داخل قناع", "pr": "glossy light sweep across the badge" },
-    { "id": "parallax", "family": "fx", "en": "Parallax", "ar": "بارالاكس", "what": "القريب يتحرك أسرع من البعيد. أساس الإحساس بالعمق.", "rm": "طبقات بسرعات مختلفة، أو Pic بتكبير بطيء مختلف", "pr": "strong parallax between foreground and background" },
-    { "id": "parallax-25d", "family": "fx", "en": "2.5D Parallax", "ar": "بارالاكس 2.5D", "what": "صورة مسطحة تُقسم لطبقات وكاميرا تتحرك بينها.", "rm": "طبقات PNG بعد images_remove_background ثم parallax", "pr": "flat illustration split into layers with a slow camera move" },
-    { "id": "ken-burns", "family": "fx", "en": "Slow Push (Ken Burns)", "ar": "تكبير بطيء للصورة", "what": "تكبير أو سحب بطيء جداً على صورة ثابتة يعطي حياة. هو ما تفعله Pic وClip.", "rm": "Pic / Clip (تكبير بطيء مدمج)", "pr": "slow push in on a still image" },
-
-    { "id": "hard-cut", "family": "transition", "en": "Hard Cut", "ar": "قطع مباشر", "what": "انتقال فوري. الأكثر استخداماً.", "rm": "Sequence تلو Sequence بلا تأثير", "pr": "hard cut" },
-    { "id": "jump-cut", "family": "transition", "en": "Jump Cut", "ar": "قطع قافز", "what": "قطع داخل اللقطة نفسها. إيقاع سريع.", "rm": "Sequence يتخطى frames من الـ Clip عبر startFrom", "pr": "jump cuts, fast rhythm" },
-    { "id": "match-cut", "family": "transition", "en": "Match Cut", "ar": "قطع متطابق", "what": "قطع بين شكلين متشابهين في مكانهما بالكادر.", "rm": "ضع الشكل المشترك في نفس الإحداثيات في المشهدين", "pr": "match cut, same position in frame" },
-    { "id": "j-l-cut", "family": "transition", "en": "J/L Cut", "ar": "قطع الصوت المتداخل", "what": "صوت المشهد التالي يبدأ قبل صورته أو يستمر بعدها.", "rm": "هذا ما نفعله: الصوت قبل الـ DiamondWipe بفريمات (cutAhead)", "pr": "audio leads the cut" },
-    { "id": "cross-dissolve", "family": "transition", "en": "Cross Dissolve", "ar": "مزج تدريجي", "what": "لقطة تذوب في أخرى. مرور وقت أو ذكرى.", "rm": "opacity لمشهدين متراكبين", "pr": "slow cross dissolve" },
-    { "id": "fade-black", "family": "transition", "en": "Fade to Black", "ar": "تلاشي للأسود", "what": "نهاية فصل. لا نستخدمه، نختم بمشهد أبيض.", "rm": "AbsoluteFill أسود opacity 0→1", "pr": "fade to black" },
-    { "id": "dip-white", "family": "transition", "en": "Dip to White", "ar": "وميض أبيض", "what": "وميض أبيض سريع. صدمة أو حماس.", "rm": "AbsoluteFill أبيض opacity ينبض 6 فريم", "pr": "quick white flash transition" },
-    { "id": "wipe", "family": "transition", "en": "Wipe", "ar": "مسح", "what": "لقطة جديدة تمسح القديمة بخط يتحرك.", "rm": "clipPath: inset() متحرك", "pr": "wipe transition" },
-    { "id": "iris", "family": "transition", "en": "Iris", "ar": "دائرة", "what": "دائرة تنفتح لتكشف اللقطة التالية.", "rm": "clipPath: circle()", "pr": "iris-in transition" },
-    { "id": "push-slide", "family": "transition", "en": "Push / Slide", "ar": "دفع", "what": "اللقطة الجديدة تدفع القديمة. في العربية تدخل الجديدة من اليسار.", "rm": "translateX للمشهدين معاً", "pr": "push transition, new scene pushes the old one out" },
-    { "id": "whip-transition", "family": "transition", "en": "Whip Transition", "ar": "انتقال خاطف", "what": "حركة سريعة جداً بضبابية تربط لقطتين. شائع في الريلز.", "rm": "translateX كبير مع filter: blur", "pr": "whip pan transition with heavy motion blur" },
-    { "id": "zoom-transition", "family": "transition", "en": "Zoom Transition", "ar": "انتقال بالزووم", "what": "زووم سريع ينتهي بدخول اللقطة التالية.", "rm": "scale كبير مع blur ثم المشهد الجديد", "pr": "fast zoom-through transition" },
-    { "id": "spin-transition", "family": "transition", "en": "Spin Transition", "ar": "انتقال بالدوران", "what": "الكادر يدور ثم تظهر اللقطة التالية وهي تدور.", "rm": "rotate مع scale", "pr": "spin transition" },
-    { "id": "light-leak", "family": "transition", "en": "Light Leak", "ar": "تسريب ضوء", "what": "وهج دافئ يعبر الكادر عند القطع. طابع فيلم.", "rm": "تدرج برتقالي (desert) متحرك فوق القطع", "pr": "warm light leak transition" },
-    { "id": "morph-transition", "family": "transition", "en": "Morph Transition", "ar": "تحول بين لقطتين", "what": "عنصر يتحول لعنصر في اللقطة التالية. أقوى ما يصنعه الذكاء الاصطناعي عبر الكادر الأول والأخير.", "rm": "في Remotion: عنصر مشترك بنفس المكان. أو ولّد بـ start/end frame", "pr": "seamless morph transition" },
-    { "id": "shape-transition", "family": "transition", "en": "Shape Transition", "ar": "انتقال بالأشكال", "what": "أشكال ملونة تتسع وتغطي الشاشة ثم تنكشف. انتقال الهوية عندنا هو الماسة.", "rm": "DiamondWipe كـSequence عند cut-8، مدته 16 فريم", "pr": "colored shapes expand to wipe the screen" },
-
-    { "id": "pan", "family": "camera", "en": "Pan", "ar": "بان", "what": "الكاميرا ثابتة وتدور أفقياً. كل الكادر ينزلق بنفس السرعة بلا عمق.", "rm": "translateX على المشهد كله", "pr": "slow pan from left to right, camera fixed on a tripod" },
-    { "id": "tilt", "family": "camera", "en": "Tilt", "ar": "تيلت", "what": "الكاميرا في مكانها وتميل لأعلى أو لأسفل.", "rm": "translateY على المشهد كله", "pr": "camera tilts up slowly to reveal the subject" },
-    { "id": "zoom", "family": "camera", "en": "Zoom", "ar": "زووم", "what": "تغيير البعد البؤري، الصورة كلها تكبر بنسبة واحدة فتبدو مسطحة.", "rm": "scale على المشهد كله (Pic)", "pr": "slow optical zoom in, the camera does not move" },
-    { "id": "dolly", "family": "camera", "en": "Dolly In / Out", "ar": "دوللي", "what": "الكاميرا نفسها تتقدم أو ترجع. القريب يكبر أسرع من البعيد فيظهر عمق حقيقي.", "rm": "طبقات تكبر بنسب مختلفة (parallax + scale)", "pr": "slow dolly in, the camera physically moves forward, natural parallax" },
-    { "id": "truck", "family": "camera", "en": "Truck / Crab", "ar": "تراك جانبي", "what": "الكاميرا تنتقل بالعرض موازية للمشهد مع بارالاكس واضح.", "rm": "طبقات تنزلق بسرعات مختلفة", "pr": "camera trucks left alongside the subject, strong parallax" },
-    { "id": "pedestal", "family": "camera", "en": "Pedestal", "ar": "بيدستال", "what": "الكاميرا ترتفع أو تنخفض رأسياً وهي مستوية.", "rm": "translateY بسرعات مختلفة للطبقات", "pr": "camera pedestals up smoothly, staying level" },
-    { "id": "orbit", "family": "camera", "en": "Arc / Orbit", "ar": "دوران حول الهدف", "what": "الكاميرا تدور في قوس والهدف يبقى بالمنتصف.", "rm": "غير مناسب للـ 2D. ولّده بالذكاء الاصطناعي", "pr": "camera orbits around the subject in a smooth arc, subject stays centered" },
-    { "id": "crane", "family": "camera", "en": "Crane / Jib", "ar": "كرين", "what": "ترتفع أو تهبط على ذراع، غالباً للافتتاح أو الختام.", "rm": "translateY مع scale خفيف", "pr": "crane shot rising up and away, revealing the wide landscape" },
-    { "id": "dolly-zoom", "family": "camera", "en": "Dolly Zoom", "ar": "دوللي زووم", "what": "ترجع وتزوّم للأمام معاً: الشخص ثابت والخلفية تتمدد. صدمة. لا يناسب أجواءنا.", "rm": "غير مستخدم", "pr": "dolly zoom vertigo effect" },
-    { "id": "roll", "family": "camera", "en": "Roll", "ar": "رول", "what": "الكاميرا تدور حول محورها فيدور الأفق. ارتباك أو حلم.", "rm": "rotate على المشهد", "pr": "camera slowly rolls, horizon rotating" },
-    { "id": "whip-pan", "family": "camera", "en": "Whip Pan", "ar": "بان خاطف", "what": "بان سريع جداً بضبابية حركة. انتقال أو رد فعل مفاجئ.", "rm": "translateX سريع + blur", "pr": "fast whip pan with heavy motion blur" },
-    { "id": "crash-zoom", "family": "camera", "en": "Crash Zoom", "ar": "كراش زووم", "what": "زووم خاطف على تفصيلة. كوميديا أو إدراك مفاجئ.", "rm": "scale من 1 إلى 1.4 خلال 4 فريم", "pr": "sudden crash zoom into the subject" },
-    { "id": "tracking", "family": "camera", "en": "Tracking Shot", "ar": "تتبع", "what": "الكاميرا تمشي مع الشخص فيبقى ثابتاً تقريباً والخلفية تجري.", "rm": "الخلفية تنزلق والعنصر ثابت", "pr": "tracking shot following the subject at the same speed" },
-    { "id": "pullback-reveal", "family": "camera", "en": "Pull-Back Reveal", "ar": "كشف بالرجوع", "what": "تبدأ على تفصيلة ثم ترجع لتكشف المكان. تحكي قصة بلقطة واحدة.", "rm": "scale من 1.6 إلى 1 على Pic", "pr": "starts on an extreme close-up, slowly pulls back to reveal the place" },
-    { "id": "fpv-drone", "family": "camera", "en": "FPV Drone", "ar": "درون سريع", "what": "طيران سريع بين العناصر. ديناميكي ومغامر، يناسب الرحلات.", "rm": "ولّده بالذكاء الاصطناعي", "pr": "FPV drone shot flying fast and low through the scene, immersive fly-through" },
-    { "id": "drone-reveal", "family": "camera", "en": "Drone Rise", "ar": "صعود جوي كاشف", "what": "الدرون يرتفع من خلف عنصر قريب ليكشف المنظر. ممتاز لوجهات سياحية.", "rm": "ولّده بالذكاء الاصطناعي", "pr": "aerial drone shot rising up from behind the foreground to reveal the landscape" },
-    { "id": "spiral", "family": "camera", "en": "Spiral", "ar": "سبايرال", "what": "تتقدم وتدور حول محورها. دخول درامي.", "rm": "scale مع rotate", "pr": "camera spirals in toward the subject" },
-    { "id": "turntable", "family": "camera", "en": "Turntable / 360", "ar": "دوران 360", "what": "المنتج يدور على قاعدة. فيديوهات المنتجات.", "rm": "rotateY مستمر", "pr": "product turntable, rotating 360 degrees, static camera" },
-    { "id": "static", "family": "camera", "en": "Static / Locked-off", "ar": "كاميرا ثابتة", "what": "حامل ثلاثي بلا حركة. مفيدة جداً لمنع حركة كاميرا عشوائية في أدوات التوليد.", "rm": "لا حركة على المشهد (فقط العناصر)", "pr": "static locked-off shot on a tripod, no camera movement" },
-    { "id": "handheld", "family": "camera", "en": "Handheld", "ar": "كاميرا محمولة", "what": "اهتزاز طبيعي خفيف. واقعية وأسلوب وثائقي.", "rm": "noise خفيف على translate", "pr": "handheld camera with subtle natural shake, documentary style" },
-    { "id": "gimbal", "family": "camera", "en": "Steadicam / Gimbal", "ar": "حركة ناعمة طافية", "what": "تتحرك بحرية ونعومة كأنها تطفو.", "rm": "translate ناعم بـ ease-in-out", "pr": "smooth steadicam shot gliding forward, floating gimbal movement" },
-
-    { "id": "ews", "family": "shot", "en": "Extreme Wide", "ar": "واسعة جداً", "what": "المكان هو البطل والشخص صغير. لتعريف المكان.", "rm": "Clip/Pic بملء الشاشة", "pr": "extreme wide shot, tiny figure in a vast landscape, establishing shot" },
-    { "id": "ws", "family": "shot", "en": "Wide", "ar": "واسعة", "what": "الشخص كاملاً مع مساحة كبيرة حوله.", "rm": "", "pr": "wide shot, full body with plenty of surrounding space" },
-    { "id": "fs", "family": "shot", "en": "Full Shot", "ar": "كاملة", "what": "الشخص من الرأس للقدم. لغة الجسد.", "rm": "", "pr": "full shot, head to toe filling the frame" },
-    { "id": "mws", "family": "shot", "en": "Cowboy", "ar": "متوسطة واسعة", "what": "من منتصف الفخذ لأعلى.", "rm": "", "pr": "medium wide cowboy shot from mid-thigh up" },
-    { "id": "ms", "family": "shot", "en": "Medium", "ar": "متوسطة", "what": "من الخصر لأعلى. أشهر لقطة للحوار.", "rm": "", "pr": "medium shot from the waist up" },
-    { "id": "mcu", "family": "shot", "en": "Medium Close-Up", "ar": "متوسطة قريبة", "what": "من الصدر لأعلى. تعبير الوجه مع قليل من السياق.", "rm": "", "pr": "medium close-up from the chest up" },
-    { "id": "cu", "family": "shot", "en": "Close-Up", "ar": "قريبة", "what": "الوجه يملأ الكادر. المشاعر وردود الفعل.", "rm": "", "pr": "close-up of the face filling the frame" },
-    { "id": "ecu", "family": "shot", "en": "Extreme Close-Up", "ar": "قريبة جداً", "what": "تفصيلة واحدة: عين أو يد على زر.", "rm": "", "pr": "extreme close-up, macro detail" },
-    { "id": "eye-level", "family": "shot", "en": "Eye Level", "ar": "مستوى العين", "what": "زاوية محايدة طبيعية.", "rm": "", "pr": "eye-level shot, neutral perspective" },
-    { "id": "high-angle", "family": "shot", "en": "High Angle", "ar": "زاوية عالية", "what": "من أعلى لأسفل، يبدو الشخص أصغر.", "rm": "", "pr": "high angle shot looking down" },
-    { "id": "low-angle", "family": "shot", "en": "Low Angle", "ar": "زاوية منخفضة", "what": "من أسفل لأعلى، يبدو قوياً وبطولياً.", "rm": "", "pr": "low angle shot looking up, heroic" },
-    { "id": "overhead", "family": "shot", "en": "Bird's-Eye", "ar": "عين الطائر", "what": "من فوق عمودياً. تكوين جرافيكي كالخريطة.", "rm": "", "pr": "overhead bird's-eye view, camera looking straight down" },
-    { "id": "aerial", "family": "shot", "en": "Aerial", "ar": "جوية", "what": "من درون أو طائرة. تُظهر الحجم الحقيقي للمكان.", "rm": "", "pr": "aerial shot from high altitude" },
-    { "id": "ots", "family": "shot", "en": "Over-the-Shoulder", "ar": "من فوق الكتف", "what": "خلف كتف شخص تنظر لمن أمامه. للحوار.", "rm": "", "pr": "over-the-shoulder shot" },
-    { "id": "pov", "family": "shot", "en": "POV", "ar": "عين الشخصية", "what": "المشاهد يرى ما تراه الشخصية. انغماس.", "rm": "", "pr": "first-person POV shot" },
-
-    { "id": "rule-of-thirds", "family": "comp", "en": "Rule of Thirds", "ar": "قاعدة الأثلاث", "what": "ضع الموضوع على أحد تقاطعات الشبكة 3×3. أكثر حيوية من المنتصف.", "rm": "", "pr": "subject placed on the left third, rule of thirds" },
-    { "id": "center-symmetry", "family": "comp", "en": "Center / Symmetry", "ar": "مركز وتماثل", "what": "الموضوع بالمنتصف. قوي ومباشر للمنتجات والشعار.", "rm": "left:0, right:0 مع justify center", "pr": "perfectly symmetrical centered composition" },
-    { "id": "negative-space", "family": "comp", "en": "Negative Space", "ar": "مساحة فارغة", "what": "مساحة واسعة حول موضوع صغير. تترك مكاناً للنص.", "rm": "اترك الثلث العلوي والسفلي لعناوين الريلز", "pr": "large negative space, room for text" },
-    { "id": "leading-lines", "family": "comp", "en": "Leading Lines", "ar": "خطوط موجهة", "what": "خطوط في المشهد تقود العين نحو الموضوع.", "rm": "", "pr": "leading lines guide the eye toward the subject" },
-    { "id": "lead-room", "family": "comp", "en": "Headroom & Lead Room", "ar": "مساحة الرأس والنظر", "what": "مساحة أكبر في اتجاه نظر الشخص أو حركته.", "rm": "", "pr": "comfortable headroom, extra lead room" },
-    { "id": "frame-in-frame", "family": "comp", "en": "Frame Within a Frame", "ar": "إطار داخل إطار", "what": "باب أو نافذة تؤطر الموضوع.", "rm": "", "pr": "subject framed through an archway" },
-
-    { "id": "walk", "family": "subject", "en": "Walk", "ar": "المشي", "what": "حدّد الاتجاه والسرعة.", "rm": "", "pr": "walks slowly from left to right across the frame, natural gait" },
-    { "id": "run", "family": "subject", "en": "Run", "ar": "الجري", "what": "حركة سريعة، أضف تفاصيل الجسم.", "rm": "", "pr": "sprints toward the camera, arms pumping" },
-    { "id": "look-camera", "family": "subject", "en": "Look at Camera", "ar": "التفات للكاميرا", "what": "لحظة قوية في الإعلانات والافتتاحيات.", "rm": "", "pr": "slowly turns her head and looks directly into the camera, subtle smile" },
-    { "id": "cloth-wind", "family": "subject", "en": "Hair & Cloth in Wind", "ar": "شعر وقماش بالهواء", "what": "حركة ثانوية تعطي حياة لشخص واقف. من أنجح الحركات في الأدوات.", "rm": "", "pr": "hair and clothes flutter gently in the wind as they stand still" },
-    { "id": "gesture", "family": "subject", "en": "Gesture / Wave", "ar": "إيماءة", "what": "حركة يد واضحة. اجعلها بسيطة وبطيئة لتقليل مشاكل الأصابع.", "rm": "", "pr": "raises a hand and waves at the camera in a friendly way" },
-    { "id": "idle", "family": "subject", "en": "Idle / Breathing", "ar": "سكون حي", "what": "تنفس ورمش وتمايل خفيف. يمنع الإحساس بصورة جامدة.", "rm": "", "pr": "stands still, breathing gently, blinking naturally, subtle idle movement" },
-    { "id": "wind-trees", "family": "subject", "en": "Wind in Trees", "ar": "رياح في الأشجار", "what": "أشجار وعشب وسحب تتحرك.", "rm": "", "pr": "trees and tall grass sway in a breeze, clouds moving" },
-    { "id": "water", "family": "subject", "en": "Water & Ripples", "ar": "ماء وتموجات", "what": "سطح ماء يتموج ويلمع. جميلة وسهلة.", "rm": "", "pr": "gentle ripples on the water, sparkling sun reflections" },
-    { "id": "dust-motes", "family": "subject", "en": "Dust & Particles", "ar": "غبار وجزيئات", "what": "ذرات تطفو في شعاع ضوء. عمق وإحساس سينمائي.", "rm": "Floaters", "pr": "dust particles floating in a beam of sunlight" },
-    { "id": "sand-desert", "family": "subject", "en": "Sand & Desert Wind", "ar": "رمال وهواء صحراوي", "what": "رمال تنساب مع الريح. بيئة سعودية. إضافة خاصة بنا.", "rm": "", "pr": "fine sand drifting in the desert wind, soft haze" },
-    { "id": "cinemagraph", "family": "subject", "en": "Cinemagraph", "ar": "سينماجراف", "what": "صورة ثابتة يتحرك فيها عنصر واحد في حلقة متصلة. رخيص ومؤثر.", "rm": "Pic ثابتة + عنصر واحد متحرك", "pr": "completely still image, only one element moves in a seamless loop" },
-
-    { "id": "golden-hour", "family": "light", "en": "Golden Hour", "ar": "الساعة الذهبية", "what": "شمس منخفضة دافئة وظلال طويلة. تناسب الوجهات السعودية.", "rm": "", "pr": "golden hour light, warm low sun, long soft shadows" },
-    { "id": "blue-hour", "family": "light", "en": "Blue Hour", "ar": "الساعة الزرقاء", "what": "بعد الغروب: سماء زرقاء وضوء بارد هادئ.", "rm": "", "pr": "blue hour, deep blue sky after sunset, cool calm light" },
-    { "id": "night", "family": "light", "en": "Night / Moonlight", "ar": "ليل وضوء قمر", "what": "اذكر مصدر الضوء حتى لا يصير الكادر مظلماً.", "rm": "", "pr": "night scene lit by moonlight, cool blue tones" },
-    { "id": "backlight", "family": "light", "en": "Backlight / Silhouette", "ar": "إضاءة خلفية", "what": "الشخص ظل داكن على خلفية مضيئة.", "rm": "", "pr": "strong backlight, figure as a dark silhouette against the bright sky" },
-    { "id": "low-key", "family": "light", "en": "Low-Key", "ar": "إضاءة درامية", "what": "كادر مظلم وضوء واحد مركّز. تباين وتوتر.", "rm": "", "pr": "low-key lighting, single hard light, deep shadows" },
-    { "id": "god-rays", "family": "light", "en": "Volumetric Rays", "ar": "أشعة حجمية", "what": "أشعة مرئية تمر عبر الغبار أو الضباب.", "rm": "", "pr": "volumetric god rays streaming through the haze" },
-    { "id": "soft-overcast", "family": "light", "en": "Overcast / Soft", "ar": "ضوء غائم ناعم", "what": "ضوء منتشر بلا ظلال قوية.", "rm": "", "pr": "overcast sky, soft diffused light, no hard shadows" },
-    { "id": "bright-daylight", "family": "light", "en": "Bright Daylight", "ar": "نهار ساطع", "what": "ضوء نهار قوي ونظيف. الأنسب لمقاطع المدارس والأطفال. إضافة خاصة بنا.", "rm": "", "pr": "bright natural daylight, clean and cheerful, soft shadows" },
-
-    { "id": "real-time", "family": "time", "en": "Real Time", "ar": "سرعة طبيعية", "what": "الحركة كما في الواقع، 24 أو 30 كادراً.", "rm": "", "pr": "real-time speed, natural motion" },
-    { "id": "slow-motion", "family": "time", "en": "Slow Motion", "ar": "حركة بطيئة", "what": "تصوير بكادرات عالية وعرض عادي. للحظات الدرامية.", "rm": "playbackRate أقل من 1 على Clip", "pr": "slow motion at 120fps" },
-    { "id": "timelapse", "family": "time", "en": "Time-lapse", "ar": "تايم لابس", "what": "كاميرا ثابتة وساعات تتحول لثوانٍ.", "rm": "playbackRate عالٍ", "pr": "time-lapse, clouds racing, static camera" },
-    { "id": "hyperlapse", "family": "time", "en": "Hyperlapse", "ar": "هايبرلابس", "what": "تايم لابس والكاميرا تتحرك مسافة كبيرة. سفر سريع.", "rm": "", "pr": "hyperlapse moving through the landscape" },
-    { "id": "speed-ramp", "family": "time", "en": "Speed Ramp", "ar": "تغيير السرعة داخل اللقطة", "what": "سريع ثم بطيء ثم سريع. أكشن ورياضة.", "rm": "interpolate لـ playbackRate", "pr": "speed ramp, fast motion easing into slow motion at the peak moment" },
-    { "id": "freeze-frame", "family": "time", "en": "Freeze Frame", "ar": "تجميد", "what": "الحركة تتوقف على كادر ثم تكمل. لإبراز لحظة.", "rm": "Freeze من remotion", "pr": "action freezes in a still frame, then continues" },
-    { "id": "reverse", "family": "time", "en": "Reverse", "ar": "حركة عكسية", "what": "الحدث من النهاية للبداية.", "rm": "", "pr": "reverse motion, the action plays backwards" },
-    { "id": "rack-focus", "family": "lens", "en": "Rack Focus", "ar": "تحويل الفوكس", "what": "الفوكس ينتقل من قريب لبعيد ليوجه الانتباه.", "rm": "blur يتبدل بين طبقتين", "pr": "rack focus from the foreground to the person in the background" },
-    { "id": "shallow-dof", "family": "lens", "en": "Shallow Depth of Field", "ar": "عمق ميدان ضحل", "what": "موضوع حاد وخلفية مغبشة. عزل وسينمائية.", "rm": "filter: blur على الخلفية", "pr": "shallow depth of field, subject sharp, soft creamy bokeh, 85mm f/1.4" },
-    { "id": "deep-focus", "family": "lens", "en": "Deep Focus", "ar": "فوكس عميق", "what": "كل شيء حاد من المقدمة للخلفية.", "rm": "", "pr": "deep focus, everything sharp" },
-    { "id": "tilt-shift", "family": "lens", "en": "Tilt-Shift", "ar": "مجسم مصغر", "what": "شريط حاد والباقي مغبش، فيبدو المكان كمجسم. جميل للمدن.", "rm": "", "pr": "tilt-shift miniature effect, narrow band of focus" },
-    { "id": "lens-flare", "family": "lens", "en": "Lens Flare", "ar": "وهج العدسة", "what": "بقع وخطوط ضوء من مصدر قوي.", "rm": "", "pr": "warm anamorphic lens flare" },
-    { "id": "motion-blur", "family": "lens", "en": "Motion Blur", "ar": "ضبابية الحركة", "what": "التلطخ الطبيعي للأجسام السريعة. غيابه يجعل الحركة متقطعة.", "rm": "<CameraMotionBlur> أو blur على الانتقالات الخاطفة", "pr": "natural motion blur on fast movement" },
-
-    { "id": "t2v", "family": "gen", "en": "Text-to-Video", "ar": "من نص لفيديو", "what": "وصف فقط والأداة تولّد كل شيء. تحكم أقل بالشكل.", "rm": "", "pr": "(describe subject, camera, light)" },
-    { "id": "i2v", "family": "gen", "en": "Image-to-Video", "ar": "من صورة لفيديو", "what": "صورة كأول كادر، وتصف الحركة فقط. أفضل تحكم بالشكل والشخصية، وهو الأرخص عندنا مع صور مولّدة.", "rm": "ولّد الصورة بـ images_generate ثم حرّكها بـ video_generate", "pr": "(do not repeat what is in the image, describe only what moves)" },
-    { "id": "first-last", "family": "gen", "en": "Start & End Frame", "ar": "الكادر الأول والأخير", "what": "تعطي صورة البداية والنهاية والأداة تولّد ما بينهما. للانتقالات والتحولات.", "rm": "", "pr": "smooth continuous transition from the first frame to the last frame" },
-    { "id": "v2v", "family": "gen", "en": "Video-to-Video", "ar": "من فيديو لفيديو", "what": "إعادة رسم فيديو بأسلوب جديد مع الحفاظ على الحركة. شدة التغيير تحدد كم يبقى من الأصل.", "rm": "", "pr": "restyle keeping the original motion and timing" },
-    { "id": "motion-brush", "family": "gen", "en": "Motion Brush", "ar": "فرشاة الحركة", "what": "تحدد منطقة واتجاهاً لحركة جزء واحد والباقي ثابت.", "rm": "", "pr": "only the clouds drift slowly to the right, everything else stays still" },
-    { "id": "camera-control", "family": "gen", "en": "Camera Control", "ar": "تحكم الكاميرا", "what": "منزلقات للحركة بدل كتابتها. اختر محوراً واحداً بقيمة متوسطة.", "rm": "", "pr": "one camera axis at medium intensity, no other camera movement" },
-    { "id": "motion-strength", "family": "gen", "en": "Motion Strength", "ar": "شدة الحركة", "what": "كمية الحركة. العالي يزيد التشوه والمنخفض أثبت. ابدأ من المنتصف.", "rm": "", "pr": "subtle motion, gentle and minimal movement, stable scene" },
-    { "id": "negative-prompt", "family": "gen", "en": "Negative Prompt", "ar": "برومبت سلبي", "what": "ما لا تريده. إن لم تدعمه الأداة صِف الثبات بجمل إيجابية.", "rm": "", "pr": "morphing, warping, flicker, distorted face, extra fingers, text, watermark, camera shake" },
-    { "id": "character-ref", "family": "gen", "en": "Character Reference", "ar": "ثبات الشخصية", "what": "صورة مرجعية لتبقى الملامح والملابس ثابتة بين اللقطات.", "rm": "", "pr": "same character as the reference image: identical face and outfit in all shots" },
-    { "id": "lip-sync", "family": "gen", "en": "Lip Sync", "ar": "مزامنة الشفاه", "what": "تحريك الفم ليطابق صوتاً. وجه أمامي واضح.", "rm": "", "pr": "medium close-up, the character speaks directly to camera with natural lip sync" },
-    { "id": "aspect-ratio", "family": "gen", "en": "Aspect Ratio", "ar": "نسبة الأبعاد", "what": "حدّدها قبل التوليد لأن تغييرها بعده يقص الصورة. ريلز 9:16.", "rm": "width 1080 height 1920", "pr": "vertical 9:16 composition, subject centered, space for captions at the bottom" },
-    { "id": "clip-duration", "family": "gen", "en": "Duration & FPS", "ar": "المدة والكادرات", "what": "أغلب الأدوات 5 إلى 10 ثوانٍ، فاجعل المقطع حدثاً واحداً. 30fps للسوشيال.", "rm": "FPS = 30", "pr": "single 5-second shot, one continuous action" },
-    { "id": "seed", "family": "gen", "en": "Seed", "ar": "البذرة", "what": "نفس البرومبت مع نفس الـ seed يعطي نتيجة قريبة. احفظه وغيّر كلمة واحدة في كل مرة.", "rm": "", "pr": "fix the seed, change one word at a time" },
-    { "id": "extend", "family": "gen", "en": "Extend", "ar": "تمديد", "what": "تكمل المقطع من آخر كادر. صف ما يحدث بعد ذلك فقط.", "rm": "", "pr": "continue the shot, same lighting and style" },
-    { "id": "gen-loop", "family": "gen", "en": "Loop", "ar": "تكرار متصل", "what": "آخر كادر يطابق الأول. أو استخدم الصورة نفسها كأول وآخر كادر.", "rm": "", "pr": "seamless loop, last frame matches the first frame" },
-    { "id": "interpolation", "family": "gen", "en": "Frame Interpolation", "ar": "كادرات بينية", "what": "إضافة كادرات لتنعيم الحركة أو صنع بطيء.", "rm": "", "pr": "interpolate from 24fps to 60fps" },
-    { "id": "upscale", "family": "gen", "en": "Upscale", "ar": "رفع الدقة", "what": "تكبير مع إضافة تفاصيل. آخر خطوة قبل المونتاج.", "rm": "video_upscale أو images_upscale من Magnific", "pr": "upscale to 4K, preserve film grain, no oversharpening" },
-
-    { "id": "fix-morphing", "family": "fix", "en": "Morphing / Warping", "ar": "تشوّه وتحوّل", "what": "الشكل يذوب أو يتحول. السبب حركة كثيرة أو برومبت متناقض.", "rm": "", "pr": "FIX: lower motion strength, one simple action, image-to-video. Negative: morphing, warping, melting" },
-    { "id": "fix-flicker", "family": "fix", "en": "Flicker", "ar": "وميض", "what": "إضاءة أو ألوان ترتعش بين الكادرات.", "rm": "", "pr": "FIX: consistent lighting, stable exposure. Negative: flicker, strobing" },
-    { "id": "fix-camera-drift", "family": "fix", "en": "Unwanted Camera Drift", "ar": "حركة كاميرا غير مطلوبة", "what": "الأدوات تضيف حركة إن لم تحددها.", "rm": "", "pr": "FIX: static camera, locked-off tripod shot, no camera movement" },
-    { "id": "fix-chaos", "family": "fix", "en": "Too Much Motion", "ar": "حركة زائدة", "what": "كل شيء يتحرك معاً فتضيع اللقطة.", "rm": "", "pr": "FIX: only the subject moves, background still, one camera move only" },
-    { "id": "fix-frozen", "family": "fix", "en": "No Motion", "ar": "فيديو شبه ثابت", "what": "برومبت يصف الشكل بدل الحركة.", "rm": "", "pr": "FIX: use clear action verbs (walks, turns, pours), add slow push in" },
-    { "id": "fix-speed", "family": "fix", "en": "Wrong Speed", "ar": "سرعة غير مناسبة", "what": "تبدو مسرّعة. حدّد الإيقاع صراحة.", "rm": "", "pr": "FIX: natural real-time speed, slow deliberate movement" },
-    { "id": "fix-identity-drift", "family": "fix", "en": "Identity Drift", "ar": "تغير الملامح", "what": "الوجه أو الملابس تتغير في اللقطة أو بين اللقطات.", "rm": "", "pr": "FIX: character reference image, short shots, same face and outfit throughout" },
-    { "id": "fix-hands", "family": "fix", "en": "Hands & Fingers", "ar": "الأيدي والأصابع", "what": "أصابع زائدة أو ملتحمة مع الحركة السريعة.", "rm": "", "pr": "FIX: simple slow hand motion or keep hands out of frame" },
-    { "id": "fix-garbled-text", "family": "fix", "en": "Garbled Text", "ar": "نص مشوّه", "what": "الكتابة داخل لقطة مولّدة تتشوه، والعربي أسوأ. نصنا كله من Remotion.", "rm": "كل النصوص من Remotion فوق اللقطة", "pr": "FIX: do not generate text in the shot; add titles in Remotion" },
-    { "id": "fix-physics", "family": "fix", "en": "Broken Physics", "ar": "فيزياء غير منطقية", "what": "أجسام تخترق بعضها أو تطفو.", "rm": "", "pr": "FIX: realistic physics, natural gravity and weight" },
-    { "id": "fix-loop-seam", "family": "fix", "en": "Loop Seam", "ar": "قفزة اللوب", "what": "آخر كادر لا يطابق الأول فيقفز.", "rm": "", "pr": "FIX: same image as first and last frame, or crossfade the ends" },
-
-    { "id": "keyframe", "family": "term", "en": "Keyframe", "ar": "كي فريم", "what": "نقطة على التايملاين بقيمة محددة والباقي يُحسب.", "rm": "نقاط interpolate", "pr": "" },
-    { "id": "interpolation-type", "family": "term", "en": "Interpolation", "ar": "استيفاء", "what": "طريقة حساب القيم بين المفاتيح: Linear أو Bezier أو Hold.", "rm": "extrapolate و easing في interpolate", "pr": "" },
-    { "id": "frame-rate", "family": "term", "en": "Frame Rate", "ar": "معدل الكادرات", "what": "24 سينمائي، 30 سوشيال وهو ما نستخدمه، 60 ناعم جداً.", "rm": "FPS = 30", "pr": "" },
-    { "id": "timecode", "family": "term", "en": "Timecode", "ar": "كود زمني", "what": "عنوان الكادر ساعة:دقيقة:ثانية:كادر.", "rm": "frame / FPS", "pr": "" },
-    { "id": "shutter-angle", "family": "term", "en": "Shutter Angle", "ar": "زاوية الغالق", "what": "تحدد ضبابية الحركة. 180 درجة هي الإحساس السينمائي.", "rm": "CameraMotionBlur shutterAngle", "pr": "" },
-    { "id": "pre-compose", "family": "term", "en": "Pre-compose", "ar": "تجميع مسبق", "what": "تجميع طبقات لتحريكها ككتلة.", "rm": "مكوّن React منفصل داخل Sequence", "pr": "" },
-    { "id": "null-parent", "family": "term", "en": "Null / Parenting", "ar": "كائن فارغ وربط", "what": "طبقة غير مرئية تتحكم بطبقات مربوطة بها.", "rm": "div أب بـ transform والأبناء داخله", "pr": "" },
-    { "id": "matte", "family": "term", "en": "Mask / Matte", "ar": "قناع", "what": "شكل يحدد الجزء الظاهر من طبقة.", "rm": "overflow hidden أو clipPath أو mask-image", "pr": "" },
-    { "id": "rotoscoping", "family": "term", "en": "Rotoscoping", "ar": "روتوسكوب", "what": "فصل الشخص عن الخلفية. الذكاء الاصطناعي يفعله.", "rm": "images_remove_background أو video_remove_background (Magnific)", "pr": "" },
-    { "id": "motion-tracking", "family": "term", "en": "Motion Tracking", "ar": "تتبع الحركة", "what": "تثبيت نص أو عنصر على نقطة متحركة.", "rm": "", "pr": "" },
-    { "id": "color-grading", "family": "term", "en": "Color Grading", "ar": "تلوين", "what": "ضبط الألوان لمزاج موحد. عندنا ألوان الهوية.", "rm": "video_color_grade (Magnific) أو filter على Clip", "pr": "" },
-    { "id": "lut", "family": "term", "en": "LUT", "ar": "جدول ألوان", "what": "ملف تلوين جاهز بضغطة.", "rm": "", "pr": "" },
-    { "id": "lottie", "family": "term", "en": "Lottie", "ar": "لوتي", "what": "JSON لتشغيل أنيميشن After Effects. @remotion/lottie يدعمه.", "rm": "@remotion/lottie", "pr": "" },
-    { "id": "depth-map", "family": "term", "en": "Depth Map", "ar": "خريطة عمق", "what": "صورة رمادية ببعد كل جزء. أساس 2.5D.", "rm": "images_depth_map (Magnific)", "pr": "" },
-    { "id": "temporal-consistency", "family": "term", "en": "Temporal Consistency", "ar": "ثبات زمني", "what": "ثبات الأشكال والألوان بين الكادرات.", "rm": "", "pr": "" }
+    {
+      "id": "linear",
+      "family": "ease",
+      "en": "Linear",
+      "ar": "خطي",
+      "what": "سرعة ثابتة، تبدو آلية. فقط للدوران والتمرير المستمر وأشرطة التقدم.",
+      "rm": "interpolate بدون easing. الحلقة الدوّارة Ring تستخدمه.",
+      "pr": "constant speed"
+    },
+    {
+      "id": "ease-in",
+      "family": "ease",
+      "en": "Ease In",
+      "ar": "تسارع",
+      "what": "تبدأ بطيئة وتنتهي سريعة. للعناصر الخارجة من الكادر.",
+      "rm": "Easing.in(Easing.cubic) أو bezier(.55,0,1,.45)",
+      "pr": "ease-in, accelerating out"
+    },
+    {
+      "id": "ease-out",
+      "family": "ease",
+      "en": "Ease Out",
+      "ar": "تباطؤ",
+      "what": "تبدأ سريعة وتهدأ في النهاية. الأنسب للعناصر الداخلة.",
+      "rm": "Easing.out(Easing.cubic) أو bezier(0,.55,.45,1)",
+      "pr": "ease-out, settling softly"
+    },
+    {
+      "id": "ease-in-out",
+      "family": "ease",
+      "en": "Ease In-Out",
+      "ar": "تسارع ثم تباطؤ",
+      "what": "بطيئة في الطرفين سريعة في الوسط. لحركة عنصر من مكان لمكان داخل الكادر.",
+      "rm": "Easing.inOut(Easing.cubic) أو bezier(.65,0,.35,1)",
+      "pr": "smooth ease-in-out"
+    },
+    {
+      "id": "expo-out",
+      "family": "ease",
+      "en": "Expo Out",
+      "ar": "تباطؤ حاد",
+      "what": "انطلاقة سريعة جداً ثم استقرار طويل ناعم. إحساس فاخر. هذا هو EASE الافتراضي في هويتنا.",
+      "rm": "EASE في brand.tsx = bezier(.16,1,.3,1). useIn و MaskLine يستخدمانه.",
+      "pr": "expo-out easing, fast start, long soft settle"
+    },
+    {
+      "id": "back-out",
+      "family": "ease",
+      "en": "Back Out / Overshoot",
+      "ar": "تجاوز ثم رجوع",
+      "what": "يتجاوز مكانه قليلاً ثم يرجع. حيوية ومرح للأيقونات والبطاقات.",
+      "rm": "usePop(start, damping) أو bezier(.34,1.56,.64,1)",
+      "pr": "pop-in with slight overshoot"
+    },
+    {
+      "id": "back-in",
+      "family": "ease",
+      "en": "Anticipation Ease",
+      "ar": "تمهيد عكسي",
+      "what": "يرجع للخلف قليلاً قبل أن ينطلق. يجهّز العين.",
+      "rm": "bezier(.36,0,.66,-.56)",
+      "pr": "pull back slightly before moving"
+    },
+    {
+      "id": "spring",
+      "family": "ease",
+      "en": "Spring",
+      "ar": "زنبرك",
+      "what": "حركة فيزيائية بصلابة وتخميد بدل مدة. الأنسب للسحب والإيماءات والتفاعل.",
+      "rm": "spring({ fps, frame, config: { stiffness, damping } })",
+      "pr": "springy, physical motion"
+    },
+    {
+      "id": "bounce",
+      "family": "ease",
+      "en": "Bounce",
+      "ar": "ارتداد",
+      "what": "يرتطم ويرتد كالكرة. بحذر وللمرح فقط.",
+      "rm": "Easing.bounce",
+      "pr": "bouncing ease-out"
+    },
+    {
+      "id": "steps",
+      "family": "ease",
+      "en": "Steps",
+      "ar": "خطوات متقطعة",
+      "what": "قفزات ثابتة بلا نعومة: سبرايت وعدادات.",
+      "rm": "Math.floor(frame / n) لتقطيع الزمن",
+      "pr": "stepped, frame-by-frame"
+    },
+    {
+      "id": "squash-stretch",
+      "family": "principle",
+      "en": "Squash & Stretch",
+      "ar": "ضغط وتمدد",
+      "what": "يتمدد مع السرعة وينضغط عند الاصطدام مع ثبات الحجم. وزن ومرونة.",
+      "rm": "scaleX/scaleY معاكسان حول 1 مع spring",
+      "pr": "squash on impact, stretch in the air"
+    },
+    {
+      "id": "anticipation",
+      "family": "principle",
+      "en": "Anticipation",
+      "ar": "التمهيد",
+      "what": "حركة صغيرة معاكسة قبل الحركة الرئيسية.",
+      "rm": "keyframe عكسي 4 إلى 6 فريم قبل الدخول",
+      "pr": "crouch in anticipation, then leap"
+    },
+    {
+      "id": "staging",
+      "family": "principle",
+      "en": "Staging",
+      "ar": "التقديم",
+      "what": "توجيه العين للمهم بالضوء أو الحجم أو الحركة وتهدئة الباقي.",
+      "rm": "خفّض opacity للخلفية وكبّر العنصر البطل",
+      "pr": "spotlight the hero, dim the surroundings"
+    },
+    {
+      "id": "pose-to-pose",
+      "family": "principle",
+      "en": "Pose to Pose",
+      "ar": "وضعيات مفتاحية",
+      "what": "حدد الوضعيات الأساسية ثم املأ ما بينها.",
+      "rm": "interpolate بين مفاتيح قليلة",
+      "pr": "keyframe animation between key poses"
+    },
+    {
+      "id": "follow-through",
+      "family": "principle",
+      "en": "Follow Through & Overlap",
+      "ar": "استمرار وتداخل",
+      "what": "الأجزاء المرنة تكمل حركتها بعد توقف الجسم ولكل جزء تأخير.",
+      "rm": "تأخير spring لكل طبقة فرعية 2 إلى 4 فريم",
+      "pr": "follow-through and overlapping action"
+    },
+    {
+      "id": "slow-in-out",
+      "family": "principle",
+      "en": "Slow In & Slow Out",
+      "ar": "تباطؤ الطرفين",
+      "what": "الحركة تبطؤ عند البداية والنهاية مثل الواقع. في After Effects اسمها Easy Ease.",
+      "rm": "أي easing غير linear",
+      "pr": "smooth slow-in and slow-out"
+    },
+    {
+      "id": "arcs",
+      "family": "principle",
+      "en": "Arcs",
+      "ar": "الأقواس",
+      "what": "الحركة الطبيعية تسير في أقواس لا خطوط مستقيمة.",
+      "rm": "اجمع x وy بمنحنيين مختلفين التوقيت",
+      "pr": "moves along a smooth arc path"
+    },
+    {
+      "id": "secondary-action",
+      "family": "principle",
+      "en": "Secondary Action",
+      "ar": "حركة ثانوية",
+      "what": "حركة صغيرة تدعم الأساسية دون أن تسرق الانتباه.",
+      "rm": "Floaters أو نبضة خفيفة خلف العنصر",
+      "pr": "small supporting secondary motion"
+    },
+    {
+      "id": "timing-weight",
+      "family": "principle",
+      "en": "Timing",
+      "ar": "التوقيت",
+      "what": "عدد الكادرات يحدد الوزن: الثقيل بطيء، الخفيف سريع.",
+      "rm": "غيّر frames في useIn أو damping في usePop",
+      "pr": "heavy and slow vs light and fast"
+    },
+    {
+      "id": "exaggeration",
+      "family": "principle",
+      "en": "Exaggeration",
+      "ar": "مبالغة",
+      "what": "تضخيم الحركة عن الواقع لتصبح أوضح.",
+      "rm": "زد scale الدخول أو overshoot قليلاً",
+      "pr": "exaggerated, expressive motion"
+    },
+    {
+      "id": "solid-drawing",
+      "family": "principle",
+      "en": "Solid Drawing",
+      "ar": "رسم مجسّم",
+      "what": "التعامل مع الأشكال ككتل لها حجم حتى في الرسم المسطح.",
+      "rm": "rotateX/rotateY مع perspective",
+      "pr": "consistent volume and perspective"
+    },
+    {
+      "id": "appeal",
+      "family": "principle",
+      "en": "Appeal",
+      "ar": "جاذبية",
+      "what": "شكل بسيط وتعبير واضح وسهل القراءة.",
+      "rm": "أشكال الهوية فقط، بلا تفاصيل زائدة",
+      "pr": "charming, clear, readable design"
+    },
+    {
+      "id": "kinetic-type",
+      "family": "text",
+      "en": "Kinetic Typography",
+      "ar": "تايبوجرافي حركي",
+      "what": "كلمات تظهر وتتحرك على إيقاع الكلام. أساس إعلانات الريلز.",
+      "rm": "عنصر لكل عبارة بـ at(scene, phrase)",
+      "pr": "bold words pop in sync with the beat"
+    },
+    {
+      "id": "text-mask-reveal",
+      "family": "text",
+      "en": "Text Mask Reveal",
+      "ar": "كشف النص بالقناع",
+      "what": "النص يصعد من خلف خط مخفي. أنيق ونظيف.",
+      "rm": "MaskLine (delay, size, color)",
+      "pr": "each line slides up from behind an invisible mask"
+    },
+    {
+      "id": "typewriter",
+      "family": "text",
+      "en": "Typewriter",
+      "ar": "آلة كاتبة",
+      "what": "حروف تظهر واحداً بعد الآخر مع مؤشر يومض. مناسب للانجليزي التقني فقط.",
+      "rm": "slice على النص حسب الفريم. لا تستخدمه للعربي (يكسر الاتصال).",
+      "pr": "typewriter text with blinking cursor"
+    },
+    {
+      "id": "letter-stagger",
+      "family": "text",
+      "en": "Letter Stagger",
+      "ar": "تتابع الحروف",
+      "what": "كل حرف يدخل بتأخير. ممنوع في العربية لأنه يقطع اتصال الحروف.",
+      "rm": "للانجليزي فقط",
+      "pr": "letter-by-letter stagger"
+    },
+    {
+      "id": "word-stagger",
+      "family": "text",
+      "en": "Word Stagger",
+      "ar": "تتابع الكلمات",
+      "what": "كل كلمة تدخل بتأخير بسيط. هذا بديلنا للعربية.",
+      "rm": "ملفوف في كلمات، delay = i * 3 فريم. مع MaskLine لكل سطر.",
+      "pr": "word-by-word stagger"
+    },
+    {
+      "id": "text-scramble",
+      "family": "text",
+      "en": "Text Scramble",
+      "ar": "فك التشفير",
+      "what": "حروف عشوائية تستقر على الكلمة. طابع تقني.",
+      "rm": "للانجليزي والأرقام فقط",
+      "pr": "random characters resolve into the title"
+    },
+    {
+      "id": "lower-third",
+      "family": "text",
+      "en": "Lower Third",
+      "ar": "الشريط السفلي",
+      "what": "شريط باسم وصفة المتحدث أسفل الشاشة.",
+      "rm": "Pill + MaskLine داخل هوامش الأمان",
+      "pr": "clean lower third, accent bar then name reveal"
+    },
+    {
+      "id": "line-draw",
+      "family": "shape",
+      "en": "Trim Paths / Line Draw",
+      "ar": "رسم الخط",
+      "what": "خط يُرسم من بدايته لنهايته.",
+      "rm": "strokeDasharray و strokeDashoffset مع interpolate",
+      "pr": "single stroke draws itself on"
+    },
+    {
+      "id": "swoosh",
+      "family": "shape",
+      "en": "Swoosh Underline",
+      "ar": "خط مرسوم متموّج",
+      "what": "بديل أنيق للخط الرفيع تحت العنوان: منحنى يرسم نفسه وينتهي بمعين صغير. الخطوط الجامدة تحت العناوين ممنوعة عندنا.",
+      "rm": "Swoosh (at, width, color)",
+      "pr": ""
+    },
+    {
+      "id": "shape-morph",
+      "family": "shape",
+      "en": "Shape Morph",
+      "ar": "تحوّل الشكل",
+      "what": "شكل يتحول لشكل آخر بسلاسة.",
+      "rm": "interpolatePath من @remotion/paths أو تبديل opacity بين شكلين",
+      "pr": "smooth shape morphing"
+    },
+    {
+      "id": "motion-path",
+      "family": "shape",
+      "en": "Motion Path",
+      "ar": "مسار الحركة",
+      "what": "عنصر يتبع مساراً منحنياً ويدور مع اتجاهه.",
+      "rm": "getPointAtLength من @remotion/paths (مثال: الباص في LogisticsScene)",
+      "pr": "follows a curved motion path"
+    },
+    {
+      "id": "map-route",
+      "family": "shape",
+      "en": "Map Route",
+      "ar": "مسار على الخريطة",
+      "what": "خط يُرسم بين نقطتين مع علامة تتحرك عليه. للسفر والرحلات.",
+      "rm": "line-draw + motion-path. مناسب جداً لرحلات جستنا",
+      "pr": "route line draws from pin A to pin B with a moving marker"
+    },
+    {
+      "id": "radial-repeater",
+      "family": "shape",
+      "en": "Repeater / Radial",
+      "ar": "تكرار دائري",
+      "what": "نسخ من شكل موزعة حول مركز.",
+      "rm": "map على مصفوفة مع rotate = i * 360 / n (باترن الهوية)",
+      "pr": "radial repeater pulsing in sequence"
+    },
+    {
+      "id": "stagger",
+      "family": "shape",
+      "en": "Stagger / Offset",
+      "ar": "تتابع زمني",
+      "what": "مجموعة عناصر بالحركة نفسها وتأخير متدرج، فتتكون موجة.",
+      "rm": "delay = at(...) + i * 3 إلى 6 فريم",
+      "pr": "staggered offsets creating a wave"
+    },
+    {
+      "id": "seamless-loop",
+      "family": "shape",
+      "en": "Seamless Loop",
+      "ar": "حلقة متصلة",
+      "what": "حركة تنتهي حيث بدأت.",
+      "rm": "دوال دورية: Math.sin(frame / period)",
+      "pr": "perfect seamless loop"
+    },
+    {
+      "id": "wiggle",
+      "family": "shape",
+      "en": "Wiggle",
+      "ar": "اهتزاز عشوائي",
+      "what": "اهتزاز مستمر في الموضع أو الدوران.",
+      "rm": "noise من @remotion/noise",
+      "pr": "random jittery wiggle"
+    },
+    {
+      "id": "echo-trails",
+      "family": "shape",
+      "en": "Echo / Trails",
+      "ar": "أثر",
+      "what": "نسخ باهتة تتبع العنصر وتوضح مساره وسرعته.",
+      "rm": "ارسم نسخاً بتأخير frame - k وopacity متناقص",
+      "pr": "fading echo trails"
+    },
+    {
+      "id": "isometric",
+      "family": "shape",
+      "en": "Isometric",
+      "ar": "أيزومتريك",
+      "what": "رسم ثلاثي الأبعاد بزوايا ثابتة بلا منظور. شرح المنتجات.",
+      "rm": "transform: rotateX(60deg) rotateZ(45deg)",
+      "pr": "isometric 3D blocks dropping into place"
+    },
+    {
+      "id": "flip-3d",
+      "family": "shape",
+      "en": "3D Flip",
+      "ar": "قلب ثلاثي",
+      "what": "بطاقة تنقلب لتكشف وجهها الآخر.",
+      "rm": "rotateY مع backfaceVisibility hidden",
+      "pr": "card flips 180 degrees in 3D"
+    },
+    {
+      "id": "walk-cycle",
+      "family": "shape",
+      "en": "Walk Cycle",
+      "ar": "دورة مشي",
+      "what": "مشي يتكرر في مكانه والخلفية تتحرك.",
+      "rm": "Lottie أو سبرايت",
+      "pr": "looping walk cycle in profile"
+    },
+    {
+      "id": "counter",
+      "family": "shape",
+      "en": "Count-up / Data Animation",
+      "ar": "عدّاد وإنفوجرافيك",
+      "what": "رقم يعد من الصفر وأعمدة تنمو بالتتابع. لا نضع أرقاماً من خارج موقع العميل.",
+      "rm": "Math.round(interpolate(frame, [a,b],[0,N])) في NumbersScene",
+      "pr": "bar chart grows with staggered timing while a counter counts up"
+    },
+    {
+      "id": "particles",
+      "family": "fx",
+      "en": "Particles / Burst",
+      "ar": "جسيمات وانفجار",
+      "what": "نقاط تنفجر من مركز وتتلاشى. للتأكيد والاحتفال.",
+      "rm": "Burst (at, x, y, colors)",
+      "pr": "particle burst exploding outward"
+    },
+    {
+      "id": "glitch",
+      "family": "fx",
+      "en": "Glitch",
+      "ar": "جليتش",
+      "what": "تشويش رقمي. طابع تقني لا يناسب هوية جستنا الدافئة، تجنّبه.",
+      "rm": "غير مستخدم",
+      "pr": "RGB channel split glitch"
+    },
+    {
+      "id": "logo-reveal",
+      "family": "fx",
+      "en": "Logo Reveal",
+      "ar": "كشف الشعار",
+      "what": "الشعار يظهر بحركة مميزة. الأخير في الفيديو بخلفية بيضاء وألوانه الأصلية.",
+      "rm": "usePop على الشعار + Ring خلفه (EduOutroScene)",
+      "pr": "minimal logo reveal, mark draws on then wordmark slides out"
+    },
+    {
+      "id": "pulse-rings",
+      "family": "fx",
+      "en": "Pulse Rings",
+      "ar": "موجات نبض",
+      "what": "حلقات تتسع وتتلاشى. موقع أو بث أو إشارة.",
+      "rm": "حلقات scale من 0.4 إلى 1.6 مع opacity ينقص",
+      "pr": "radar pulse rings expanding"
+    },
+    {
+      "id": "light-sweep",
+      "family": "fx",
+      "en": "Shine / Light Sweep",
+      "ar": "لمعة ضوء",
+      "what": "شريط ضوء يعبر العنصر. فخامة أو لفت نظر لزر.",
+      "rm": "تدرج linear-gradient يتحرك بـ translateX داخل قناع",
+      "pr": "glossy light sweep across the badge"
+    },
+    {
+      "id": "parallax",
+      "family": "fx",
+      "en": "Parallax",
+      "ar": "بارالاكس",
+      "what": "القريب يتحرك أسرع من البعيد. أساس الإحساس بالعمق.",
+      "rm": "طبقات بسرعات مختلفة، أو Pic بتكبير بطيء مختلف",
+      "pr": "strong parallax between foreground and background"
+    },
+    {
+      "id": "parallax-25d",
+      "family": "fx",
+      "en": "2.5D Parallax",
+      "ar": "بارالاكس 2.5D",
+      "what": "صورة مسطحة تُقسم لطبقات وكاميرا تتحرك بينها.",
+      "rm": "طبقات PNG بعد images_remove_background ثم parallax",
+      "pr": "flat illustration split into layers with a slow camera move"
+    },
+    {
+      "id": "ken-burns",
+      "family": "fx",
+      "en": "Slow Push (Ken Burns)",
+      "ar": "تكبير بطيء للصورة",
+      "what": "تكبير أو سحب بطيء جداً على صورة ثابتة يعطي حياة. هو ما تفعله Pic وClip.",
+      "rm": "Pic / Clip (تكبير بطيء مدمج)",
+      "pr": "slow push in on a still image"
+    },
+    {
+      "id": "hard-cut",
+      "family": "transition",
+      "en": "Hard Cut",
+      "ar": "قطع مباشر",
+      "what": "انتقال فوري. الأكثر استخداماً.",
+      "rm": "Sequence تلو Sequence بلا تأثير",
+      "pr": "hard cut"
+    },
+    {
+      "id": "jump-cut",
+      "family": "transition",
+      "en": "Jump Cut",
+      "ar": "قطع قافز",
+      "what": "قطع داخل اللقطة نفسها. إيقاع سريع.",
+      "rm": "Sequence يتخطى frames من الـ Clip عبر startFrom",
+      "pr": "jump cuts, fast rhythm"
+    },
+    {
+      "id": "match-cut",
+      "family": "transition",
+      "en": "Match Cut",
+      "ar": "قطع متطابق",
+      "what": "قطع بين شكلين متشابهين في مكانهما بالكادر.",
+      "rm": "ضع الشكل المشترك في نفس الإحداثيات في المشهدين",
+      "pr": "match cut, same position in frame"
+    },
+    {
+      "id": "j-l-cut",
+      "family": "transition",
+      "en": "J/L Cut",
+      "ar": "قطع الصوت المتداخل",
+      "what": "صوت المشهد التالي يبدأ قبل صورته أو يستمر بعدها.",
+      "rm": "هذا ما نفعله: الصوت قبل الـ DiamondWipe بفريمات (cutAhead)",
+      "pr": "audio leads the cut"
+    },
+    {
+      "id": "cross-dissolve",
+      "family": "transition",
+      "en": "Cross Dissolve",
+      "ar": "مزج تدريجي",
+      "what": "لقطة تذوب في أخرى. مرور وقت أو ذكرى.",
+      "rm": "opacity لمشهدين متراكبين",
+      "pr": "slow cross dissolve"
+    },
+    {
+      "id": "fade-black",
+      "family": "transition",
+      "en": "Fade to Black",
+      "ar": "تلاشي للأسود",
+      "what": "نهاية فصل. لا نستخدمه، نختم بمشهد أبيض.",
+      "rm": "AbsoluteFill أسود opacity 0→1",
+      "pr": "fade to black"
+    },
+    {
+      "id": "dip-white",
+      "family": "transition",
+      "en": "Dip to White",
+      "ar": "وميض أبيض",
+      "what": "وميض أبيض سريع. صدمة أو حماس.",
+      "rm": "AbsoluteFill أبيض opacity ينبض 6 فريم",
+      "pr": "quick white flash transition"
+    },
+    {
+      "id": "wipe",
+      "family": "transition",
+      "en": "Wipe",
+      "ar": "مسح",
+      "what": "لقطة جديدة تمسح القديمة بخط يتحرك.",
+      "rm": "clipPath: inset() متحرك",
+      "pr": "wipe transition"
+    },
+    {
+      "id": "iris",
+      "family": "transition",
+      "en": "Iris",
+      "ar": "دائرة",
+      "what": "دائرة تنفتح لتكشف اللقطة التالية.",
+      "rm": "Shell enter = iris مع origin (حلقة برتقالية على الحافة)",
+      "pr": "iris-in transition"
+    },
+    {
+      "id": "push-slide",
+      "family": "transition",
+      "en": "Push / Slide",
+      "ar": "دفع",
+      "what": "اللقطة الجديدة تدفع القديمة. في العربية تدخل الجديدة من اليسار.",
+      "rm": "Shell enter/exit = rise (تصعد الجديدة فوق القديمة)",
+      "pr": "push transition, new scene pushes the old one out"
+    },
+    {
+      "id": "whip-transition",
+      "family": "transition",
+      "en": "Whip Transition",
+      "ar": "انتقال خاطف",
+      "what": "حركة سريعة جداً بضبابية تربط لقطتين. شائع في الريلز.",
+      "rm": "Shell enter/exit = whip (تمرير جانبي مع ضبابية)",
+      "pr": "whip pan transition with heavy motion blur"
+    },
+    {
+      "id": "zoom-transition",
+      "family": "transition",
+      "en": "Zoom Transition",
+      "ar": "انتقال بالزووم",
+      "what": "زووم سريع ينتهي بدخول اللقطة التالية.",
+      "rm": "Shell enter/exit = zoom (src/transitions.tsx)",
+      "pr": "fast zoom-through transition"
+    },
+    {
+      "id": "spin-transition",
+      "family": "transition",
+      "en": "Spin Transition",
+      "ar": "انتقال بالدوران",
+      "what": "الكادر يدور ثم تظهر اللقطة التالية وهي تدور.",
+      "rm": "rotate مع scale",
+      "pr": "spin transition"
+    },
+    {
+      "id": "light-leak",
+      "family": "transition",
+      "en": "Light Leak",
+      "ar": "تسريب ضوء",
+      "what": "وهج دافئ يعبر الكادر عند القطع. طابع فيلم.",
+      "rm": "تدرج برتقالي (desert) متحرك فوق القطع",
+      "pr": "warm light leak transition"
+    },
+    {
+      "id": "morph-transition",
+      "family": "transition",
+      "en": "Morph Transition",
+      "ar": "تحول بين لقطتين",
+      "what": "عنصر يتحول لعنصر في اللقطة التالية. أقوى ما يصنعه الذكاء الاصطناعي عبر الكادر الأول والأخير.",
+      "rm": "في Remotion: عنصر مشترك بنفس المكان. أو ولّد بـ start/end frame",
+      "pr": "seamless morph transition"
+    },
+    {
+      "id": "shape-transition",
+      "family": "transition",
+      "en": "Shape Transition",
+      "ar": "انتقال بالأشكال",
+      "what": "أشكال ملونة تتسع وتغطي الشاشة ثم تنكشف. انتقال الهوية عندنا هو الماسة.",
+      "rm": "DiamondWipe (انتقال الهوية الصلب). للفيديوهات الجديدة فضّل Shell الأنعم",
+      "pr": "colored shapes expand to wipe the screen"
+    },
+    {
+      "id": "pan",
+      "family": "camera",
+      "en": "Pan",
+      "ar": "بان",
+      "what": "الكاميرا ثابتة وتدور أفقياً. كل الكادر ينزلق بنفس السرعة بلا عمق.",
+      "rm": "translateX على المشهد كله",
+      "pr": "slow pan from left to right, camera fixed on a tripod"
+    },
+    {
+      "id": "tilt",
+      "family": "camera",
+      "en": "Tilt",
+      "ar": "تيلت",
+      "what": "الكاميرا في مكانها وتميل لأعلى أو لأسفل.",
+      "rm": "translateY على المشهد كله",
+      "pr": "camera tilts up slowly to reveal the subject"
+    },
+    {
+      "id": "zoom",
+      "family": "camera",
+      "en": "Zoom",
+      "ar": "زووم",
+      "what": "تغيير البعد البؤري، الصورة كلها تكبر بنسبة واحدة فتبدو مسطحة.",
+      "rm": "scale على المشهد كله (Pic)",
+      "pr": "slow optical zoom in, the camera does not move"
+    },
+    {
+      "id": "dolly",
+      "family": "camera",
+      "en": "Dolly In / Out",
+      "ar": "دوللي",
+      "what": "الكاميرا نفسها تتقدم أو ترجع. القريب يكبر أسرع من البعيد فيظهر عمق حقيقي.",
+      "rm": "طبقات تكبر بنسب مختلفة (parallax + scale)",
+      "pr": "slow dolly in, the camera physically moves forward, natural parallax"
+    },
+    {
+      "id": "truck",
+      "family": "camera",
+      "en": "Truck / Crab",
+      "ar": "تراك جانبي",
+      "what": "الكاميرا تنتقل بالعرض موازية للمشهد مع بارالاكس واضح.",
+      "rm": "طبقات تنزلق بسرعات مختلفة",
+      "pr": "camera trucks left alongside the subject, strong parallax"
+    },
+    {
+      "id": "pedestal",
+      "family": "camera",
+      "en": "Pedestal",
+      "ar": "بيدستال",
+      "what": "الكاميرا ترتفع أو تنخفض رأسياً وهي مستوية.",
+      "rm": "translateY بسرعات مختلفة للطبقات",
+      "pr": "camera pedestals up smoothly, staying level"
+    },
+    {
+      "id": "orbit",
+      "family": "camera",
+      "en": "Arc / Orbit",
+      "ar": "دوران حول الهدف",
+      "what": "الكاميرا تدور في قوس والهدف يبقى بالمنتصف.",
+      "rm": "غير مناسب للـ 2D. ولّده بالذكاء الاصطناعي",
+      "pr": "camera orbits around the subject in a smooth arc, subject stays centered"
+    },
+    {
+      "id": "crane",
+      "family": "camera",
+      "en": "Crane / Jib",
+      "ar": "كرين",
+      "what": "ترتفع أو تهبط على ذراع، غالباً للافتتاح أو الختام.",
+      "rm": "translateY مع scale خفيف",
+      "pr": "crane shot rising up and away, revealing the wide landscape"
+    },
+    {
+      "id": "dolly-zoom",
+      "family": "camera",
+      "en": "Dolly Zoom",
+      "ar": "دوللي زووم",
+      "what": "ترجع وتزوّم للأمام معاً: الشخص ثابت والخلفية تتمدد. صدمة. لا يناسب أجواءنا.",
+      "rm": "غير مستخدم",
+      "pr": "dolly zoom vertigo effect"
+    },
+    {
+      "id": "roll",
+      "family": "camera",
+      "en": "Roll",
+      "ar": "رول",
+      "what": "الكاميرا تدور حول محورها فيدور الأفق. ارتباك أو حلم.",
+      "rm": "rotate على المشهد",
+      "pr": "camera slowly rolls, horizon rotating"
+    },
+    {
+      "id": "whip-pan",
+      "family": "camera",
+      "en": "Whip Pan",
+      "ar": "بان خاطف",
+      "what": "بان سريع جداً بضبابية حركة. انتقال أو رد فعل مفاجئ.",
+      "rm": "translateX سريع + blur",
+      "pr": "fast whip pan with heavy motion blur"
+    },
+    {
+      "id": "crash-zoom",
+      "family": "camera",
+      "en": "Crash Zoom",
+      "ar": "كراش زووم",
+      "what": "زووم خاطف على تفصيلة. كوميديا أو إدراك مفاجئ.",
+      "rm": "scale من 1 إلى 1.4 خلال 4 فريم",
+      "pr": "sudden crash zoom into the subject"
+    },
+    {
+      "id": "tracking",
+      "family": "camera",
+      "en": "Tracking Shot",
+      "ar": "تتبع",
+      "what": "الكاميرا تمشي مع الشخص فيبقى ثابتاً تقريباً والخلفية تجري.",
+      "rm": "الخلفية تنزلق والعنصر ثابت",
+      "pr": "tracking shot following the subject at the same speed"
+    },
+    {
+      "id": "pullback-reveal",
+      "family": "camera",
+      "en": "Pull-Back Reveal",
+      "ar": "كشف بالرجوع",
+      "what": "تبدأ على تفصيلة ثم ترجع لتكشف المكان. تحكي قصة بلقطة واحدة.",
+      "rm": "scale من 1.6 إلى 1 على Pic",
+      "pr": "starts on an extreme close-up, slowly pulls back to reveal the place"
+    },
+    {
+      "id": "fpv-drone",
+      "family": "camera",
+      "en": "FPV Drone",
+      "ar": "درون سريع",
+      "what": "طيران سريع بين العناصر. ديناميكي ومغامر، يناسب الرحلات.",
+      "rm": "ولّده بالذكاء الاصطناعي",
+      "pr": "FPV drone shot flying fast and low through the scene, immersive fly-through"
+    },
+    {
+      "id": "drone-reveal",
+      "family": "camera",
+      "en": "Drone Rise",
+      "ar": "صعود جوي كاشف",
+      "what": "الدرون يرتفع من خلف عنصر قريب ليكشف المنظر. ممتاز لوجهات سياحية.",
+      "rm": "ولّده بالذكاء الاصطناعي",
+      "pr": "aerial drone shot rising up from behind the foreground to reveal the landscape"
+    },
+    {
+      "id": "spiral",
+      "family": "camera",
+      "en": "Spiral",
+      "ar": "سبايرال",
+      "what": "تتقدم وتدور حول محورها. دخول درامي.",
+      "rm": "scale مع rotate",
+      "pr": "camera spirals in toward the subject"
+    },
+    {
+      "id": "turntable",
+      "family": "camera",
+      "en": "Turntable / 360",
+      "ar": "دوران 360",
+      "what": "المنتج يدور على قاعدة. فيديوهات المنتجات.",
+      "rm": "rotateY مستمر",
+      "pr": "product turntable, rotating 360 degrees, static camera"
+    },
+    {
+      "id": "static",
+      "family": "camera",
+      "en": "Static / Locked-off",
+      "ar": "كاميرا ثابتة",
+      "what": "حامل ثلاثي بلا حركة. مفيدة جداً لمنع حركة كاميرا عشوائية في أدوات التوليد.",
+      "rm": "لا حركة على المشهد (فقط العناصر)",
+      "pr": "static locked-off shot on a tripod, no camera movement"
+    },
+    {
+      "id": "handheld",
+      "family": "camera",
+      "en": "Handheld",
+      "ar": "كاميرا محمولة",
+      "what": "اهتزاز طبيعي خفيف. واقعية وأسلوب وثائقي.",
+      "rm": "noise خفيف على translate",
+      "pr": "handheld camera with subtle natural shake, documentary style"
+    },
+    {
+      "id": "gimbal",
+      "family": "camera",
+      "en": "Steadicam / Gimbal",
+      "ar": "حركة ناعمة طافية",
+      "what": "تتحرك بحرية ونعومة كأنها تطفو.",
+      "rm": "translate ناعم بـ ease-in-out",
+      "pr": "smooth steadicam shot gliding forward, floating gimbal movement"
+    },
+    {
+      "id": "ews",
+      "family": "shot",
+      "en": "Extreme Wide",
+      "ar": "واسعة جداً",
+      "what": "المكان هو البطل والشخص صغير. لتعريف المكان.",
+      "rm": "Clip/Pic بملء الشاشة",
+      "pr": "extreme wide shot, tiny figure in a vast landscape, establishing shot"
+    },
+    {
+      "id": "ws",
+      "family": "shot",
+      "en": "Wide",
+      "ar": "واسعة",
+      "what": "الشخص كاملاً مع مساحة كبيرة حوله.",
+      "rm": "",
+      "pr": "wide shot, full body with plenty of surrounding space"
+    },
+    {
+      "id": "fs",
+      "family": "shot",
+      "en": "Full Shot",
+      "ar": "كاملة",
+      "what": "الشخص من الرأس للقدم. لغة الجسد.",
+      "rm": "",
+      "pr": "full shot, head to toe filling the frame"
+    },
+    {
+      "id": "mws",
+      "family": "shot",
+      "en": "Cowboy",
+      "ar": "متوسطة واسعة",
+      "what": "من منتصف الفخذ لأعلى.",
+      "rm": "",
+      "pr": "medium wide cowboy shot from mid-thigh up"
+    },
+    {
+      "id": "ms",
+      "family": "shot",
+      "en": "Medium",
+      "ar": "متوسطة",
+      "what": "من الخصر لأعلى. أشهر لقطة للحوار.",
+      "rm": "",
+      "pr": "medium shot from the waist up"
+    },
+    {
+      "id": "mcu",
+      "family": "shot",
+      "en": "Medium Close-Up",
+      "ar": "متوسطة قريبة",
+      "what": "من الصدر لأعلى. تعبير الوجه مع قليل من السياق.",
+      "rm": "",
+      "pr": "medium close-up from the chest up"
+    },
+    {
+      "id": "cu",
+      "family": "shot",
+      "en": "Close-Up",
+      "ar": "قريبة",
+      "what": "الوجه يملأ الكادر. المشاعر وردود الفعل.",
+      "rm": "",
+      "pr": "close-up of the face filling the frame"
+    },
+    {
+      "id": "ecu",
+      "family": "shot",
+      "en": "Extreme Close-Up",
+      "ar": "قريبة جداً",
+      "what": "تفصيلة واحدة: عين أو يد على زر.",
+      "rm": "",
+      "pr": "extreme close-up, macro detail"
+    },
+    {
+      "id": "eye-level",
+      "family": "shot",
+      "en": "Eye Level",
+      "ar": "مستوى العين",
+      "what": "زاوية محايدة طبيعية.",
+      "rm": "",
+      "pr": "eye-level shot, neutral perspective"
+    },
+    {
+      "id": "high-angle",
+      "family": "shot",
+      "en": "High Angle",
+      "ar": "زاوية عالية",
+      "what": "من أعلى لأسفل، يبدو الشخص أصغر.",
+      "rm": "",
+      "pr": "high angle shot looking down"
+    },
+    {
+      "id": "low-angle",
+      "family": "shot",
+      "en": "Low Angle",
+      "ar": "زاوية منخفضة",
+      "what": "من أسفل لأعلى، يبدو قوياً وبطولياً.",
+      "rm": "",
+      "pr": "low angle shot looking up, heroic"
+    },
+    {
+      "id": "overhead",
+      "family": "shot",
+      "en": "Bird's-Eye",
+      "ar": "عين الطائر",
+      "what": "من فوق عمودياً. تكوين جرافيكي كالخريطة.",
+      "rm": "",
+      "pr": "overhead bird's-eye view, camera looking straight down"
+    },
+    {
+      "id": "aerial",
+      "family": "shot",
+      "en": "Aerial",
+      "ar": "جوية",
+      "what": "من درون أو طائرة. تُظهر الحجم الحقيقي للمكان.",
+      "rm": "",
+      "pr": "aerial shot from high altitude"
+    },
+    {
+      "id": "ots",
+      "family": "shot",
+      "en": "Over-the-Shoulder",
+      "ar": "من فوق الكتف",
+      "what": "خلف كتف شخص تنظر لمن أمامه. للحوار.",
+      "rm": "",
+      "pr": "over-the-shoulder shot"
+    },
+    {
+      "id": "pov",
+      "family": "shot",
+      "en": "POV",
+      "ar": "عين الشخصية",
+      "what": "المشاهد يرى ما تراه الشخصية. انغماس.",
+      "rm": "",
+      "pr": "first-person POV shot"
+    },
+    {
+      "id": "rule-of-thirds",
+      "family": "comp",
+      "en": "Rule of Thirds",
+      "ar": "قاعدة الأثلاث",
+      "what": "ضع الموضوع على أحد تقاطعات الشبكة 3×3. أكثر حيوية من المنتصف.",
+      "rm": "",
+      "pr": "subject placed on the left third, rule of thirds"
+    },
+    {
+      "id": "center-symmetry",
+      "family": "comp",
+      "en": "Center / Symmetry",
+      "ar": "مركز وتماثل",
+      "what": "الموضوع بالمنتصف. قوي ومباشر للمنتجات والشعار.",
+      "rm": "left:0, right:0 مع justify center",
+      "pr": "perfectly symmetrical centered composition"
+    },
+    {
+      "id": "negative-space",
+      "family": "comp",
+      "en": "Negative Space",
+      "ar": "مساحة فارغة",
+      "what": "مساحة واسعة حول موضوع صغير. تترك مكاناً للنص.",
+      "rm": "اترك الثلث العلوي والسفلي لعناوين الريلز",
+      "pr": "large negative space, room for text"
+    },
+    {
+      "id": "leading-lines",
+      "family": "comp",
+      "en": "Leading Lines",
+      "ar": "خطوط موجهة",
+      "what": "خطوط في المشهد تقود العين نحو الموضوع.",
+      "rm": "",
+      "pr": "leading lines guide the eye toward the subject"
+    },
+    {
+      "id": "lead-room",
+      "family": "comp",
+      "en": "Headroom & Lead Room",
+      "ar": "مساحة الرأس والنظر",
+      "what": "مساحة أكبر في اتجاه نظر الشخص أو حركته.",
+      "rm": "",
+      "pr": "comfortable headroom, extra lead room"
+    },
+    {
+      "id": "frame-in-frame",
+      "family": "comp",
+      "en": "Frame Within a Frame",
+      "ar": "إطار داخل إطار",
+      "what": "باب أو نافذة تؤطر الموضوع.",
+      "rm": "",
+      "pr": "subject framed through an archway"
+    },
+    {
+      "id": "walk",
+      "family": "subject",
+      "en": "Walk",
+      "ar": "المشي",
+      "what": "حدّد الاتجاه والسرعة.",
+      "rm": "",
+      "pr": "walks slowly from left to right across the frame, natural gait"
+    },
+    {
+      "id": "run",
+      "family": "subject",
+      "en": "Run",
+      "ar": "الجري",
+      "what": "حركة سريعة، أضف تفاصيل الجسم.",
+      "rm": "",
+      "pr": "sprints toward the camera, arms pumping"
+    },
+    {
+      "id": "look-camera",
+      "family": "subject",
+      "en": "Look at Camera",
+      "ar": "التفات للكاميرا",
+      "what": "لحظة قوية في الإعلانات والافتتاحيات.",
+      "rm": "",
+      "pr": "slowly turns her head and looks directly into the camera, subtle smile"
+    },
+    {
+      "id": "cloth-wind",
+      "family": "subject",
+      "en": "Hair & Cloth in Wind",
+      "ar": "شعر وقماش بالهواء",
+      "what": "حركة ثانوية تعطي حياة لشخص واقف. من أنجح الحركات في الأدوات.",
+      "rm": "",
+      "pr": "hair and clothes flutter gently in the wind as they stand still"
+    },
+    {
+      "id": "gesture",
+      "family": "subject",
+      "en": "Gesture / Wave",
+      "ar": "إيماءة",
+      "what": "حركة يد واضحة. اجعلها بسيطة وبطيئة لتقليل مشاكل الأصابع.",
+      "rm": "",
+      "pr": "raises a hand and waves at the camera in a friendly way"
+    },
+    {
+      "id": "idle",
+      "family": "subject",
+      "en": "Idle / Breathing",
+      "ar": "سكون حي",
+      "what": "تنفس ورمش وتمايل خفيف. يمنع الإحساس بصورة جامدة.",
+      "rm": "",
+      "pr": "stands still, breathing gently, blinking naturally, subtle idle movement"
+    },
+    {
+      "id": "wind-trees",
+      "family": "subject",
+      "en": "Wind in Trees",
+      "ar": "رياح في الأشجار",
+      "what": "أشجار وعشب وسحب تتحرك.",
+      "rm": "",
+      "pr": "trees and tall grass sway in a breeze, clouds moving"
+    },
+    {
+      "id": "water",
+      "family": "subject",
+      "en": "Water & Ripples",
+      "ar": "ماء وتموجات",
+      "what": "سطح ماء يتموج ويلمع. جميلة وسهلة.",
+      "rm": "",
+      "pr": "gentle ripples on the water, sparkling sun reflections"
+    },
+    {
+      "id": "dust-motes",
+      "family": "subject",
+      "en": "Dust & Particles",
+      "ar": "غبار وجزيئات",
+      "what": "ذرات تطفو في شعاع ضوء. عمق وإحساس سينمائي.",
+      "rm": "Floaters",
+      "pr": "dust particles floating in a beam of sunlight"
+    },
+    {
+      "id": "sand-desert",
+      "family": "subject",
+      "en": "Sand & Desert Wind",
+      "ar": "رمال وهواء صحراوي",
+      "what": "رمال تنساب مع الريح. بيئة سعودية. إضافة خاصة بنا.",
+      "rm": "",
+      "pr": "fine sand drifting in the desert wind, soft haze"
+    },
+    {
+      "id": "cinemagraph",
+      "family": "subject",
+      "en": "Cinemagraph",
+      "ar": "سينماجراف",
+      "what": "صورة ثابتة يتحرك فيها عنصر واحد في حلقة متصلة. رخيص ومؤثر.",
+      "rm": "Pic ثابتة + عنصر واحد متحرك",
+      "pr": "completely still image, only one element moves in a seamless loop"
+    },
+    {
+      "id": "golden-hour",
+      "family": "light",
+      "en": "Golden Hour",
+      "ar": "الساعة الذهبية",
+      "what": "شمس منخفضة دافئة وظلال طويلة. تناسب الوجهات السعودية.",
+      "rm": "",
+      "pr": "golden hour light, warm low sun, long soft shadows"
+    },
+    {
+      "id": "blue-hour",
+      "family": "light",
+      "en": "Blue Hour",
+      "ar": "الساعة الزرقاء",
+      "what": "بعد الغروب: سماء زرقاء وضوء بارد هادئ.",
+      "rm": "",
+      "pr": "blue hour, deep blue sky after sunset, cool calm light"
+    },
+    {
+      "id": "night",
+      "family": "light",
+      "en": "Night / Moonlight",
+      "ar": "ليل وضوء قمر",
+      "what": "اذكر مصدر الضوء حتى لا يصير الكادر مظلماً.",
+      "rm": "",
+      "pr": "night scene lit by moonlight, cool blue tones"
+    },
+    {
+      "id": "backlight",
+      "family": "light",
+      "en": "Backlight / Silhouette",
+      "ar": "إضاءة خلفية",
+      "what": "الشخص ظل داكن على خلفية مضيئة.",
+      "rm": "",
+      "pr": "strong backlight, figure as a dark silhouette against the bright sky"
+    },
+    {
+      "id": "low-key",
+      "family": "light",
+      "en": "Low-Key",
+      "ar": "إضاءة درامية",
+      "what": "كادر مظلم وضوء واحد مركّز. تباين وتوتر.",
+      "rm": "",
+      "pr": "low-key lighting, single hard light, deep shadows"
+    },
+    {
+      "id": "god-rays",
+      "family": "light",
+      "en": "Volumetric Rays",
+      "ar": "أشعة حجمية",
+      "what": "أشعة مرئية تمر عبر الغبار أو الضباب.",
+      "rm": "",
+      "pr": "volumetric god rays streaming through the haze"
+    },
+    {
+      "id": "soft-overcast",
+      "family": "light",
+      "en": "Overcast / Soft",
+      "ar": "ضوء غائم ناعم",
+      "what": "ضوء منتشر بلا ظلال قوية.",
+      "rm": "",
+      "pr": "overcast sky, soft diffused light, no hard shadows"
+    },
+    {
+      "id": "bright-daylight",
+      "family": "light",
+      "en": "Bright Daylight",
+      "ar": "نهار ساطع",
+      "what": "ضوء نهار قوي ونظيف. الأنسب لمقاطع المدارس والأطفال. إضافة خاصة بنا.",
+      "rm": "",
+      "pr": "bright natural daylight, clean and cheerful, soft shadows"
+    },
+    {
+      "id": "real-time",
+      "family": "time",
+      "en": "Real Time",
+      "ar": "سرعة طبيعية",
+      "what": "الحركة كما في الواقع، 24 أو 30 كادراً.",
+      "rm": "",
+      "pr": "real-time speed, natural motion"
+    },
+    {
+      "id": "slow-motion",
+      "family": "time",
+      "en": "Slow Motion",
+      "ar": "حركة بطيئة",
+      "what": "تصوير بكادرات عالية وعرض عادي. للحظات الدرامية.",
+      "rm": "playbackRate أقل من 1 على Clip",
+      "pr": "slow motion at 120fps"
+    },
+    {
+      "id": "timelapse",
+      "family": "time",
+      "en": "Time-lapse",
+      "ar": "تايم لابس",
+      "what": "كاميرا ثابتة وساعات تتحول لثوانٍ.",
+      "rm": "playbackRate عالٍ",
+      "pr": "time-lapse, clouds racing, static camera"
+    },
+    {
+      "id": "hyperlapse",
+      "family": "time",
+      "en": "Hyperlapse",
+      "ar": "هايبرلابس",
+      "what": "تايم لابس والكاميرا تتحرك مسافة كبيرة. سفر سريع.",
+      "rm": "",
+      "pr": "hyperlapse moving through the landscape"
+    },
+    {
+      "id": "speed-ramp",
+      "family": "time",
+      "en": "Speed Ramp",
+      "ar": "تغيير السرعة داخل اللقطة",
+      "what": "سريع ثم بطيء ثم سريع. أكشن ورياضة.",
+      "rm": "interpolate لـ playbackRate",
+      "pr": "speed ramp, fast motion easing into slow motion at the peak moment"
+    },
+    {
+      "id": "freeze-frame",
+      "family": "time",
+      "en": "Freeze Frame",
+      "ar": "تجميد",
+      "what": "الحركة تتوقف على كادر ثم تكمل. لإبراز لحظة.",
+      "rm": "Freeze من remotion",
+      "pr": "action freezes in a still frame, then continues"
+    },
+    {
+      "id": "reverse",
+      "family": "time",
+      "en": "Reverse",
+      "ar": "حركة عكسية",
+      "what": "الحدث من النهاية للبداية.",
+      "rm": "",
+      "pr": "reverse motion, the action plays backwards"
+    },
+    {
+      "id": "rack-focus",
+      "family": "lens",
+      "en": "Rack Focus",
+      "ar": "تحويل الفوكس",
+      "what": "الفوكس ينتقل من قريب لبعيد ليوجه الانتباه.",
+      "rm": "blur يتبدل بين طبقتين",
+      "pr": "rack focus from the foreground to the person in the background"
+    },
+    {
+      "id": "shallow-dof",
+      "family": "lens",
+      "en": "Shallow Depth of Field",
+      "ar": "عمق ميدان ضحل",
+      "what": "موضوع حاد وخلفية مغبشة. عزل وسينمائية.",
+      "rm": "filter: blur على الخلفية",
+      "pr": "shallow depth of field, subject sharp, soft creamy bokeh, 85mm f/1.4"
+    },
+    {
+      "id": "deep-focus",
+      "family": "lens",
+      "en": "Deep Focus",
+      "ar": "فوكس عميق",
+      "what": "كل شيء حاد من المقدمة للخلفية.",
+      "rm": "",
+      "pr": "deep focus, everything sharp"
+    },
+    {
+      "id": "tilt-shift",
+      "family": "lens",
+      "en": "Tilt-Shift",
+      "ar": "مجسم مصغر",
+      "what": "شريط حاد والباقي مغبش، فيبدو المكان كمجسم. جميل للمدن.",
+      "rm": "",
+      "pr": "tilt-shift miniature effect, narrow band of focus"
+    },
+    {
+      "id": "lens-flare",
+      "family": "lens",
+      "en": "Lens Flare",
+      "ar": "وهج العدسة",
+      "what": "بقع وخطوط ضوء من مصدر قوي.",
+      "rm": "",
+      "pr": "warm anamorphic lens flare"
+    },
+    {
+      "id": "motion-blur",
+      "family": "lens",
+      "en": "Motion Blur",
+      "ar": "ضبابية الحركة",
+      "what": "التلطخ الطبيعي للأجسام السريعة. غيابه يجعل الحركة متقطعة.",
+      "rm": "<CameraMotionBlur> أو blur على الانتقالات الخاطفة",
+      "pr": "natural motion blur on fast movement"
+    },
+    {
+      "id": "t2v",
+      "family": "gen",
+      "en": "Text-to-Video",
+      "ar": "من نص لفيديو",
+      "what": "وصف فقط والأداة تولّد كل شيء. تحكم أقل بالشكل.",
+      "rm": "",
+      "pr": "(describe subject, camera, light)"
+    },
+    {
+      "id": "i2v",
+      "family": "gen",
+      "en": "Image-to-Video",
+      "ar": "من صورة لفيديو",
+      "what": "صورة كأول كادر، وتصف الحركة فقط. أفضل تحكم بالشكل والشخصية، وهو الأرخص عندنا مع صور مولّدة.",
+      "rm": "ولّد الصورة بـ images_generate ثم حرّكها بـ video_generate",
+      "pr": "(do not repeat what is in the image, describe only what moves)"
+    },
+    {
+      "id": "first-last",
+      "family": "gen",
+      "en": "Start & End Frame",
+      "ar": "الكادر الأول والأخير",
+      "what": "تعطي صورة البداية والنهاية والأداة تولّد ما بينهما. للانتقالات والتحولات.",
+      "rm": "",
+      "pr": "smooth continuous transition from the first frame to the last frame"
+    },
+    {
+      "id": "v2v",
+      "family": "gen",
+      "en": "Video-to-Video",
+      "ar": "من فيديو لفيديو",
+      "what": "إعادة رسم فيديو بأسلوب جديد مع الحفاظ على الحركة. شدة التغيير تحدد كم يبقى من الأصل.",
+      "rm": "",
+      "pr": "restyle keeping the original motion and timing"
+    },
+    {
+      "id": "motion-brush",
+      "family": "gen",
+      "en": "Motion Brush",
+      "ar": "فرشاة الحركة",
+      "what": "تحدد منطقة واتجاهاً لحركة جزء واحد والباقي ثابت.",
+      "rm": "",
+      "pr": "only the clouds drift slowly to the right, everything else stays still"
+    },
+    {
+      "id": "camera-control",
+      "family": "gen",
+      "en": "Camera Control",
+      "ar": "تحكم الكاميرا",
+      "what": "منزلقات للحركة بدل كتابتها. اختر محوراً واحداً بقيمة متوسطة.",
+      "rm": "",
+      "pr": "one camera axis at medium intensity, no other camera movement"
+    },
+    {
+      "id": "motion-strength",
+      "family": "gen",
+      "en": "Motion Strength",
+      "ar": "شدة الحركة",
+      "what": "كمية الحركة. العالي يزيد التشوه والمنخفض أثبت. ابدأ من المنتصف.",
+      "rm": "",
+      "pr": "subtle motion, gentle and minimal movement, stable scene"
+    },
+    {
+      "id": "negative-prompt",
+      "family": "gen",
+      "en": "Negative Prompt",
+      "ar": "برومبت سلبي",
+      "what": "ما لا تريده. إن لم تدعمه الأداة صِف الثبات بجمل إيجابية.",
+      "rm": "",
+      "pr": "morphing, warping, flicker, distorted face, extra fingers, text, watermark, camera shake"
+    },
+    {
+      "id": "character-ref",
+      "family": "gen",
+      "en": "Character Reference",
+      "ar": "ثبات الشخصية",
+      "what": "صورة مرجعية لتبقى الملامح والملابس ثابتة بين اللقطات.",
+      "rm": "",
+      "pr": "same character as the reference image: identical face and outfit in all shots"
+    },
+    {
+      "id": "lip-sync",
+      "family": "gen",
+      "en": "Lip Sync",
+      "ar": "مزامنة الشفاه",
+      "what": "تحريك الفم ليطابق صوتاً. وجه أمامي واضح.",
+      "rm": "",
+      "pr": "medium close-up, the character speaks directly to camera with natural lip sync"
+    },
+    {
+      "id": "aspect-ratio",
+      "family": "gen",
+      "en": "Aspect Ratio",
+      "ar": "نسبة الأبعاد",
+      "what": "حدّدها قبل التوليد لأن تغييرها بعده يقص الصورة. ريلز 9:16.",
+      "rm": "width 1080 height 1920",
+      "pr": "vertical 9:16 composition, subject centered, space for captions at the bottom"
+    },
+    {
+      "id": "clip-duration",
+      "family": "gen",
+      "en": "Duration & FPS",
+      "ar": "المدة والكادرات",
+      "what": "أغلب الأدوات 5 إلى 10 ثوانٍ، فاجعل المقطع حدثاً واحداً. 30fps للسوشيال.",
+      "rm": "FPS = 30",
+      "pr": "single 5-second shot, one continuous action"
+    },
+    {
+      "id": "seed",
+      "family": "gen",
+      "en": "Seed",
+      "ar": "البذرة",
+      "what": "نفس البرومبت مع نفس الـ seed يعطي نتيجة قريبة. احفظه وغيّر كلمة واحدة في كل مرة.",
+      "rm": "",
+      "pr": "fix the seed, change one word at a time"
+    },
+    {
+      "id": "extend",
+      "family": "gen",
+      "en": "Extend",
+      "ar": "تمديد",
+      "what": "تكمل المقطع من آخر كادر. صف ما يحدث بعد ذلك فقط.",
+      "rm": "",
+      "pr": "continue the shot, same lighting and style"
+    },
+    {
+      "id": "gen-loop",
+      "family": "gen",
+      "en": "Loop",
+      "ar": "تكرار متصل",
+      "what": "آخر كادر يطابق الأول. أو استخدم الصورة نفسها كأول وآخر كادر.",
+      "rm": "",
+      "pr": "seamless loop, last frame matches the first frame"
+    },
+    {
+      "id": "interpolation",
+      "family": "gen",
+      "en": "Frame Interpolation",
+      "ar": "كادرات بينية",
+      "what": "إضافة كادرات لتنعيم الحركة أو صنع بطيء.",
+      "rm": "",
+      "pr": "interpolate from 24fps to 60fps"
+    },
+    {
+      "id": "upscale",
+      "family": "gen",
+      "en": "Upscale",
+      "ar": "رفع الدقة",
+      "what": "تكبير مع إضافة تفاصيل. آخر خطوة قبل المونتاج.",
+      "rm": "video_upscale أو images_upscale من Magnific",
+      "pr": "upscale to 4K, preserve film grain, no oversharpening"
+    },
+    {
+      "id": "fix-morphing",
+      "family": "fix",
+      "en": "Morphing / Warping",
+      "ar": "تشوّه وتحوّل",
+      "what": "الشكل يذوب أو يتحول. السبب حركة كثيرة أو برومبت متناقض.",
+      "rm": "",
+      "pr": "FIX: lower motion strength, one simple action, image-to-video. Negative: morphing, warping, melting"
+    },
+    {
+      "id": "fix-flicker",
+      "family": "fix",
+      "en": "Flicker",
+      "ar": "وميض",
+      "what": "إضاءة أو ألوان ترتعش بين الكادرات.",
+      "rm": "",
+      "pr": "FIX: consistent lighting, stable exposure. Negative: flicker, strobing"
+    },
+    {
+      "id": "fix-camera-drift",
+      "family": "fix",
+      "en": "Unwanted Camera Drift",
+      "ar": "حركة كاميرا غير مطلوبة",
+      "what": "الأدوات تضيف حركة إن لم تحددها.",
+      "rm": "",
+      "pr": "FIX: static camera, locked-off tripod shot, no camera movement"
+    },
+    {
+      "id": "fix-chaos",
+      "family": "fix",
+      "en": "Too Much Motion",
+      "ar": "حركة زائدة",
+      "what": "كل شيء يتحرك معاً فتضيع اللقطة.",
+      "rm": "",
+      "pr": "FIX: only the subject moves, background still, one camera move only"
+    },
+    {
+      "id": "fix-frozen",
+      "family": "fix",
+      "en": "No Motion",
+      "ar": "فيديو شبه ثابت",
+      "what": "برومبت يصف الشكل بدل الحركة.",
+      "rm": "",
+      "pr": "FIX: use clear action verbs (walks, turns, pours), add slow push in"
+    },
+    {
+      "id": "fix-speed",
+      "family": "fix",
+      "en": "Wrong Speed",
+      "ar": "سرعة غير مناسبة",
+      "what": "تبدو مسرّعة. حدّد الإيقاع صراحة.",
+      "rm": "",
+      "pr": "FIX: natural real-time speed, slow deliberate movement"
+    },
+    {
+      "id": "fix-identity-drift",
+      "family": "fix",
+      "en": "Identity Drift",
+      "ar": "تغير الملامح",
+      "what": "الوجه أو الملابس تتغير في اللقطة أو بين اللقطات.",
+      "rm": "",
+      "pr": "FIX: character reference image, short shots, same face and outfit throughout"
+    },
+    {
+      "id": "fix-hands",
+      "family": "fix",
+      "en": "Hands & Fingers",
+      "ar": "الأيدي والأصابع",
+      "what": "أصابع زائدة أو ملتحمة مع الحركة السريعة.",
+      "rm": "",
+      "pr": "FIX: simple slow hand motion or keep hands out of frame"
+    },
+    {
+      "id": "fix-garbled-text",
+      "family": "fix",
+      "en": "Garbled Text",
+      "ar": "نص مشوّه",
+      "what": "الكتابة داخل لقطة مولّدة تتشوه، والعربي أسوأ. نصنا كله من Remotion.",
+      "rm": "كل النصوص من Remotion فوق اللقطة",
+      "pr": "FIX: do not generate text in the shot; add titles in Remotion"
+    },
+    {
+      "id": "fix-physics",
+      "family": "fix",
+      "en": "Broken Physics",
+      "ar": "فيزياء غير منطقية",
+      "what": "أجسام تخترق بعضها أو تطفو.",
+      "rm": "",
+      "pr": "FIX: realistic physics, natural gravity and weight"
+    },
+    {
+      "id": "fix-loop-seam",
+      "family": "fix",
+      "en": "Loop Seam",
+      "ar": "قفزة اللوب",
+      "what": "آخر كادر لا يطابق الأول فيقفز.",
+      "rm": "",
+      "pr": "FIX: same image as first and last frame, or crossfade the ends"
+    },
+    {
+      "id": "keyframe",
+      "family": "term",
+      "en": "Keyframe",
+      "ar": "كي فريم",
+      "what": "نقطة على التايملاين بقيمة محددة والباقي يُحسب.",
+      "rm": "نقاط interpolate",
+      "pr": ""
+    },
+    {
+      "id": "interpolation-type",
+      "family": "term",
+      "en": "Interpolation",
+      "ar": "استيفاء",
+      "what": "طريقة حساب القيم بين المفاتيح: Linear أو Bezier أو Hold.",
+      "rm": "extrapolate و easing في interpolate",
+      "pr": ""
+    },
+    {
+      "id": "frame-rate",
+      "family": "term",
+      "en": "Frame Rate",
+      "ar": "معدل الكادرات",
+      "what": "24 سينمائي، 30 سوشيال وهو ما نستخدمه، 60 ناعم جداً.",
+      "rm": "FPS = 30",
+      "pr": ""
+    },
+    {
+      "id": "timecode",
+      "family": "term",
+      "en": "Timecode",
+      "ar": "كود زمني",
+      "what": "عنوان الكادر ساعة:دقيقة:ثانية:كادر.",
+      "rm": "frame / FPS",
+      "pr": ""
+    },
+    {
+      "id": "shutter-angle",
+      "family": "term",
+      "en": "Shutter Angle",
+      "ar": "زاوية الغالق",
+      "what": "تحدد ضبابية الحركة. 180 درجة هي الإحساس السينمائي.",
+      "rm": "CameraMotionBlur shutterAngle",
+      "pr": ""
+    },
+    {
+      "id": "pre-compose",
+      "family": "term",
+      "en": "Pre-compose",
+      "ar": "تجميع مسبق",
+      "what": "تجميع طبقات لتحريكها ككتلة.",
+      "rm": "مكوّن React منفصل داخل Sequence",
+      "pr": ""
+    },
+    {
+      "id": "null-parent",
+      "family": "term",
+      "en": "Null / Parenting",
+      "ar": "كائن فارغ وربط",
+      "what": "طبقة غير مرئية تتحكم بطبقات مربوطة بها.",
+      "rm": "div أب بـ transform والأبناء داخله",
+      "pr": ""
+    },
+    {
+      "id": "matte",
+      "family": "term",
+      "en": "Mask / Matte",
+      "ar": "قناع",
+      "what": "شكل يحدد الجزء الظاهر من طبقة.",
+      "rm": "overflow hidden أو clipPath أو mask-image",
+      "pr": ""
+    },
+    {
+      "id": "rotoscoping",
+      "family": "term",
+      "en": "Rotoscoping",
+      "ar": "روتوسكوب",
+      "what": "فصل الشخص عن الخلفية. الذكاء الاصطناعي يفعله.",
+      "rm": "images_remove_background أو video_remove_background (Magnific)",
+      "pr": ""
+    },
+    {
+      "id": "motion-tracking",
+      "family": "term",
+      "en": "Motion Tracking",
+      "ar": "تتبع الحركة",
+      "what": "تثبيت نص أو عنصر على نقطة متحركة.",
+      "rm": "",
+      "pr": ""
+    },
+    {
+      "id": "color-grading",
+      "family": "term",
+      "en": "Color Grading",
+      "ar": "تلوين",
+      "what": "ضبط الألوان لمزاج موحد. عندنا ألوان الهوية.",
+      "rm": "video_color_grade (Magnific) أو filter على Clip",
+      "pr": ""
+    },
+    {
+      "id": "lut",
+      "family": "term",
+      "en": "LUT",
+      "ar": "جدول ألوان",
+      "what": "ملف تلوين جاهز بضغطة.",
+      "rm": "",
+      "pr": ""
+    },
+    {
+      "id": "lottie",
+      "family": "term",
+      "en": "Lottie",
+      "ar": "لوتي",
+      "what": "JSON لتشغيل أنيميشن After Effects. @remotion/lottie يدعمه.",
+      "rm": "@remotion/lottie",
+      "pr": ""
+    },
+    {
+      "id": "depth-map",
+      "family": "term",
+      "en": "Depth Map",
+      "ar": "خريطة عمق",
+      "what": "صورة رمادية ببعد كل جزء. أساس 2.5D.",
+      "rm": "images_depth_map (Magnific)",
+      "pr": ""
+    },
+    {
+      "id": "temporal-consistency",
+      "family": "term",
+      "en": "Temporal Consistency",
+      "ar": "ثبات زمني",
+      "what": "ثبات الأشكال والألوان بين الكادرات.",
+      "rm": "",
+      "pr": ""
+    }
   ]
 }

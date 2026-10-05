@@ -1,8 +1,8 @@
 import React from "react";
 import { AbsoluteFill, Interactive, interpolate, useCurrentFrame } from "remotion";
 import { C, EASE, FONT } from "../../brand";
-import { clamp, Dolly, Floaters, MaskLine, Ring, Sweep, usePop } from "../../kit";
-import { at, dur } from "./timing";
+import { clamp, Floaters, Glow, MaskLine, Ring, Sweep, usePop } from "../../kit";
+import { at } from "./tt";
 
 const Row: React.FC<{ readonly i: number }> = ({ i }) => {
   const frame = useCurrentFrame();
@@ -34,22 +34,22 @@ export const BookingsScene: React.FC = () => {
 
   return (
     <AbsoluteFill name="Bookings" style={{ backgroundColor: C.sea }}>
-      <Dolly total={dur(5)}>
+        <Glow />
         <Ring speed={0.7} opacity={0.12} top={160} />
         <Floaters />
 
         <div style={{ position: "absolute", left: 90, right: 90, top: 250 }}>
-          <MaskLine name="Line 1" delay={at(5, 0)} size={150} weight={900}>
+          <MaskLine name="Line 1" delay={at(5, 0, -8)} dur={9} size={118} weight={900}>
             إدارة كاملة
           </MaskLine>
-          <MaskLine name="Line 2" delay={at(5, 0, 6)} size={112} weight={300} color={C.desert}>
+          <MaskLine name="Line 2" delay={at(5, 0, -3)} dur={9} size={88} weight={300} color={C.desert}>
             للحجوزات
           </MaskLine>
         </div>
 
         <Interactive.Div
           name="Dashboard card"
-          style={{ position: "absolute", left: 120, right: 120, top: 640, height: 760, borderRadius: 60, backgroundColor: C.white, padding: "40px 44px", scale: 0.86 + card * 0.14, opacity: Math.min(1, card * 1.3), boxShadow: "0 30px 60px rgba(18,66,124,0.4)" }}
+          style={{ position: "absolute", left: 140, right: 140, top: 630, height: 720, borderRadius: 60, backgroundColor: C.white, padding: "40px 44px", scale: 0.86 + card * 0.14, opacity: Math.min(1, card * 1.3), boxShadow: "0 30px 60px rgba(18,66,124,0.4)" }}
         >
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", direction: "rtl", height: 90 }}>
             <div style={{ height: 34, width: 280, borderRadius: 17, backgroundColor: C.seaDark }} />
@@ -72,12 +72,11 @@ export const BookingsScene: React.FC = () => {
           <Sweep at={at(5, 1, 33)} radius={60} />
         </Interactive.Div>
 
-        <div style={{ position: "absolute", left: 90, right: 90, top: 1470 }}>
-          <MaskLine name="Follow" delay={at(5, 1, 7)} size={92} weight={700}>
+        <div style={{ position: "absolute", left: 90, right: 90, top: 1440 }}>
+          <MaskLine name="Follow" delay={at(5, 1, 7)} dur={9} size={72} weight={500}>
             والمتابعة أونلاين
           </MaskLine>
         </div>
-      </Dolly>
     </AbsoluteFill>
   );
 };

@@ -1,7 +1,8 @@
 import { Audio } from "@remotion/media";
 import React from "react";
 import { AbsoluteFill, interpolate, Sequence, staticFile } from "remotion";
-import { DiamondWipe } from "../../kit";
+import { C } from "../../brand";
+import { Shell, type TransitionKind } from "../../transitions";
 import { BookingsScene } from "./BookingsScene";
 import { HookScene } from "./HookScene";
 import { MealsScene } from "./MealsScene";
@@ -9,45 +10,46 @@ import { TripOutroScene } from "./OutroScene";
 import { ProgramsScene } from "./ProgramsScene";
 import { Rail } from "./Rail";
 import { TransportScene } from "./TransportScene";
-import { CUTS, dur, START, TOTAL, VOICE_END, VOICE_LEAD } from "./timing";
-import { C } from "../../brand";
+import { CUTS, TOTAL, VOICE_END, VOICE_LEAD } from "./timing";
+import { sceneDur, sceneFrom } from "./tt";
 
-// "كل شي للرحلة": 6 scenes cut under the brand diamond wipe, a journey rail tracks the four stations.
+type SceneEntry = {
+  readonly id: number;
+  readonly name: string;
+  readonly C: React.FC;
+  readonly enter?: TransitionKind;
+  readonly exit?: TransitionKind;
+  readonly origin?: { readonly x: number; readonly y: number };
+};
+
+// Every cut is a different soft transition: zoom-through, rise, iris from the last station, whip, bloom into the outro.
+const SCENES: readonly SceneEntry[] = [
+  { id: 1, name: "Hook", C: HookScene, exit: "zoom" },
+  { id: 2, name: "Programs", C: ProgramsScene, enter: "zoom", exit: "rise" },
+  { id: 3, name: "Transport", C: TransportScene, enter: "rise", exit: "iris" },
+  { id: 4, name: "Meals", C: MealsScene, enter: "iris", origin: { x: 310, y: 1420 }, exit: "whip" },
+  { id: 5, name: "Bookings", C: BookingsScene, enter: "whip", exit: "bloom" },
+  { id: 6, name: "Outro", C: TripOutroScene, enter: "bloom", origin: { x: 540, y: 960 } },
+];
+
 export const EduTripVideo: React.FC = () => (
   <AbsoluteFill name="GuestNa Trip" style={{ backgroundColor: C.sea }}>
-    <Sequence name="Hook" durationInFrames={dur(1)}>
-      <HookScene />
-    </Sequence>
-    <Sequence name="Programs" from={START[2]} durationInFrames={dur(2)}>
-      <ProgramsScene />
-    </Sequence>
-    <Sequence name="Transport" from={START[3]} durationInFrames={dur(3)}>
-      <TransportScene />
-    </Sequence>
-    <Sequence name="Meals" from={START[4]} durationInFrames={dur(4)}>
-      <MealsScene />
-    </Sequence>
-    <Sequence name="Bookings" from={START[5]} durationInFrames={dur(5)}>
-      <BookingsScene />
-    </Sequence>
-    <Sequence name="Outro" from={START[6]} durationInFrames={dur(6)}>
-      <TripOutroScene />
-    </Sequence>
-
-    <Rail />
-
-    {CUTS.map((c) => (
-      <Sequence key={c} name={`Wipe ${c}`} from={c - 8} durationInFrames={16}>
-        <DiamondWipe />
+    {SCENES.map((s) => (
+      <Sequence key={s.id} name={s.name} from={sceneFrom(s.id)} durationInFrames={sceneDur(s.id)}>
+        <Shell total={sceneDur(s.id)} enter={s.enter} exit={s.exit} origin={s.origin}>
+          <s.C />
+        </Shell>
       </Sequence>
     ))}
+
+    <Rail />
 
     <Audio
       name="Music"
       src={staticFile("media/edu/music.mp3")}
       durationInFrames={TOTAL}
       volume={(f) =>
-        interpolate(f, [0, 10, 30, VOICE_END, VOICE_END + 40, TOTAL - 40, TOTAL], [0.42, 0.42, 0.15, 0.15, 0.32, 0.32, 0], {
+        interpolate(f, [0, 10, 30, VOICE_END, VOICE_END + 30, TOTAL - 30, TOTAL], [0.42, 0.42, 0.15, 0.15, 0.32, 0.32, 0], {
           extrapolateLeft: "clamp",
           extrapolateRight: "clamp",
         })
@@ -55,7 +57,7 @@ export const EduTripVideo: React.FC = () => (
     />
     <Audio name="Voiceover" src={staticFile("media/edu-trip/voice-final.mp3")} from={VOICE_LEAD} volume={0.95} />
     {CUTS.map((c) => (
-      <Audio key={`w${c}`} name="Whoosh" src={staticFile("media/edu/whoosh-soft.mp3")} from={c - 10} volume={0.1} />
+      <Audio key={`w${c}`} name="Whoosh" src={staticFile("media/edu/whoosh-soft.mp3")} from={c - 12} volume={0.1} />
     ))}
   </AbsoluteFill>
 );

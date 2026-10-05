@@ -1,8 +1,7 @@
 {
-  "$comment": "Motion brief: 'كل شي للرحلة' (guestna-edu.com). Journey concept: a rail on the left edge tracks the trip stations while a route and bus tie the scenes together.",
+  "$comment": "Journey concept. Every cut uses a different soft transition (Shell in src/transitions.tsx): zoom-through, rise, iris from the last station, whip, bloom into the white outro.",
   "language": "ar",
   "ratio": "9:16",
-  "signatureTransition": "shape-transition",
   "scenes": [
     {
       "scene": 1,
@@ -15,11 +14,11 @@
       "emphasis": [
         "light-sweep"
       ],
-      "camera": "zoom",
-      "transitionOut": "shape-transition",
+      "camera": null,
+      "transitionOut": "zoom-transition",
       "ease": "expo-out",
       "enterFrames": 14,
-      "notes": "عنوان بأوزان مختلفة (Black ضخم + Light + Bold)، دخول بتقريب خفيف مع ضبابية."
+      "notes": "عنوان بأوزان مختلفة (Black متوسط الحجم + Light)، Swoosh مرسوم بدل الخط، كبسولة بلمعة."
     },
     {
       "scene": 2,
@@ -34,7 +33,7 @@
         "particles"
       ],
       "camera": null,
-      "transitionOut": "shape-transition",
+      "transitionOut": "push-slide",
       "ease": "expo-out",
       "enterFrames": 13,
       "notes": "خمس بطاقات تدخل بميلان ثلاثي الأبعاد وتتابع بحسب الصوت فوق صورة بتكبير بطيء."
@@ -52,7 +51,7 @@
         "back-out"
       ],
       "camera": null,
-      "transitionOut": "shape-transition",
+      "transitionOut": "iris",
       "ease": "expo-out",
       "enterFrames": 13,
       "notes": "الباص يسير على مسار متعرّج ويضيء محطاته الأربع مع كل عبارة."
@@ -70,7 +69,7 @@
         "particles"
       ],
       "camera": null,
-      "transitionOut": "shape-transition",
+      "transitionOut": "whip-transition",
       "ease": "expo-out",
       "enterFrames": 13,
       "notes": "أيقونات الوجبات تدور حول طبق مركزي، علامة ضمان تنبض."
@@ -88,7 +87,7 @@
         "light-sweep"
       ],
       "camera": null,
-      "transitionOut": "shape-transition",
+      "transitionOut": "iris",
       "ease": "expo-out",
       "enterFrames": 12,
       "notes": "بطاقة لوحة حجوزات مجرّدة (بدون بيانات) تُعلَّم صفوفها بالتتابع، مؤشر أونلاين ينبض."
@@ -100,16 +99,16 @@
       "hero": "logo-reveal",
       "support": [
         "text-mask-reveal",
-        "seamless-loop"
+        "pulse-rings"
       ],
       "emphasis": [
-        "particles"
+        "light-sweep"
       ],
       "camera": null,
       "transitionOut": null,
       "ease": "expo-out",
       "enterFrames": 12,
-      "notes": "خلفية بيضاء، الشعار الأصلي بألوانه، رابط guestna-edu.com."
+      "notes": "خلفية بيضاء، حلقتا باترن بعكس الاتجاه، موجات نبض، أيقونات الرحلة تدور حول الشعار، لمعة، Swoosh."
     }
   ]
 }

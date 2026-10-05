@@ -42,3 +42,15 @@ import { at, dur } from "./timing";      // مولّد من npm run voice
 | `motion-path` / `line-draw` | مسار الباص والأقواس (LogisticsScene وProgramsScene) |
 
 القائمة الكاملة بكل المصطلحات في `motion-vocabulary.md`.
+
+## إضافات حديثة (فيديو edu-trip نموذج)
+| العنصر | الاستخدام |
+|---|---|
+| `Shell` (`src/transitions.tsx`) | انتقال ناعم يتداخل فيه مشهدان: `enter` للمشهد الداخل و`exit` للخارج (zoom, rise, iris, whip, bloom). `origin` لمركز الدائرة |
+| `Swoosh` | خط متموّج يرسم نفسه بدل الخط الرفيع تحت العناوين |
+| `Glow` | توهجات لونية ناعمة متحركة خلف المحتوى (عمق) |
+| `Sweep` | لمعة ضوء تعبر عنصراً (الأب `position: relative`) |
+| `MaskLine fit` | يصغّر الخط تلقائياً ليتسع، والقناع لا يقص أفقياً |
+| `tt.ts` (في مجلد الفيديو) | يزيح `at()` بمقدار تداخل الانتقال، ويعرّف `sceneFrom` و`sceneDur` |
+
+مثال التركيب: `<Sequence from={sceneFrom(s)} durationInFrames={sceneDur(s)}><Shell total={sceneDur(s)} enter="rise" exit="iris"><Scene/></Shell></Sequence>`.

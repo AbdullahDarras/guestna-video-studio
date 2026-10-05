@@ -5,7 +5,8 @@ import { MealsScene } from "./MealsScene";
 import { TripOutroScene } from "./OutroScene";
 import { ProgramsScene } from "./ProgramsScene";
 import { TransportScene } from "./TransportScene";
-import { dur, TOTAL } from "./timing";
+import { TOTAL } from "./timing";
+import { sceneDur } from "./tt";
 import type { VideoDef } from "../registry";
 
 /** GuestNa for Schools: "كل شي للرحلة" (guestna-edu.com). 9:16, timing from the voice take. */
@@ -14,11 +15,11 @@ export const eduTripDef: VideoDef = {
   component: EduTripVideo,
   durationInFrames: TOTAL,
   scenes: [
-    { id: "TripHook", component: HookScene, durationInFrames: dur(1) },
-    { id: "TripPrograms", component: ProgramsScene, durationInFrames: dur(2) },
-    { id: "TripTransport", component: TransportScene, durationInFrames: dur(3) },
-    { id: "TripMeals", component: MealsScene, durationInFrames: dur(4) },
-    { id: "TripBookings", component: BookingsScene, durationInFrames: dur(5) },
-    { id: "TripOutro", component: TripOutroScene, durationInFrames: dur(6) },
+    { id: "TripHook", component: HookScene, durationInFrames: sceneDur(1) },
+    { id: "TripPrograms", component: ProgramsScene, durationInFrames: sceneDur(2) },
+    { id: "TripTransport", component: TransportScene, durationInFrames: sceneDur(3) },
+    { id: "TripMeals", component: MealsScene, durationInFrames: sceneDur(4) },
+    { id: "TripBookings", component: BookingsScene, durationInFrames: sceneDur(5) },
+    { id: "TripOutro", component: TripOutroScene, durationInFrames: sceneDur(6) },
   ],
 };

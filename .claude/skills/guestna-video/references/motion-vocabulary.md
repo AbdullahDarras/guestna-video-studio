@@ -61,6 +61,7 @@
 | id | المصطلح | المعنى | عندنا في Remotion | برومبت |
 |---|---|---|---|---|
 | `line-draw` | Trim Paths / Line Draw<br>رسم الخط | خط يُرسم من بدايته لنهايته. | strokeDasharray و strokeDashoffset مع interpolate | `single stroke draws itself on` |
+| `swoosh` | Swoosh Underline<br>خط مرسوم متموّج | بديل أنيق للخط الرفيع تحت العنوان: منحنى يرسم نفسه وينتهي بمعين صغير. الخطوط الجامدة تحت العناوين ممنوعة عندنا. | Swoosh (at, width, color) |  |
 | `shape-morph` | Shape Morph<br>تحوّل الشكل | شكل يتحول لشكل آخر بسلاسة. | interpolatePath من @remotion/paths أو تبديل opacity بين شكلين | `smooth shape morphing` |
 | `motion-path` | Motion Path<br>مسار الحركة | عنصر يتبع مساراً منحنياً ويدور مع اتجاهه. | getPointAtLength من @remotion/paths (مثال: الباص في LogisticsScene) | `follows a curved motion path` |
 | `map-route` | Map Route<br>مسار على الخريطة | خط يُرسم بين نقطتين مع علامة تتحرك عليه. للسفر والرحلات. | line-draw + motion-path. مناسب جداً لرحلات جستنا | `route line draws from pin A to pin B with a moving marker` |
@@ -99,14 +100,14 @@
 | `fade-black` | Fade to Black<br>تلاشي للأسود | نهاية فصل. لا نستخدمه، نختم بمشهد أبيض. | AbsoluteFill أسود opacity 0→1 | `fade to black` |
 | `dip-white` | Dip to White<br>وميض أبيض | وميض أبيض سريع. صدمة أو حماس. | AbsoluteFill أبيض opacity ينبض 6 فريم | `quick white flash transition` |
 | `wipe` | Wipe<br>مسح | لقطة جديدة تمسح القديمة بخط يتحرك. | clipPath: inset() متحرك | `wipe transition` |
-| `iris` | Iris<br>دائرة | دائرة تنفتح لتكشف اللقطة التالية. | clipPath: circle() | `iris-in transition` |
-| `push-slide` | Push / Slide<br>دفع | اللقطة الجديدة تدفع القديمة. في العربية تدخل الجديدة من اليسار. | translateX للمشهدين معاً | `push transition, new scene pushes the old one out` |
-| `whip-transition` | Whip Transition<br>انتقال خاطف | حركة سريعة جداً بضبابية تربط لقطتين. شائع في الريلز. | translateX كبير مع filter: blur | `whip pan transition with heavy motion blur` |
-| `zoom-transition` | Zoom Transition<br>انتقال بالزووم | زووم سريع ينتهي بدخول اللقطة التالية. | scale كبير مع blur ثم المشهد الجديد | `fast zoom-through transition` |
+| `iris` | Iris<br>دائرة | دائرة تنفتح لتكشف اللقطة التالية. | Shell enter = iris مع origin (حلقة برتقالية على الحافة) | `iris-in transition` |
+| `push-slide` | Push / Slide<br>دفع | اللقطة الجديدة تدفع القديمة. في العربية تدخل الجديدة من اليسار. | Shell enter/exit = rise (تصعد الجديدة فوق القديمة) | `push transition, new scene pushes the old one out` |
+| `whip-transition` | Whip Transition<br>انتقال خاطف | حركة سريعة جداً بضبابية تربط لقطتين. شائع في الريلز. | Shell enter/exit = whip (تمرير جانبي مع ضبابية) | `whip pan transition with heavy motion blur` |
+| `zoom-transition` | Zoom Transition<br>انتقال بالزووم | زووم سريع ينتهي بدخول اللقطة التالية. | Shell enter/exit = zoom (src/transitions.tsx) | `fast zoom-through transition` |
 | `spin-transition` | Spin Transition<br>انتقال بالدوران | الكادر يدور ثم تظهر اللقطة التالية وهي تدور. | rotate مع scale | `spin transition` |
 | `light-leak` | Light Leak<br>تسريب ضوء | وهج دافئ يعبر الكادر عند القطع. طابع فيلم. | تدرج برتقالي (desert) متحرك فوق القطع | `warm light leak transition` |
 | `morph-transition` | Morph Transition<br>تحول بين لقطتين | عنصر يتحول لعنصر في اللقطة التالية. أقوى ما يصنعه الذكاء الاصطناعي عبر الكادر الأول والأخير. | في Remotion: عنصر مشترك بنفس المكان. أو ولّد بـ start/end frame | `seamless morph transition` |
-| `shape-transition` | Shape Transition<br>انتقال بالأشكال | أشكال ملونة تتسع وتغطي الشاشة ثم تنكشف. انتقال الهوية عندنا هو الماسة. | DiamondWipe كـSequence عند cut-8، مدته 16 فريم | `colored shapes expand to wipe the screen` |
+| `shape-transition` | Shape Transition<br>انتقال بالأشكال | أشكال ملونة تتسع وتغطي الشاشة ثم تنكشف. انتقال الهوية عندنا هو الماسة. | DiamondWipe (انتقال الهوية الصلب). للفيديوهات الجديدة فضّل Shell الأنعم | `colored shapes expand to wipe the screen` |
 
 ## حركات الكاميرا
 
