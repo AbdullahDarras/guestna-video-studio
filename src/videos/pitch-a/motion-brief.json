@@ -1,0 +1,184 @@
+{
+  "$comment": "Pitch A: from the chaos of manual trips to one button (UI story: papers, phone flows, destinations). 60fps, design clock 30. Lint: npm run motion -- lint pitch-a",
+  "language": "ar",
+  "ratio": "9:16",
+  "scenes": [
+    {
+      "scene": 1,
+      "name": "Greeting",
+      "voice": "أهلاً، بحضرة المدير، ويا هلا ومرحباً، بملاك المنشآت التعليمية",
+      "hero": "text-mask-reveal",
+      "support": [
+        "secondary-action"
+      ],
+      "emphasis": [
+        "back-out"
+      ],
+      "camera": null,
+      "transitionOut": "zoom-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 2,
+      "name": "Chaos",
+      "voice": "كلنا نعرف، إن إدارة الرحلات والأنشطة المدرسية، تاخذ وقت ومجهود غير عادي، بين أوراق، تحصيل مالي، ومتابعة ما تنتهي",
+      "hero": "stagger",
+      "support": [
+        "back-out",
+        "secondary-action"
+      ],
+      "emphasis": [
+        "staging"
+      ],
+      "camera": null,
+      "transitionOut": "iris",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 3,
+      "name": "Order",
+      "voice": "بس تخيل معي لحظة، لو كل هالحوسة، تتحول إلى حوكمة كاملة، وبضغطة زر وحدة",
+      "hero": "line-draw",
+      "support": [
+        "stagger",
+        "back-out"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "push-slide",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 4,
+      "name": "Revenue",
+      "voice": "وفوقها تحقق لمدرستك، عوائد مالية، تصل إلى مئة ألف ريال",
+      "hero": "counter",
+      "support": [
+        "stagger",
+        "back-out"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "whip-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 5,
+      "name": "Platform",
+      "voice": "مع منصة قستنا، سوقك الرقمي الشامل، للأنشطة والرحلات المدرسية",
+      "hero": "stagger",
+      "support": [
+        "back-out",
+        "text-mask-reveal"
+      ],
+      "emphasis": [],
+      "camera": null,
+      "transitionOut": "zoom-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 6,
+      "name": "Leader",
+      "voice": "الحين رائد النشاط عندك، يقدر بضغطة زر، يختار أفضل الرحلات الترفيهية، المحلية وحتى الدولية، مع حساب تلقائي ودقيق، للتكلفة وأرباح المدرسة",
+      "hero": "motion-path",
+      "support": [
+        "stagger",
+        "back-out"
+      ],
+      "emphasis": [
+        "line-draw"
+      ],
+      "camera": null,
+      "transitionOut": "push-slide",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 7,
+      "name": "Parent",
+      "voice": "ومن جهة ولي الأمر، الموضوع صار أسهل بكثير، يوصله إشعار على جواله، يوافق رقمياً، ويدفع أونلاين، أو بأقساط مريحة ومؤتمتة بالكامل",
+      "hero": "pose-to-pose",
+      "support": [
+        "back-out",
+        "text-mask-reveal"
+      ],
+      "emphasis": [
+        "line-draw"
+      ],
+      "camera": null,
+      "transitionOut": "iris",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 8,
+      "name": "Partners",
+      "voice": "ولأننا شريككم الموثوق، ربطناكم بأضخم الوجهات، وشركاء النجاح، مثل القدية، وأكواريبيا، وغيرها",
+      "hero": "line-draw",
+      "support": [
+        "back-out",
+        "stagger"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "zoom-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 9,
+      "name": "Enjoy",
+      "voice": "أنتم عليكم الاستمتاع، بالنشاط والرحلة، والباقي كله، على فريق قستنا",
+      "hero": "ken-burns",
+      "support": [
+        "text-mask-reveal",
+        "light-sweep"
+      ],
+      "emphasis": [
+        "swoosh"
+      ],
+      "camera": null,
+      "transitionOut": "iris",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 10,
+      "name": "Outro",
+      "voice": "تواصل معنا اليوم، وبشكل مجاني، وانقل أنشطة مدرستك، لمستوى أسهل، وأكثر أرباحاً",
+      "hero": "logo-reveal",
+      "support": [
+        "text-mask-reveal",
+        "seamless-loop"
+      ],
+      "emphasis": [
+        "light-sweep"
+      ],
+      "camera": null,
+      "transitionOut": null,
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    }
+  ]
+}

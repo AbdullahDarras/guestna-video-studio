@@ -1,0 +1,167 @@
+{
+  "$comment": "Pitch C: cinematic and photo-led (blurred photo grades, glass cards, polaroids, crossfading slides). 60fps, design clock 30. Lint: npm run motion -- lint pitch-c",
+  "language": "ar",
+  "ratio": "9:16",
+  "scenes": [
+    {
+      "scene": 1,
+      "name": "Ambition",
+      "voice": "في كل مدرسة، أو شركة تعليمية، طموحة، الأنشطة والرحلات، مو مجرد ترفيه، هي جزء أساسي، من بناء، طالب المستقبل",
+      "hero": "ken-burns",
+      "support": [
+        "text-mask-reveal",
+        "slow-in-out"
+      ],
+      "emphasis": [
+        "swoosh"
+      ],
+      "camera": null,
+      "transitionOut": "zoom-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 2,
+      "name": "Question",
+      "voice": "بس السؤال، ليش يتحول تنظيم الرحلة، لمعاناة إدارية",
+      "hero": "text-mask-reveal",
+      "support": [
+        "parallax",
+        "wiggle"
+      ],
+      "emphasis": [
+        "back-out"
+      ],
+      "camera": null,
+      "transitionOut": "iris",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 3,
+      "name": "OnePlatform",
+      "voice": "في جستنا، اختصرنا كل هالدورة، في منصة رقمية واحدة",
+      "hero": "logo-reveal",
+      "support": [
+        "ken-burns",
+        "pulse-rings"
+      ],
+      "emphasis": [
+        "swoosh"
+      ],
+      "camera": null,
+      "transitionOut": "push-slide",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 4,
+      "name": "Market",
+      "voice": "سوق مدرسي ذكي، يتيح لرائد النشاط، اختيار أروع الرحلات، المحلية والدولية، مع احتساب التكاليف، وأرباح المدرسة، تلقائياً، وبكل شفافية",
+      "hero": "stagger",
+      "support": [
+        "back-out",
+        "slow-in-out"
+      ],
+      "emphasis": [
+        "line-draw"
+      ],
+      "camera": null,
+      "transitionOut": "whip-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 5,
+      "name": "Parent",
+      "voice": "ولي الأمر، يوصله كل شيء على جواله، يوافق بضغطة زر، ويدفع أونلاين، أو بأقساط مريحة، ومؤتمتة بالكامل",
+      "hero": "pose-to-pose",
+      "support": [
+        "back-out",
+        "text-mask-reveal"
+      ],
+      "emphasis": [
+        "line-draw"
+      ],
+      "camera": null,
+      "transitionOut": "zoom-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 6,
+      "name": "Result",
+      "voice": "أما النتيجة، حوكمة رقمية 100%، وأرباح إضافية، تتجاوز 100 ألف ريال، لمدرستك",
+      "hero": "counter",
+      "support": [
+        "pulse-rings",
+        "back-out"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "push-slide",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 7,
+      "name": "Global",
+      "voice": "ومع شراكاتنا الاستراتيجية، مع وجهات عملاقة، مثل القدية، وأكوا أريبيا، أنت مو بس تنظم رحلة، أنت تقدم، تجربة عالمية، لطلابك",
+      "hero": "stagger",
+      "support": [
+        "back-out",
+        "secondary-action"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "zoom-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 8,
+      "name": "Memories",
+      "voice": "اترك التنظيم والتشغيل، على فريق جستنا، وركز على المهم، صناعة ذكريات جميلة، لطلابك",
+      "hero": "ken-burns",
+      "support": [
+        "text-mask-reveal",
+        "back-out"
+      ],
+      "emphasis": [],
+      "camera": null,
+      "transitionOut": "iris",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": "Crossfading photo slides (cross-dissolve) under the closing message."
+    },
+    {
+      "scene": 9,
+      "name": "Outro",
+      "voice": "احجز جلستك التعريفية، معنا اليوم، وخلي مدرستك، تتصدر",
+      "hero": "logo-reveal",
+      "support": [
+        "text-mask-reveal",
+        "seamless-loop"
+      ],
+      "emphasis": [
+        "swoosh"
+      ],
+      "camera": null,
+      "transitionOut": null,
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    }
+  ]
+}

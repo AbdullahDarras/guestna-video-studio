@@ -9,10 +9,9 @@ import {
   interpolate,
   spring,
   staticFile,
-  useCurrentFrame,
-  useVideoConfig,
 } from "remotion";
 import { C, EASE, FONT } from "./brand";
+import { DESIGN_FPS, useFrame } from "./clock";
 
 export const clamp = {
   extrapolateLeft: "clamp",
@@ -21,15 +20,14 @@ export const clamp = {
 
 /** 0 to 1 progress starting at `start` frame (local). */
 export const useIn = (start: number, dur = 10) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   return interpolate(frame, [start, start + dur], [0, 1], { ...clamp, easing: EASE });
 };
 
 /** Overshooting pop, 0 to about 1. */
 export const usePop = (start: number, damping = 11) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  return spring({ frame: frame - start, fps, config: { damping, stiffness: 260, mass: 0.6 } });
+  const frame = useFrame();
+  return spring({ frame: frame - start, fps: DESIGN_FPS, config: { damping, stiffness: 260, mass: 0.6 } });
 };
 
 type MaskProps = {
@@ -94,7 +92,7 @@ export const Ring: React.FC<{
   readonly top?: number;
   readonly size?: number;
 }> = ({ speed = 0.3, opacity = 0.14, top = 160, size = 1700 }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   return (
     <Interactive.Div
       name="Ring watermark"
@@ -122,7 +120,7 @@ export const Clip: React.FC<{
   readonly trimBefore?: number;
   readonly style?: React.CSSProperties;
 }> = ({ src, total, zoomFrom = 1.05, zoomTo = 1.2, trimBefore, style }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   return (
     <Video
       src={staticFile(src)}
@@ -144,7 +142,7 @@ export const Clip: React.FC<{
 
 /** Brand diamond wipe: cover on the way in, uncover on the way out. Cut happens at local frame 8 of 16. */
 export const DiamondWipe: React.FC = () => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const inout = (s: number) =>
     interpolate(frame, [s, s + 5, s + 8, s + 13], [0, 1, 1, 0], {
       ...clamp,
@@ -177,7 +175,7 @@ export const DiamondWipe: React.FC = () => {
 
 /** Brand diamonds drifting upward for constant gentle motion behind content. */
 export const Floaters: React.FC<{ readonly tone?: "light" | "dark" }> = ({ tone = "light" }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const items = [
     { x: 90, s: 70, sp: 1.4, o: 0 },
     { x: 330, s: 46, sp: 2.1, o: 260 },
@@ -219,7 +217,7 @@ export const Pic: React.FC<{
   readonly to?: number;
   readonly position?: string;
 }> = ({ src, total, from = 1.0, to = 1.18, position = "50% 50%" }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   return (
     <Img
       src={staticFile(src)}
@@ -243,7 +241,7 @@ export const Burst: React.FC<{
   readonly y: number;
   readonly colors?: string[];
 }> = ({ at, x, y, colors: palette }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const t = interpolate(frame, [at, at + 26], [0, 1], { ...clamp, easing: EASE });
   const colors = palette ?? [C.desert, C.white, "#A3BCDB", C.desert, C.white, "#F8D0A7"];
   return (
@@ -332,7 +330,7 @@ export const Dolly: React.FC<{
   readonly inFrames?: number;
   readonly outFrames?: number;
 }> = ({ total, children, inFrames = 14, outFrames = 8 }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const inP = interpolate(frame, [0, inFrames], [0, 1], { ...clamp, easing: EASE });
   const outP = interpolate(frame, [total - outFrames, total], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
   const blur = (1 - inP) * 10 + outP * 8;
@@ -341,7 +339,7 @@ export const Dolly: React.FC<{
 
 /** A bar of light that sweeps once across its parent (the parent needs position: relative). */
 export const Sweep: React.FC<{ readonly at: number; readonly dur?: number; readonly radius?: number }> = ({ at, dur = 22, radius = 0 }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const x = interpolate(frame, [at, at + dur], [-45, 125], { ...clamp, easing: Easing.inOut(Easing.cubic) });
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", borderRadius: radius, pointerEvents: "none" }}>
@@ -368,10 +366,9 @@ export const Swoosh: React.FC<{
   readonly thickness?: number;
   readonly dur?: number;
 }> = ({ at, width = 460, color = C.desert, thickness = 12, dur = 16 }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const frame = useFrame();
   const p = interpolate(frame, [at, at + dur], [0, 1], { ...clamp, easing: EASE });
-  const end = spring({ frame: frame - (at + dur - 2), fps, config: { damping: 9, stiffness: 240, mass: 0.5 } });
+  const end = spring({ frame: frame - (at + dur - 2), fps: DESIGN_FPS, config: { damping: 9, stiffness: 240, mass: 0.5 } });
   const h = 70;
   return (
     <svg width={width + 30} height={h} viewBox={`0 0 ${width + 30} ${h}`} style={{ overflow: "visible" }}>
@@ -392,7 +389,7 @@ export const Swoosh: React.FC<{
 
 /** Soft drifting colour glows for depth behind the content. */
 export const Glow: React.FC<{ readonly warm?: number; readonly cool?: number }> = ({ warm = 0.2, cool = 0.35 }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <div style={{ position: "absolute", left: -260 + Math.sin(frame / 55) * 70, top: 1000 + Math.cos(frame / 70) * 60, width: 1100, height: 1100, borderRadius: 550, background: `radial-gradient(circle, rgba(238,139,34,${warm}) 0%, rgba(238,139,34,0) 62%)` }} />

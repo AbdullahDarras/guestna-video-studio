@@ -61,7 +61,7 @@
 | id | المصطلح | المعنى | عندنا في Remotion | برومبت |
 |---|---|---|---|---|
 | `line-draw` | Trim Paths / Line Draw<br>رسم الخط | خط يُرسم من بدايته لنهايته. | strokeDasharray و strokeDashoffset مع interpolate | `single stroke draws itself on` |
-| `swoosh` | Swoosh Underline<br>خط مرسوم متموّج | بديل أنيق للخط الرفيع تحت العنوان: منحنى يرسم نفسه وينتهي بمعين صغير. الخطوط الجامدة تحت العناوين ممنوعة عندنا. | Swoosh (at, width, color) |  |
+| `swoosh` | Swoosh Underline<br>خط مرسوم متموّج | بديل أنيق للخط الرفيع تحت العنوان: منحنى يرسم نفسه وينتهي بمعين صغير. الخطوط الجامدة تحت العناوين غير مقبولة عندنا. | Swoosh (at, width, color) |  |
 | `shape-morph` | Shape Morph<br>تحوّل الشكل | شكل يتحول لشكل آخر بسلاسة. | interpolatePath من @remotion/paths أو تبديل opacity بين شكلين | `smooth shape morphing` |
 | `motion-path` | Motion Path<br>مسار الحركة | عنصر يتبع مساراً منحنياً ويدور مع اتجاهه. | getPointAtLength من @remotion/paths (مثال: الباص في LogisticsScene) | `follows a curved motion path` |
 | `map-route` | Map Route<br>مسار على الخريطة | خط يُرسم بين نقطتين مع علامة تتحرك عليه. للسفر والرحلات. | line-draw + motion-path. مناسب جداً لرحلات جستنا | `route line draws from pin A to pin B with a moving marker` |

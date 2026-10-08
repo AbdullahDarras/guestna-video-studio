@@ -44,7 +44,12 @@
     "motion": "node scripts/motion.mjs",
     "motion:lint": "node scripts/motion.mjs lint",
     "motion:docs": "node scripts/motion.mjs docs",
-    "render:trip": "remotion render EduTrip out/guestna-edu-trip.mp4 --codec=h264"
+    "render:trip": "remotion render EduTrip out/guestna-edu-trip.mp4 --codec=h264",
+    "align": "node scripts/align-recording.mjs",
+    "voice:polish": "node scripts/polish-voice.mjs",
+    "render:pitch-a": "remotion render PitchA out/guestna-pitch-a.mp4 --codec=h264 --crf=18",
+    "render:pitch-b": "remotion render PitchB out/guestna-pitch-b.mp4 --codec=h264 --crf=18",
+    "render:pitch-c": "remotion render PitchC out/guestna-pitch-c.mp4 --codec=h264 --crf=18"
   },
   "sideEffects": [
     "*.css"

@@ -63,6 +63,9 @@ powershell -ExecutionPolicy Bypass -File .\setup.ps1
 - برومبت لقطة ذكاء اصطناعي: `npm run motion -- prompt --subject "..." --camera dolly --light bright-daylight --people`
 - بعد تعديل القاموس: `npm run motion:docs` لتحديث المرجع المقروء.
 
+## فيديو من تسجيل صوتي حقيقي (60 إطار)
+`npm run voice:polish` (تلميع)، `npm run align -- --video <name> --audio <wav>` (توقيت) ثم بناء المشاهد بـ`src/pitch/*` كما في `src/videos/pitch-a`. التفاصيل في `CLAUDE.md`.
+
 ## الاستخدام اليومي
 افتح مجلد المستودع في Claude Code. ستجد القواعد والسكل `guestna-video` محمّلة. ثم:
 - `/new-video <اسم> <وصف>`: يبدأ فيديو جديداً (سكربت، صوت، مشاهد).

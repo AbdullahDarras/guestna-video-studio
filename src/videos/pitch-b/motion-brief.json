@@ -1,0 +1,169 @@
+{
+  "$comment": "Pitch B: bold type and numbers (question, clock, rays, carousel, ring counter, photo mosaic). 60fps, design clock 30. Lint: npm run motion -- lint pitch-b",
+  "language": "ar",
+  "ratio": "9:16",
+  "scenes": [
+    {
+      "scene": 1,
+      "name": "Question",
+      "voice": "كم رحلة ونشاط مدرسي، تضيع تغطيتها، أو تتعطل، بسبب تعقيدات الجمع والتحصيل",
+      "hero": "text-mask-reveal",
+      "support": [
+        "secondary-action",
+        "wiggle"
+      ],
+      "emphasis": [
+        "back-out"
+      ],
+      "camera": null,
+      "transitionOut": "whip-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 2,
+      "name": "Time",
+      "voice": "طبعاً كمدرس أو صاحب قرار، وقتك أثمن، من أنك تقضيه في متابعة موافقات ورقية، وحسابات يدوية",
+      "hero": "pose-to-pose",
+      "support": [
+        "back-out",
+        "stagger"
+      ],
+      "emphasis": [
+        "line-draw"
+      ],
+      "camera": null,
+      "transitionOut": "zoom-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 3,
+      "name": "NewEra",
+      "voice": "مع منصة قستنا، نقلنا إدارة الأنشطة والرحلات المدرسية، لعهد جديد",
+      "hero": "logo-reveal",
+      "support": [
+        "pulse-rings",
+        "text-mask-reveal"
+      ],
+      "emphasis": [
+        "swoosh"
+      ],
+      "camera": null,
+      "transitionOut": "push-slide",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 4,
+      "name": "Market",
+      "voice": "سوق رقمي متكامل، يخلي رائد النشاط يختار الرحلة، سواءً كانت محلية، أو ترفيهية، أو دولية، وبعد يحسب تكلفتها، وصافي أرباح المدرسة، بلمسة شاشة",
+      "hero": "stagger",
+      "support": [
+        "back-out",
+        "slow-in-out"
+      ],
+      "emphasis": [
+        "line-draw"
+      ],
+      "camera": null,
+      "transitionOut": "iris",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 5,
+      "name": "Parent",
+      "voice": "أما ولي الأمر، يوافق إلكترونياً، ويدفع بسهولة، أو بنظام الأقساط المؤتمتة، بدون أي وجع راس",
+      "hero": "back-out",
+      "support": [
+        "text-mask-reveal",
+        "stagger"
+      ],
+      "emphasis": [
+        "line-draw"
+      ],
+      "camera": null,
+      "transitionOut": "whip-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 6,
+      "name": "Result",
+      "voice": "والنتيجة، حوكمة كاملة للعملية، وعوائد مالية لمدرستك، توصل إلى 100 ألف ريال",
+      "hero": "counter",
+      "support": [
+        "pulse-rings",
+        "back-out"
+      ],
+      "emphasis": [
+        "particles"
+      ],
+      "camera": null,
+      "transitionOut": "zoom-transition",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 7,
+      "name": "Students",
+      "voice": "وفوق هذا كله، طلابك بيعيشون تجارب استثنائية، مع كبراء شركائنا، مثل القدية، وأكوا أريبيا",
+      "hero": "parallax",
+      "support": [
+        "stagger",
+        "ken-burns"
+      ],
+      "emphasis": [
+        "back-out"
+      ],
+      "camera": null,
+      "transitionOut": "push-slide",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 8,
+      "name": "Role",
+      "voice": "دوركم، تستمتعون بالتجربة، والتشغيل والتنظيم كاملاً، على قستنا",
+      "hero": "stagger",
+      "support": [
+        "back-out",
+        "text-mask-reveal"
+      ],
+      "emphasis": [
+        "light-sweep"
+      ],
+      "camera": null,
+      "transitionOut": "iris",
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    },
+    {
+      "scene": 9,
+      "name": "Outro",
+      "voice": "اشترك معنا اليوم، بشكل مجاني، وخلي أنشطة مدرستك، مصدر دخل وراحة",
+      "hero": "logo-reveal",
+      "support": [
+        "text-mask-reveal",
+        "seamless-loop"
+      ],
+      "emphasis": [
+        "swoosh"
+      ],
+      "camera": null,
+      "transitionOut": null,
+      "ease": "expo-out",
+      "enterFrames": 12,
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "path": "pitch-a/voice.mp3",
+      "what": "The user's own voice recording, cleaned (Magnific audio_isolate) and polished (EQ, compression, -16 LUFS), kept whole",
+      "source": "User recording IMG_2826.MOV, audio only. Not for redistribution without the speaker's consent."
+    },
+    {
+      "path": "pitch/music.mp3",
+      "what": "Background music bed (110s trim of the edu track)",
+      "source": "Google Lyria 3 Pro via Magnific"
+    },
+    {
+      "path": "edu/whoosh-soft.mp3",
+      "what": "Soft whoosh on scene cuts, shared",
+      "source": "Magnific SFX, shortened and faded with ffmpeg"
+    },
+    {
+      "path": "edu/ai/fun.jpg",
+      "what": "AI image used as photo (Saudi boys, air hockey)",
+      "source": "AI-generated image (Magnific auto mode)"
+    },
+    {
+      "path": "edu/ai/sports.jpg",
+      "what": "AI image (Saudi boys, football)",
+      "source": "AI-generated image (Magnific auto mode)"
+    },
+    {
+      "path": "edu/ai/science.jpg",
+      "what": "AI image (Saudi boys, hologram exhibit)",
+      "source": "AI-generated image (Magnific auto mode)"
+    },
+    {
+      "path": "edu/ai/art.jpg",
+      "what": "AI image (Saudi schoolgirls painting)",
+      "source": "AI-generated image (Magnific auto mode)"
+    },
+    {
+      "path": "edu/ai/riyadh.jpg",
+      "what": "Riyadh skyline frame, no people",
+      "source": "Frame from licensed stock video (Magnific/Freepik id 9854713)"
+    },
+    {
+      "path": "edu/ai-bus.mp4",
+      "what": "Saudi schoolboys boarding a bus (used in Pitch C)",
+      "source": "AI-generated: Google Veo 3.1 Fast via Magnific"
+    }
+  ]
+}

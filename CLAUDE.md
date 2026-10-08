@@ -8,7 +8,7 @@
 - `src/videos/<name>/`: كل فيديو في مجلد (مشاهد + `index.ts` + `assets.json` + اختيارياً `script.json` و`timing.ts`). كل فيديو يُسجَّل في `src/videos/registry.ts`.
 - `public/{fonts,logos,patterns,icons,pay}`: أصول الهوية (داخل Git).
 - `public/media/`: **الوسائط الخارجية (لقطات، صور، صوت، موسيقى). خارج Git**. مصدرها مستودع عام منفصل `guestna-video-assets` (يُسحب ويُربط تلقائياً بـ`npm run setup` / `npm run assets:link`، وتحديثه `npm run assets:update`). أصل جديد: يُضاف في مستودع الأصول (commit + push) ويُعلن في `assets.json`.
-- `scripts/`: `setup`, `link-assets`, `check-assets`, `build-voice`, `new-video`, `update-remotion-skills` (كلها Node وتعمل على ماك وويندوز).
+- `scripts/`: `setup`, `link-assets`, `check-assets`, `build-voice` (صوت مولَّد), `align-recording` و`polish-voice` (صوت بشري), `new-video`, `update-remotion-skills` (كلها Node وتعمل على ماك وويندوز).
 - `motion/lexicon.json`: **قاموس الحركة** (183 مصطلحاً، مبني على motioname.com) وهو مصدر قرارات الحركة والبرومبتات. `scripts/motion.mjs` أدواته (`npm run motion -- lookup|brief|lint|prompt|docs`). كل فيديو له `motion-brief.json` يُفحص مع `npm run lint`.
 - `.claude/skills/remotion-*`: سكلز Remotion الرسمية (MIT، مضمّنة، لا تعدّلها يدوياً؛ التحديث بـ`npm run skills:remotion`). سكل جستنا هو `guestna-video`.
 
@@ -34,7 +34,11 @@
 - أشخاص: مظهر سعودي/خليجي فقط. ممنوع وجوه أوروبية. للطلاب السعوديين وُلِّدت لقطات/صور بالذكاء الاصطناعي. وثّق المصدر في `assets.json`.
 - للتوفير: **صور بدل فيديو** في القوائم والمربعات؛ فيديو واحد للمشهد الافتتاحي فقط.
 
-## الصوت (الوصفة المعتمدة، لا تغيّرها بدون سبب)
+## تسجيل صوتي بشري (فويس المستخدم أو الفريق) و60 إطار
+- الصوت البشري **لا يُقصّ ولا يُسرّع**. الخطوات: (1) استخراج الصوت `npm run voice:polish -- --video <ملف.MOV> --out raw.wav` (يستخرج فقط، لا ترفع وجه المتحدث لأي أداة)، (2) تنقية بـ`audio_isolate` من Magnific (تكلفتها حسب المدة، حوالي 4 كريدت للثانية، اسأل قبلها)، (3) `npm run voice:polish -- --in isolated.mp3 --out polished.wav` (EQ وضغط خفيف و-16 LUFS)، (4) نص بتوقيت تقريبي (`video_analyze` على نسخة بشاشة سوداء)، اكتبه في `src/videos/<name>/transcript.json`، (5) `npm run align -- --video <name> --audio polished.wav` يثبّت كل جملة على أقرب بداية كلام حقيقية ويكتب `timing.ts` و`voice.mp3`.
+- **60 إطار**: عدّة الحركة تعمل بـ"ساعة تصميم" 30 إطار (`useFrame` في `src/clock.ts`) فكل المدد المكتوبة بالفريمات تحتفظ بزمنها الحقيقي وتصير أنعم. استخدم `useFrame()` لا `useCurrentFrame()` في المكوّنات الجديدة، واجعل `fps: 60` في `VideoDef` و`durationInFrames: toReal(TOTAL, 60)`. المرجع: `src/pitch/stage.tsx` (المسرح والصوت والانتقالات) و`src/pitch/ui.tsx` (هاتف، أوراق، عدّاد، كلمات متتابعة) و`src/videos/pitch-a`.
+
+## الصوت المولَّد (الوصفة المعتمدة، لا تغيّرها بدون سبب)
 تفاصيل كاملة في `references/voice-recipe.md`. باختصار: تسجيل **واحد متصل** للنص كله (ElevenLabs eleven_v3، الصوت 783 سعد القحطاني، stability 0.4)، بدون وسوم لهجة وبدون [pause] بين العناصر، فقط [pause 0.4-0.6s] بين الفقرات؛ ثم `npm run voice` يقصّ عند وقفات الفقرات فقط ويسرّع 1.06 ويكتب `timing.ts`. المشاهد تقرأ التوقيت من `timing.ts` عبر `at(scene, phrase)`، **لا توقيت يدوي**.
 أنت لا تسمع الصوت: لا تدّعِ أنه سليم. اطلب من المستخدم الاستماع، وإذا ظهرت جملة بلهجة خاطئة أعد توليد التسجيل كاملاً (لا تقطيع جمل منفصلة).
 

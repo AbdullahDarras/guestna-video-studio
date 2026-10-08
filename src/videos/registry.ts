@@ -1,5 +1,8 @@
 import type React from "react";
 // @videos-import
+import { pitchCDef } from "./pitch-c";
+import { pitchBDef } from "./pitch-b";
+import { pitchADef } from "./pitch-a";
 import { eduTripDef } from "./edu-trip";
 import { appVideo } from "./app";
 import { demoVideo } from "./demo";
@@ -28,5 +31,8 @@ export const VIDEOS: readonly VideoDef[] = [
   eduVideo,
   appVideo,
   eduTripDef,
+  pitchADef,
+  pitchBDef,
+  pitchCDef,
   // @videos-list
 ];

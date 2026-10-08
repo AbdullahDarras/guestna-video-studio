@@ -9,8 +9,8 @@ import {
   Interactive,
   interpolate,
   staticFile,
-  useCurrentFrame,
 } from "remotion";
+import { useFrame } from "./clock";
 
 // GuestNa official palette (tokens.json)
 export const C = {
@@ -75,7 +75,7 @@ export const Reveal: React.FC<RevealProps> = ({
   style,
   children,
 }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const p = interpolate(frame, [delay, delay + duration], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -98,7 +98,7 @@ export const Reveal: React.FC<RevealProps> = ({
 
 /** Opacity window: fades in at `from`, fades out at `to` (pass Infinity to stay). */
 export const useWindow = (from: number, to: number, fade = 8) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const fadeIn = interpolate(frame, [from, from + fade], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -117,7 +117,7 @@ export const SceneFade: React.FC<{
   readonly frames?: number;
   readonly children: React.ReactNode;
 }> = ({ frames = 10, children }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const opacity = interpolate(frame, [0, frames], [0, 1], {
     extrapolateRight: "clamp",
   });
@@ -140,7 +140,7 @@ export const Photo: React.FC<{
   readonly position?: string;
   readonly opacity?: number;
 }> = ({ src, total, zoomFrom = 1.04, zoomTo = 1.16, position = "50% 50%", opacity = 1 }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   return (
     <Img
       src={staticFile(src)}

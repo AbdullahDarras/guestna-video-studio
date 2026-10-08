@@ -1,7 +1,8 @@
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, interpolate } from "remotion";
 import { C } from "./brand";
 import { clamp } from "./kit";
+import { useFrame } from "./clock";
 
 export type TransitionKind = "zoom" | "rise" | "iris" | "whip" | "bloom";
 
@@ -23,7 +24,7 @@ export const Shell: React.FC<{
   readonly overlap?: number;
   readonly origin?: { readonly x: number; readonly y: number };
 }> = ({ total, children, enter, exit, overlap = 20, origin = { x: 540, y: 960 } }) => {
-  const frame = useCurrentFrame();
+  const frame = useFrame();
   const pin = enter ? interpolate(frame, [0, overlap], [0, 1], { ...clamp, easing: Easing.bezier(0.6, 0, 0.25, 1) }) : 1;
   const pout = exit ? interpolate(frame, [total - overlap, total], [0, 1], { ...clamp, easing: Easing.inOut(Easing.cubic) }) : 0;
 
